@@ -7,7 +7,7 @@
 	<key>defaultOrientation</key>
 	<integer>0</integer>
 	<key>designTarget</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>deviceOrientationLandscapeLeft</key>
 	<true/>
 	<key>deviceOrientationLandscapeRight</key>
@@ -80,15 +80,11 @@
 		</dict>
 		<key>Animation</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
 		<key>Environment</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
