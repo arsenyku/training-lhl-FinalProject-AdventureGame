@@ -7,7 +7,7 @@
 	<key>defaultOrientation</key>
 	<integer>0</integer>
 	<key>designTarget</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>deviceOrientationLandscapeLeft</key>
 	<true/>
 	<key>deviceOrientationLandscapeRight</key>
@@ -63,7 +63,7 @@
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
-	<integer>4</integer>
+	<integer>2</integer>
 	<key>resourcePaths</key>
 	<array>
 		<dict>
@@ -76,6 +76,20 @@
 		<key></key>
 		<dict>
 			<key>previewFolderHidden</key>
+			<true/>
+		</dict>
+		<key>Animation</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
+		<key>Environment</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
 			<true/>
 		</dict>
 		<key>Sprites</key>
