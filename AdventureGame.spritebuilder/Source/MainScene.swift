@@ -3,11 +3,12 @@ import UIKit
 class MainScene: CCNode, CCPhysicsCollisionDelegate {
 
     let scrollSpeed : CGFloat = 50
-    let jumpImpulse : CGFloat = 350
-//    let distanceBetweenObstacles : CGFloat = 160
+    let jumpImpulse : CGFloat = 400
+    let platformSpacing:CGFloat = 300
+
+    //    let distanceBetweenObstacles : CGFloat = 160
     let minPlatformHeight:CGFloat = 65
     let maxPlatformHeight:CGFloat = 150
-    let platformSpacing:CGFloat = 235
 
 
     weak var gamePhysicsNode : CCPhysicsNode!
@@ -52,15 +53,18 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         for _ in 1...5{
             spawnNewPlatform(stageInit:true)
         }
+        
+        hero.zOrder = 100
     }
 
     // MARK: User Interaction
     
     func handleTap(sender:UITapGestureRecognizer){
+        print ("Jump start")
         hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
         sinceTouch = 0
         heroIsJumping = true
-//        id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
+		// id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
     }
 
     // MARK: Game logic
@@ -112,19 +116,29 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     }
 
         func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
-            print("COLLISION - hero: \(hero.position) - platform \(floatingGround.position)")
+            print("Collision test - hero: \(hero.position) - platform \(floatingGround.position)")
             
-//            heroIsJumping = heroAb
-//            
-//            if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
-//                
-//            }
+            let distanceWhenStandingOnGround:CGFloat = 50
             
-            return true
+            if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
+                // Hero is on top - accept collision
+                return true
+            } else {
+                // Hero is below the platform - ignore the collision
+                return false
+            }
+            
         }
     
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) {
+        if (heroIsJumping) {
+	        print("Jump end - hero: \(hero.position) - ground \(floatingGround.position)")
+    	    heroIsJumping = false
+        }
+    }
+    
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
-        print("hero: \(hero.position) - ground \(ground.position)")
+        print("DEATH - hero: \(hero.position) - ground \(ground.position)")
         return true
     }
     
@@ -141,7 +155,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:yOffsetMin, max:yOffsetMax))))
         
         platform.position = ccp(newPlatformX, newPlatformY)
-        print("Spawning new platform at \(platform.position)")
+        print("Spawning new platform at \(platform.position), z = \(platform.zOrder)")
 
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
