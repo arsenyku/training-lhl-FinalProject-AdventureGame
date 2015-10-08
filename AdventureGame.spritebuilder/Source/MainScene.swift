@@ -1,6 +1,6 @@
 import UIKit
 
-class MainScene: CCNode {
+class MainScene: CCNode, CCPhysicsCollisionDelegate {
 
     let scrollSpeed : CGFloat = 50
     let jumpImpulse : CGFloat = 350
@@ -15,12 +15,21 @@ class MainScene: CCNode {
 
     // Game State
     var sinceTouch : CCTime = 0
+    var heroIsJumping = false
+    var maxHeight: CGFloat = 0
+    
     
 	// User interaction
     var tapDetector : UITapGestureRecognizer!
+    weak var coordinatesLabel : CCLabelTTF!
+    
+    // MARK: Lifecycle
     
     func didLoadFromCCB() {
         userInteractionEnabled = true
+		
+        gamePhysicsNode.collisionDelegate = self
+        
         grounds.append(ground1)
         grounds.append(ground2)
 
@@ -30,12 +39,18 @@ class MainScene: CCNode {
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
     }
+
+    // MARK: User Interaction
     
     func handleTap(sender:UITapGestureRecognizer){
         hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
         sinceTouch = 0
+        heroIsJumping = true
+//        id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
     }
 
+    // MARK: Game logic
+    
     override func update(delta: CCTime) {
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - scrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
 		hero.position = ccp(hero.position.x + scrollSpeed * CGFloat(delta), hero.position.y)
@@ -57,8 +72,19 @@ class MainScene: CCNode {
                 ground.position = ccp((ground.position.x + groundScaledContentWidth * 2) + correctionForPixelBoundary, ground.position.y)
             }
         }
+    
+        if maxHeight < hero.position.y{
+            maxHeight = hero.position.y
+        }
+        coordinatesLabel.string = "Max jump height = \(maxHeight))"
+    
     }
     
+//    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
+//        print("DEATH")
+//        return true
+//    }
+//    
     
     
     
