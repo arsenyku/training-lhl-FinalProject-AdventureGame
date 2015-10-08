@@ -4,7 +4,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
 
     let scrollSpeed : CGFloat = 50
     let jumpImpulse : CGFloat = 350
-    
+//    let distanceBetweenObstacles : CGFloat = 160
+
     weak var gamePhysicsNode : CCPhysicsNode!
 
     // Sprites
@@ -12,11 +13,14 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     weak var ground1 : CCSprite!
     weak var ground2 : CCSprite!
     var grounds = [CCSprite]()
+    var platforms : [CCNode] = []
 
     // Game State
     var sinceTouch : CCTime = 0
+    var sinceLastPlatformSpawn : CCTime = 0
     var heroIsJumping = false
-    var maxHeight: CGFloat = 0
+    var lastPlatformY : CGFloat = 0
+    var lastPlatformX : CGFloat = 0
     
     
 	// User interaction
@@ -38,6 +42,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
+        lastPlatformY = hero.position.y
+        lastPlatformX = hero.position.x
+     
+        spawnNewPlatform()
     }
 
     // MARK: User Interaction
@@ -52,6 +60,8 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     // MARK: Game logic
     
     override func update(delta: CCTime) {
+        sinceLastPlatformSpawn += delta
+        
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - scrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
 		hero.position = ccp(hero.position.x + scrollSpeed * CGFloat(delta), hero.position.y)
         
@@ -73,11 +83,26 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             }
         }
     
-        if maxHeight < hero.position.y{
-            maxHeight = hero.position.y
-        }
-        coordinatesLabel.string = "Max jump height = \(maxHeight))"
+        
+        coordinatesLabel.string = "HERO: \(hero.position.x), \(hero.position.y))"
     
+        for platform in Array(platforms.reverse()) {
+            let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
+            let platformScreenPosition = convertToNodeSpace(platformWorldPosition)
+            let platformScaledContentWidth = platform.contentSize.width * CGFloat(platform.scaleX)
+            
+            // platform moved past left side of screen?
+            if platformScreenPosition.x < (-platformScaledContentWidth) {
+                platform.removeFromParent()
+                platforms.removeAtIndex(platforms.indexOf(platform)!)
+            }
+        }
+        
+        
+        if (sinceLastPlatformSpawn > 4){
+            spawnNewPlatform()
+        }
+        
     }
     
 //    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
@@ -86,6 +111,43 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
 //    }
 //    
     
+    func spawnNewPlatform() {
+        let minPlatformHeight:CGFloat = 65
+        let maxPlatformHeight:CGFloat = 150
+        
+        
+        // create and add a new platform
+        let platform = CCBReader.load("FloatingGround")
+        
+        let newPlatformX = hero.position.x + 280
+        let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:-100, max:80))))
+        
+        
+        platform.position = ccp(newPlatformX, newPlatformY)
+        print("Spawning new platform at \(platform.position)")
+
+        gamePhysicsNode.addChild(platform)
+        platforms.append(platform)
+
+        sinceLastPlatformSpawn = 0
+        lastPlatformX = platform.position.x
+        lastPlatformY = platform.position.y
+        
+    }
+    
+    func randomInt(min min:Int, max:Int) -> Int{
+        assert(max >= min)
+        return (min + Int(arc4random_uniform(UInt32(max - min + 1))))
+    }
+    
+    func randomFloat(min min:Float, max:Float, precision:UInt32) -> Float{
+        let precisionFactor = pow(Float(10),Float(precision))
+        let rangeMin = Int(min * precisionFactor)
+        let rangeMax = Int(max * precisionFactor)
+        
+        let result = Float(randomInt(min:rangeMin, max:rangeMax)) / precisionFactor
+        return result
+    }
     
     
 }
