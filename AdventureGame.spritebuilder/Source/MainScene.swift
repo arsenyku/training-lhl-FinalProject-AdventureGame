@@ -5,6 +5,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     let scrollSpeed : CGFloat = 50
     let jumpImpulse : CGFloat = 350
 //    let distanceBetweenObstacles : CGFloat = 160
+    let minPlatformHeight:CGFloat = 65
+    let maxPlatformHeight:CGFloat = 150
+    let platformSpacing:CGFloat = 235
+
 
     weak var gamePhysicsNode : CCPhysicsNode!
 
@@ -42,10 +46,12 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        lastPlatformY = hero.position.y
-        lastPlatformX = hero.position.x
+        lastPlatformX = hero.position.x - platformSpacing
+        lastPlatformY = minPlatformHeight
      
-        spawnNewPlatform()
+        for _ in 1...5{
+            spawnNewPlatform(stageInit:true)
+        }
     }
 
     // MARK: User Interaction
@@ -104,24 +110,35 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
         
     }
+
+        func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
+            print("COLLISION - hero: \(hero.position) - platform \(floatingGround.position)")
+            
+//            heroIsJumping = heroAb
+//            
+//            if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
+//                
+//            }
+            
+            return true
+        }
     
-//    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
-//        print("DEATH")
-//        return true
-//    }
-//    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
+        print("hero: \(hero.position) - ground \(ground.position)")
+        return true
+    }
     
-    func spawnNewPlatform() {
-        let minPlatformHeight:CGFloat = 65
-        let maxPlatformHeight:CGFloat = 150
-        
+    
+    func spawnNewPlatform(stageInit stageInit:Bool = false) {
         
         // create and add a new platform
         let platform = CCBReader.load("FloatingGround")
         
-        let newPlatformX = hero.position.x + 280
-        let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:-100, max:80))))
+        let yOffsetMax:Int = 80
+        let yOffsetMin:Int = stageInit ? 0 : -yOffsetMax
         
+        let newPlatformX = lastPlatformX + platformSpacing
+        let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:yOffsetMin, max:yOffsetMax))))
         
         platform.position = ccp(newPlatformX, newPlatformY)
         print("Spawning new platform at \(platform.position)")
@@ -142,10 +159,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     func randomFloat(min min:Float, max:Float, precision:UInt32) -> Float{
         let precisionFactor = pow(Float(10),Float(precision))
-        let rangeMin = Int(min * precisionFactor)
-        let rangeMax = Int(max * precisionFactor)
+        let adjustedMin = Int(min * precisionFactor)
+        let adjustedMax = Int(max * precisionFactor)
         
-        let result = Float(randomInt(min:rangeMin, max:rangeMax)) / precisionFactor
+        let result = Float(randomInt(min:adjustedMin, max:adjustedMax)) / precisionFactor
         return result
     }
     

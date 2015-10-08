@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>16</integer>
+	<integer>18</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -642,8 +642,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>281</real>
-									<real>58</real>
+									<real>284</real>
+									<real>267</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -656,8 +656,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>1.5</real>
+									<real>1.5</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -671,6 +671,8 @@
 								<string>Hero.ccb</string>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -762,8 +764,6 @@
 						<real>0.5</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
