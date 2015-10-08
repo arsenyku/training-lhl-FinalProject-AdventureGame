@@ -21,8 +21,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     var platforms : [CCNode] = []
 
     // Game State
-    var sinceTouch : CCTime = 0
-    var sinceLastPlatformSpawn : CCTime = 0
     var heroIsJumping = false
     var lastPlatformY : CGFloat = 0
     var lastPlatformX : CGFloat = 0
@@ -60,20 +58,21 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     // MARK: User Interaction
     
     func handleTap(sender:UITapGestureRecognizer){
-        print ("Jump start")
-        hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
-        sinceTouch = 0
-        heroIsJumping = true
+        if (heroIsJumping == false){
+            print ("Jump start")
+            hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
+            heroIsJumping = true
+        }
 		// id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
     }
 
     // MARK: Game logic
     
     override func update(delta: CCTime) {
-        sinceLastPlatformSpawn += delta
+        let effectiveScrollSpeed = scrollSpeed * (heroIsJumping ? 2.5 : 1)
         
-        gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - scrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
-		hero.position = ccp(hero.position.x + scrollSpeed * CGFloat(delta), hero.position.y)
+        gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - effectiveScrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
+		hero.position = ccp(hero.position.x + effectiveScrollSpeed * CGFloat(delta), hero.position.y)
         
         // Fix black-line artifacts from looping environment
         let scale = CCDirector.sharedDirector().contentScaleFactor
@@ -105,12 +104,9 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
             if platformScreenPosition.x < (-platformScaledContentWidth) {
                 platform.removeFromParent()
                 platforms.removeAtIndex(platforms.indexOf(platform)!)
+                
+                spawnNewPlatform()
             }
-        }
-        
-        
-        if (sinceLastPlatformSpawn > 4){
-            spawnNewPlatform()
         }
         
     }
@@ -139,6 +135,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
         print("DEATH - hero: \(hero.position) - ground \(ground.position)")
+        heroIsJumping = false
         return true
     }
     
@@ -160,7 +157,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
 
-        sinceLastPlatformSpawn = 0
         lastPlatformX = platform.position.x
         lastPlatformY = platform.position.y
         
