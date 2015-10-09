@@ -92,7 +92,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
     
     func soundToggle(sender: AnyObject?) {
         if let toggleButton = sender as? CCButton {
-        
+
             soundOn = !soundOn
             toggleButton.selected = soundOn
 
@@ -135,7 +135,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
         }
     
         
-        coordinatesLabel.string = "HERO: \(hero.position.x), \(hero.position.y))"
+        coordinatesLabel.string = "HERO: \(hero.position.x), \(hero.position.y)"
     
         for platform in Array(platforms.reverse()) {
             let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
@@ -170,7 +170,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
     
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) {
         if (heroIsJumping) {
-	        print("Jump end - hero: \(hero.position) - ground \(floatingGround.position)")
     	    heroIsJumping = false
         }
     }
@@ -194,7 +193,6 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
         let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:yOffsetMin, max:yOffsetMax))))
         
         platform.position = ccp(newPlatformX, newPlatformY)
-        print("Spawning new platform at \(platform.position), z = \(platform.zOrder)")
 
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
