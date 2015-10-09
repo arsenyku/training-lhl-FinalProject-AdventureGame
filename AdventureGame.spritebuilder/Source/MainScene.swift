@@ -2,9 +2,9 @@ import UIKit
 
 class MainScene: CCNode, CCPhysicsCollisionDelegate {
 
-    let scrollSpeed : CGFloat = 50
-    let jumpImpulse : CGFloat = 400
-    let platformSpacing:CGFloat = 300
+    let scrollSpeed : CGFloat = 70
+    let jumpImpulse : CGFloat = 125
+    let platformSpacing:CGFloat = 275
 
     //    let distanceBetweenObstacles : CGFloat = 160
     let minPlatformHeight:CGFloat = 65
@@ -111,20 +111,20 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         
     }
 
-        func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
-            print("Collision test - hero: \(hero.position) - platform \(floatingGround.position)")
-            
-            let distanceWhenStandingOnGround:CGFloat = 50
-            
-            if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
-                // Hero is on top - accept collision
-                return true
-            } else {
-                // Hero is below the platform - ignore the collision
-                return false
-            }
-            
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
+        print("Collision test - hero: \(hero.position) - platform \(floatingGround.position)")
+        
+        let distanceWhenStandingOnGround:CGFloat = 40
+        
+        if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
+            // Hero is on top - accept collision
+            return true
+        } else {
+            // Hero is below the platform - ignore the collision
+            return false
         }
+        
+    }
     
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) {
         if (heroIsJumping) {

@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>2</integer>
+	<integer>6</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -57,7 +57,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning1.png</string>
+								<string>Animation/RunningArcher1.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -70,12 +70,12 @@
 							<key>name</key>
 							<string>spriteFrame</string>
 							<key>time</key>
-							<real>0.1666666716337204</real>
+							<real>0.13333334028720856</real>
 							<key>type</key>
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning2.png</string>
+								<string>Animation/RunningArcher2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -88,12 +88,12 @@
 							<key>name</key>
 							<string>spriteFrame</string>
 							<key>time</key>
-							<real>0.3333333432674408</real>
+							<real>0.26666668057441711</real>
 							<key>type</key>
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning3.png</string>
+								<string>Animation/RunningArcher3.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -106,12 +106,30 @@
 							<key>name</key>
 							<string>spriteFrame</string>
 							<key>time</key>
-							<real>0.5</real>
+							<real>0.40000000596046448</real>
 							<key>type</key>
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning4.png</string>
+								<string>Animation/RunningArcher4.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.53333336114883423</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/RunningArcher1.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -129,7 +147,7 @@
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning5.png</string>
+								<string>Animation/RunningArcher2.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -142,12 +160,30 @@
 							<key>name</key>
 							<string>spriteFrame</string>
 							<key>time</key>
-							<real>0.83333331346511841</real>
+							<real>0.80000001192092896</real>
 							<key>type</key>
 							<integer>7</integer>
 							<key>value</key>
 							<array>
-								<string>Animation/HeroRunning6.png</string>
+								<string>Animation/RunningArcher3.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.93333333730697632</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/RunningArcher4.png</string>
 								<string>Use regular file</string>
 							</array>
 						</dict>
@@ -192,46 +228,46 @@
 			<key>dynamic</key>
 			<true/>
 			<key>elasticity</key>
-			<real>0.30000001192092896</real>
+			<real>0.5</real>
 			<key>friction</key>
 			<real>0.30000001192092896</real>
 			<key>points</key>
 			<array>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
+					<real>4.2015261650085449</real>
+					<real>1.6935038566589355</real>
 				</array>
 				<array>
-					<real>0.0</real>
-					<real>32</real>
+					<real>4.0395541191101074</real>
+					<real>15.256166458129883</real>
 				</array>
 				<array>
-					<real>32</real>
-					<real>32</real>
+					<real>17.645240783691406</real>
+					<real>15.256166458129883</real>
 				</array>
 				<array>
-					<real>32</real>
-					<real>0.0</real>
+					<real>16.944202423095703</real>
+					<real>2.1186816692352295</real>
 				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
 					<array>
-						<real>32</real>
-						<real>0.0</real>
+						<real>16.944202423095703</real>
+						<real>2.1186816692352295</real>
 					</array>
 					<array>
-						<real>32</real>
-						<real>32</real>
+						<real>17.645240783691406</real>
+						<real>15.256166458129883</real>
 					</array>
 					<array>
-						<real>0.0</real>
-						<real>32</real>
+						<real>4.0395541191101074</real>
+						<real>15.256166458129883</real>
 					</array>
 					<array>
-						<real>0.0</real>
-						<real>0.0</real>
+						<real>4.2015261650085449</real>
+						<real>1.6935038566589355</real>
 					</array>
 				</array>
 			</array>
@@ -287,7 +323,7 @@
 			<dict>
 				<key>baseValue</key>
 				<array>
-					<string></string>
+					<string>Animation/RunningArcher4.png</string>
 					<string>Use regular file</string>
 				</array>
 				<key>name</key>
@@ -297,7 +333,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>Animation/HeroRunning6.png</string>
+					<string>Animation/RunningArcher4.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -392,7 +428,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.83333331346511841</real>
+			<real>0.13333334028720856</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
