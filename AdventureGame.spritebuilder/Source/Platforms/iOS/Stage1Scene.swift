@@ -21,7 +21,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var gamePhysicsNode : CCPhysicsNode!
 
     // Sprites
-    weak var hero : CCSprite!
+    weak var hero : Hero!
     weak var ground1 : CCSprite!
     weak var ground2 : CCSprite!
     var grounds = [CCSprite]()
@@ -33,7 +33,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var lastPlatformY : CGFloat = 0
     var lastPlatformX : CGFloat = 0
     var soundOn = false
-    var goalCount : Int = 0
     
     
 	// User interaction
@@ -144,7 +143,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     
         
-        coordinatesLabel.string = "Crystals: \(goalCount)"
+        coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
     
         movePlatforms()
         moveCrystals()
@@ -178,8 +177,8 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         return true
     }
     
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, crystal: CCNode!) -> Bool {
-		goalCount += 1
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, crystal: CCNode!) -> Bool {
+		hero.crystalsCount += 1
         crystal.removeFromParent()
         crystals.removeAtIndex(crystals.indexOf(crystal)!)
         return false

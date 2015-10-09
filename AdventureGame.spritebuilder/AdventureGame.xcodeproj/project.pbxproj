@@ -17,6 +17,7 @@
 		129A57B31BC8722100A4D07D /* Stage1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57AF1BC8722100A4D07D /* Stage1Scene.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57B41BC8722100A4D07D /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B01BC8722100A4D07D /* Crystal.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B11BC8722100A4D07D /* FloatingGround.swift */; settings = {ASSET_TAGS = (); }; };
+		129A57B91BC8744400A4D07D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B81BC8744400A4D07D /* Hero.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
@@ -163,6 +164,7 @@
 		129A57AF1BC8722100A4D07D /* Stage1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage1Scene.swift; path = Source/Platforms/iOS/Stage1Scene.swift; sourceTree = "<group>"; };
 		129A57B01BC8722100A4D07D /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crystal.swift; path = Source/Platforms/iOS/Crystal.swift; sourceTree = "<group>"; };
 		129A57B11BC8722100A4D07D /* FloatingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingGround.swift; path = Source/Platforms/iOS/FloatingGround.swift; sourceTree = "<group>"; };
+		129A57B81BC8744400A4D07D /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = Source/Platforms/iOS/Hero.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				129A57AE1BC8722100A4D07D /* WelcomeScene.swift */,
 				129A57AF1BC8722100A4D07D /* Stage1Scene.swift */,
+				129A57B81BC8744400A4D07D /* Hero.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
 				129A57B11BC8722100A4D07D /* FloatingGround.swift */,
 			);
@@ -850,6 +853,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				129A57B91BC8744400A4D07D /* Hero.swift in Sources */,
 				129A57B41BC8722100A4D07D /* Crystal.swift in Sources */,
 				129A57B31BC8722100A4D07D /* Stage1Scene.swift in Sources */,
 			);

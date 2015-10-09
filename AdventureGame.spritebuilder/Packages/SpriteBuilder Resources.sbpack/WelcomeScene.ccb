@@ -374,8 +374,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1133,7 +1131,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>reloadGame</string>
+							<string>reloadGame:</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1388,6 +1386,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1459,7 +1459,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>optionsScreen</string>
+							<string>optionsScreen:</string>
 							<integer>1</integer>
 						</array>
 					</dict>

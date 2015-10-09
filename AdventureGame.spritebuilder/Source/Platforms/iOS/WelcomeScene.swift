@@ -18,5 +18,12 @@ class WelcomeScene: CCNode {
         
     }
 
+
+    func reloadGame(sender: CCButton?) {
+
+    }
+    
+    func optionsScreen(sender: CCButton?) {
+    }
     
 }
