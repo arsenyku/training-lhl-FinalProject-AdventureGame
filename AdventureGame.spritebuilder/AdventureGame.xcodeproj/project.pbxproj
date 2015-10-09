@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F31BC8857C00B0FB3C /* Int+Random.swift */; settings = {ASSET_TAGS = (); }; };
+		1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F51BC8859300B0FB3C /* Float+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57A41BC870E200A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A11BC870E200A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
 		129A57A51BC870E200A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A11BC870E200A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
 		129A57A61BC870E200A4D07D /* LavaJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A21BC870E200A4D07D /* LavaJump.wav */; settings = {ASSET_TAGS = (); }; };
@@ -157,6 +159,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1295B2F31BC8857C00B0FB3C /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Source/Platforms/iOS/Int+Random.swift"; sourceTree = "<group>"; };
+		1295B2F51BC8859300B0FB3C /* Float+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Random.swift"; path = "Source/Platforms/iOS/Float+Random.swift"; sourceTree = "<group>"; };
 		129A57A11BC870E200A4D07D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GameOver.wav; path = Sound/GameOver.wav; sourceTree = "<group>"; };
 		129A57A21BC870E200A4D07D /* LavaJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LavaJump.wav; path = Sound/LavaJump.wav; sourceTree = "<group>"; };
 		129A57A31BC870E200A4D07D /* LavaTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LavaTheme.mp3; path = Sound/LavaTheme.mp3; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 				129A57B81BC8744400A4D07D /* Hero.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
 				129A57B11BC8722100A4D07D /* FloatingGround.swift */,
+				1295B2F31BC8857C00B0FB3C /* Int+Random.swift */,
+				1295B2F51BC8859300B0FB3C /* Float+Random.swift */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -850,12 +856,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */,
+				1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				129A57B91BC8744400A4D07D /* Hero.swift in Sources */,
 				129A57B41BC8722100A4D07D /* Crystal.swift in Sources */,
 				129A57B31BC8722100A4D07D /* Stage1Scene.swift in Sources */,
+				1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

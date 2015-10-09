@@ -10,12 +10,6 @@ import UIKit
 class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
 
     let scrollSpeed : CGFloat = 70
-    let platformSpacing:CGFloat = 275
-
-    //    let distanceBetweenObstacles : CGFloat = 160
-    let minPlatformHeight:CGFloat = 65
-    let maxPlatformHeight:CGFloat = 150
-
 
     weak var gamePhysicsNode : CCPhysicsNode!
 
@@ -28,8 +22,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var platforms : [CCNode] = []
 
     // Game State
-    var lastPlatformY : CGFloat = 0
-    var lastPlatformX : CGFloat = 0
+    var lastPlatformLocation : CGPoint = CGPointMake(0,0)
     var soundOn = false
     
     
@@ -56,11 +49,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        lastPlatformX = hero.position.x - platformSpacing
-        lastPlatformY = minPlatformHeight
-     
+        lastPlatformLocation = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
+
         for _ in 1...5{
-            spawnNewPlatform(stageInit:true)
+            spawnNewPlatform()
         }
         
         hero.zOrder = 100
@@ -124,8 +116,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         let scale = CCDirector.sharedDirector().contentScaleFactor
         hero.position = ccp(round(hero.position.x * scale) / scale, round(hero.position.y * scale) / scale)
         gamePhysicsNode.position = ccp(round(gamePhysicsNode.position.x * scale) / scale, round(gamePhysicsNode.position.y * scale) / scale)
-
-
     
         // loop the ground whenever a ground image was moved entirely outside the screen
         for ground in grounds {
@@ -190,10 +180,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             if platformScreenPosition.x < (-platformScaledContentWidth) {
                 platform.removeFromParent()
                 platforms.removeAtIndex(platforms.indexOf(platform)!)
+
+				spawnNewPlatform()
                 
-                spawnNewPlatform()
-                
-                if (randomInt(min: 1, max: 10) < 6) {
+                if (Int.random(min: 1, max: 10) < 6) {
                     spawnNewCrystal()
                 }
             }
@@ -216,31 +206,18 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     }
     
-    
-    func spawnNewPlatform(stageInit stageInit:Bool = false) {
-        
-        // create and add a new platform
-        let platform = CCBReader.load("FloatingGround")
-        
-        let yOffsetMax:Int = 80
-        let yOffsetMin:Int = stageInit ? 0 : -yOffsetMax
-        
-        let newPlatformX = lastPlatformX + platformSpacing
-        let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, lastPlatformY + CGFloat(randomInt(min:yOffsetMin, max:yOffsetMax))))
-        
-        platform.position = ccp(newPlatformX, newPlatformY)
-
+    func spawnNewPlatform(){
+        let platform = FloatingGround.spawn(stageInit:true, relativeTo: lastPlatformLocation)
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
-
-        lastPlatformX = platform.position.x
-        lastPlatformY = platform.position.y
         
+        lastPlatformLocation = platform.position
+    
     }
     
     func spawnNewCrystal (){
         let crystal = CCBReader.load("Crystal")
-        crystal.position = ccp(lastPlatformX - 25, lastPlatformY + 125)
+        crystal.position = ccp(lastPlatformLocation.x - 25, lastPlatformLocation.y + 125)
 
         gamePhysicsNode.addChild(crystal)
         crystals.append(crystal)
@@ -262,19 +239,5 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         OALSimpleAudio.sharedInstance().playEffect("LavaJump.wav")
     }
     
-    func randomInt(min min:Int, max:Int) -> Int{
-        assert(max >= min)
-        return (min + Int(arc4random_uniform(UInt32(max - min + 1))))
-    }
-    
-    func randomFloat(min min:Float, max:Float, precision:UInt32) -> Float{
-        let precisionFactor = pow(Float(10),Float(precision))
-        let adjustedMin = Int(min * precisionFactor)
-        let adjustedMax = Int(max * precisionFactor)
-        
-        let result = Float(randomInt(min:adjustedMin, max:adjustedMax)) / precisionFactor
-        return result
-    }
-    
-    
+       
 }
