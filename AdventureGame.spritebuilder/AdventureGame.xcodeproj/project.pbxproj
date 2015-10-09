@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		129A574C1BC7626500A4D07D /* LavaTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 129A574B1BC7626500A4D07D /* LavaTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
+		129A574E1BC764CB00A4D07D /* LavaJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A574D1BC764CB00A4D07D /* LavaJump.wav */; settings = {ASSET_TAGS = (); }; };
+		129A57501BC7651100A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A574F1BC7651100A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
 		12CA84E71BC6EDA700A86398 /* FloatingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA84E61BC6EDA700A86398 /* FloatingGround.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -149,6 +152,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		129A574B1BC7626500A4D07D /* LavaTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LavaTheme.mp3; sourceTree = "<group>"; };
+		129A574D1BC764CB00A4D07D /* LavaJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LavaJump.wav; sourceTree = "<group>"; };
+		129A574F1BC7651100A4D07D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameOver.wav; sourceTree = "<group>"; };
 		12CA84E61BC6EDA700A86398 /* FloatingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingGround.swift; path = Source/FloatingGround.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -273,6 +279,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		129A57401BC75B9D00A4D07D /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				129A574F1BC7651100A4D07D /* GameOver.wav */,
+				129A574B1BC7626500A4D07D /* LavaTheme.mp3 */,
+				129A574D1BC764CB00A4D07D /* LavaJump.wav */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		5B12100D197483EE004C1E1D /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +534,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				129A57401BC75B9D00A4D07D /* Sound */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
 				B73789911807667A0076A88C /* Icons */,
@@ -739,10 +756,13 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				129A57501BC7651100A4D07D /* GameOver.wav in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
+				129A574C1BC7626500A4D07D /* LavaTheme.mp3 in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				129A574E1BC764CB00A4D07D /* LavaJump.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

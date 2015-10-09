@@ -1,6 +1,6 @@
 import UIKit
 
-class MainScene: CCNode, CCPhysicsCollisionDelegate {
+class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
 
     let scrollSpeed : CGFloat = 70
     let jumpImpulse : CGFloat = 125
@@ -24,11 +24,13 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
     var heroIsJumping = false
     var lastPlatformY : CGFloat = 0
     var lastPlatformX : CGFloat = 0
+    var soundOn = false
     
     
 	// User interaction
     var tapDetector : UITapGestureRecognizer!
     weak var coordinatesLabel : CCLabelTTF!
+    weak var soundToggleButton : CCButton!
     
     // MARK: Lifecycle
     
@@ -40,8 +42,11 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         grounds.append(ground1)
         grounds.append(ground2)
 
-        tapDetector = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
-    	tapDetector.numberOfTapsRequired = 1
+        tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
+        tapDetector.numberOfTapsRequired = 1
+        tapDetector.delegate = self
+        
+        soundToggleButton.setTarget(self, selector: Selector("soundToggle:"))
         
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
@@ -53,18 +58,55 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         }
         
         hero.zOrder = 100
+        
+        OALSimpleAudio.sharedInstance().muted = true
+        OALSimpleAudio.sharedInstance().playBg("LavaTheme.mp3", loop: true)
+
     }
 
     // MARK: User Interaction
     
-    func handleTap(sender:UITapGestureRecognizer){
+    func tapDetected(sender:UITapGestureRecognizer){
         if (heroIsJumping == false){
-            print ("Jump start")
             hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
+            playJumpSound()
             heroIsJumping = true
         }
 		// id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
     }
+    
+
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+
+        let touchLocation = CCDirector.sharedDirector().convertToGL(touch.locationInView(touch.view))
+        let responder = CCDirector.sharedDirector().responderManager
+        let node = responder.nodeAtPoint(touchLocation)
+        
+        if node.isKindOfClass(CCButton) {
+            return false
+        }
+        
+        return true;
+    }
+    
+    func soundToggle(sender: AnyObject?) {
+        if let toggleButton = sender as? CCButton {
+        
+            soundOn = !soundOn
+            toggleButton.selected = soundOn
+
+            if (soundOn){
+                playSound()
+            }
+            else {
+                stopSound()
+            }
+            
+        }
+    }
+    
+
 
     // MARK: Game logic
     
@@ -160,6 +202,21 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate {
         lastPlatformX = platform.position.x
         lastPlatformY = platform.position.y
         
+    }
+    
+    // MARK: Helpers
+    
+    func playSound() {
+		OALSimpleAudio.sharedInstance().muted = false
+    }
+
+    func stopSound() {
+    	OALSimpleAudio.sharedInstance().muted = true
+    
+    }
+
+    func playJumpSound(){
+        OALSimpleAudio.sharedInstance().playEffect("LavaJump.wav")
     }
     
     func randomInt(min min:Int, max:Int) -> Int{
