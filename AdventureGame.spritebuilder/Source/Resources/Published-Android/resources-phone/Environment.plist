@@ -20,7 +20,7 @@
 		<key>Environment/clouds.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{426, 748}, {375, 109}}</string>
+			<string>{{592, 509}, {375, 109}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -30,10 +30,23 @@
 			<key>sourceSize</key>
 			<string>{375, 109}</string>
 		</dict>
+		<key>Environment/forest_background.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 323}, {450, 337}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {450, 337}}</string>
+			<key>sourceSize</key>
+			<string>{450, 337}</string>
+		</dict>
 		<key>Environment/grassHalf_left.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{426, 925}, {64, 64}}</string>
+			<string>{{426, 841}, {64, 64}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -46,7 +59,7 @@
 		<key>Environment/grassHalf_mid.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{426, 859}, {64, 64}}</string>
+			<string>{{426, 775}, {64, 64}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -59,7 +72,7 @@
 		<key>Environment/grassHalf_right.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{492, 859}, {64, 64}}</string>
+			<string>{{426, 907}, {64, 64}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -98,7 +111,7 @@
 		<key>Environment/lava background.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 323}, {450, 250}}</string>
+			<string>{{340, 323}, {450, 250}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -111,11 +124,11 @@
 		<key>Environment/lava ground.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{253, 323}, {423, 184}}</string>
+			<string>{{592, 323}, {423, 184}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0, 0}, {423, 184}}</string>
 			<key>sourceSize</key>
