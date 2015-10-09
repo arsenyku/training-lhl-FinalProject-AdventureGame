@@ -10,6 +10,7 @@
 		129A574C1BC7626500A4D07D /* LavaTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 129A574B1BC7626500A4D07D /* LavaTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		129A574E1BC764CB00A4D07D /* LavaJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A574D1BC764CB00A4D07D /* LavaJump.wav */; settings = {ASSET_TAGS = (); }; };
 		129A57501BC7651100A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A574F1BC7651100A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
+		129A575E1BC7995400A4D07D /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A575D1BC7995400A4D07D /* Crystal.swift */; settings = {ASSET_TAGS = (); }; };
 		12CA84E71BC6EDA700A86398 /* FloatingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA84E61BC6EDA700A86398 /* FloatingGround.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -155,6 +156,7 @@
 		129A574B1BC7626500A4D07D /* LavaTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LavaTheme.mp3; sourceTree = "<group>"; };
 		129A574D1BC764CB00A4D07D /* LavaJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LavaJump.wav; sourceTree = "<group>"; };
 		129A574F1BC7651100A4D07D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameOver.wav; sourceTree = "<group>"; };
+		129A575D1BC7995400A4D07D /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
 		12CA84E61BC6EDA700A86398 /* FloatingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingGround.swift; path = Source/FloatingGround.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				12CA84E61BC6EDA700A86398 /* FloatingGround.swift */,
+				129A575D1BC7995400A4D07D /* Crystal.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
@@ -839,6 +842,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				12CA84E71BC6EDA700A86398 /* FloatingGround.swift in Sources */,
+				129A575E1BC7995400A4D07D /* Crystal.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

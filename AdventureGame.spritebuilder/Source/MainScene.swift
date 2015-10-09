@@ -1,3 +1,10 @@
+//
+//  MainScene.swift
+//  AdventureGame
+//
+//  Created by asu on 2015-10-07.
+//  Copyright © 2015 Apportable. All rights reserved.
+//
 import UIKit
 
 class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
@@ -18,6 +25,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
     weak var ground1 : CCSprite!
     weak var ground2 : CCSprite!
     var grounds = [CCSprite]()
+    var crystals : [CCNode] = []
     var platforms : [CCNode] = []
 
     // Game State
@@ -25,6 +33,7 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
     var lastPlatformY : CGFloat = 0
     var lastPlatformX : CGFloat = 0
     var soundOn = false
+    var goalCount : Int = 0
     
     
 	// User interaction
@@ -135,21 +144,10 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
         }
     
         
-        coordinatesLabel.string = "HERO: \(hero.position.x), \(hero.position.y)"
+        coordinatesLabel.string = "Crystals: \(goalCount)"
     
-        for platform in Array(platforms.reverse()) {
-            let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
-            let platformScreenPosition = convertToNodeSpace(platformWorldPosition)
-            let platformScaledContentWidth = platform.contentSize.width * CGFloat(platform.scaleX)
-            
-            // platform moved past left side of screen?
-            if platformScreenPosition.x < (-platformScaledContentWidth) {
-                platform.removeFromParent()
-                platforms.removeAtIndex(platforms.indexOf(platform)!)
-                
-                spawnNewPlatform()
-            }
-        }
+        movePlatforms()
+        moveCrystals()
         
     }
 
@@ -180,6 +178,49 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
         return true
     }
     
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, crystal: CCNode!) -> Bool {
+		goalCount += 1
+        crystal.removeFromParent()
+        crystals.removeAtIndex(crystals.indexOf(crystal)!)
+        return false
+    }
+
+    func movePlatforms(){
+        for platform in Array(platforms.reverse()) {
+            let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
+            let platformScreenPosition = convertToNodeSpace(platformWorldPosition)
+            let platformScaledContentWidth = platform.contentSize.width * CGFloat(platform.scaleX)
+            
+            // platform moved past left side of screen?
+            if platformScreenPosition.x < (-platformScaledContentWidth) {
+                platform.removeFromParent()
+                platforms.removeAtIndex(platforms.indexOf(platform)!)
+                
+                spawnNewPlatform()
+                
+                if (randomInt(min: 1, max: 10) < 6) {
+                    spawnNewCrystal()
+                }
+            }
+        }
+        
+    }
+    
+    func moveCrystals(){
+        
+        for crystal in Array(crystals.reverse()) {
+            let crystalWorldPosition = gamePhysicsNode.convertToWorldSpace(crystal.position)
+            let crystalScreenPosition = convertToNodeSpace(crystalWorldPosition)
+            
+            // crystal moved past left side of screen?
+            if crystalScreenPosition.x < (-crystal.contentSize.width) {
+                crystal.removeFromParent()
+                crystals.removeAtIndex(crystals.indexOf(crystal)!)
+            }
+        }
+    
+    }
+    
     
     func spawnNewPlatform(stageInit stageInit:Bool = false) {
         
@@ -200,6 +241,15 @@ class MainScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate
         lastPlatformX = platform.position.x
         lastPlatformY = platform.position.y
         
+    }
+    
+    func spawnNewCrystal (){
+        let crystal = CCBReader.load("Crystal")
+        crystal.position = ccp(lastPlatformX - 25, lastPlatformY + 125)
+
+        gamePhysicsNode.addChild(crystal)
+        crystals.append(crystal)
+
     }
     
     // MARK: Helpers

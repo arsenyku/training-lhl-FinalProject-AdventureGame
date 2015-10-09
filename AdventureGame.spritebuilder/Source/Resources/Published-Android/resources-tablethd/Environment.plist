@@ -121,6 +121,19 @@
 			<key>sourceSize</key>
 			<string>{1692, 738}</string>
 		</dict>
+		<key>Environment/yellowcrystal.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{3845, 1}, {60, 100}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {60, 100}}</string>
+			<key>sourceSize</key>
+			<string>{60, 100}</string>
+		</dict>
 	</dict>
 	<key>metadata</key>
 	<dict>
