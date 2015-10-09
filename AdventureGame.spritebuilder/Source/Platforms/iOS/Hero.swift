@@ -23,13 +23,18 @@ class Hero : CCSprite {
     func jump(){
 		physicsBody.applyImpulse(ccp(0, jumpImpulse))
         isJumping = true
+
+		animationManager.runAnimationsForSequenceNamed("Leaping Timeline")
+        
     }
     
     func landJump(){
         isJumping = false
+        animationManager.runAnimationsForSequenceNamed("Running Timeline")
     }
     
     func die(){
         isJumping = false
+        animationManager.runAnimationsForSequenceNamed("Running Timeline")
     }
 }
