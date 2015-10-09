@@ -10,7 +10,6 @@ import UIKit
 class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
 
     let scrollSpeed : CGFloat = 70
-    let jumpImpulse : CGFloat = 125
     let platformSpacing:CGFloat = 275
 
     //    let distanceBetweenObstacles : CGFloat = 160
@@ -29,7 +28,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var platforms : [CCNode] = []
 
     // Game State
-    var heroIsJumping = false
     var lastPlatformY : CGFloat = 0
     var lastPlatformX : CGFloat = 0
     var soundOn = false
@@ -75,12 +73,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
-        if (heroIsJumping == false){
-            hero.physicsBody.applyImpulse(ccp(0, jumpImpulse))
+        if (hero.isJumping == false){
+            hero.jump()
             playJumpSound()
-            heroIsJumping = true
         }
-		// id jump_Up = [CCJumpBy actionWithDuration:1.0f position:ccp(0, 200) height:50 jumps:1];
     }
     
 
@@ -119,7 +115,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     // MARK: Game logic
     
     override func update(delta: CCTime) {
-        let effectiveScrollSpeed = scrollSpeed * (heroIsJumping ? 2.5 : 1)
+        let effectiveScrollSpeed = scrollSpeed * (hero.isJumping ? 2.5 : 1)
         
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - effectiveScrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
 		hero.position = ccp(hero.position.x + effectiveScrollSpeed * CGFloat(delta), hero.position.y)
@@ -165,15 +161,15 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
     }
     
-    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) {
-        if (heroIsJumping) {
-    	    heroIsJumping = false
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: CCNode!) {
+        if (hero.isJumping) {
+            hero.landJump()
         }
     }
     
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, ground: CCNode!) -> Bool {
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, ground: CCNode!) -> Bool {
         print("DEATH - hero: \(hero.position) - ground \(ground.position)")
-        heroIsJumping = false
+        hero.die()
         return true
     }
     
