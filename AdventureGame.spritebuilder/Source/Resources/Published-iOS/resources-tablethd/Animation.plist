@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>Animation/HeroRunning1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{133, 153}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/HeroRunning2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/HeroRunning3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 133}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/HeroRunning4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 265}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/HeroRunning5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{153, 1}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/HeroRunning6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{285, 1}, {130, 130}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {130, 130}}</string>
+			<key>sourceSize</key>
+			<string>{130, 130}</string>
+		</dict>
+		<key>Animation/RunningArcher1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 397}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
+		<key>Animation/RunningArcher2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{77, 397}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
+		<key>Animation/RunningArcher3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{417, 1}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
+		<key>Animation/RunningArcher4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{417, 77}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{512, 512}</string>
+		<key>textureFileName</key>
+		<string>Animation.png</string>
+	</dict>
+</dict>
+</plist>
