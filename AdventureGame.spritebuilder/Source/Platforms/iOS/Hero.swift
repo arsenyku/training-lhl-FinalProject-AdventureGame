@@ -40,7 +40,7 @@ class Hero : CCSprite {
     
     func die(){
         isJumping = false
-        isDead = true
-        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
+//        isDead = true
+//        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
     }
 }

@@ -11,8 +11,14 @@ import UIKit
 class WelcomeScene: CCNode {
 
     
+    func didLoadFromCCB(){
+        OALSimpleAudio.sharedInstance().playBg("WelcomeTheme.mp3", loop: true)
+
+    }
+    
     func newGame(sender: CCButton?) {
       
+        OALSimpleAudio.sharedInstance().stopBg()
         let gameplayScene = CCBReader.loadAsScene("Stage1Scene")
         CCDirector.sharedDirector().replaceScene(gameplayScene)
         

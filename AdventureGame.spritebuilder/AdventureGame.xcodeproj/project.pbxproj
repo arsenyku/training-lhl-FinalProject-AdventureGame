@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F31BC8857C00B0FB3C /* Int+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F51BC8859300B0FB3C /* Float+Random.swift */; settings = {ASSET_TAGS = (); }; };
+		1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
+		1295B2FB1BC8CC9D00B0FB3C /* CrystalGrab.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2F91BC8CC9D00B0FB3C /* CrystalGrab.mp3 */; settings = {ASSET_TAGS = (); }; };
+		1295B2FC1BC8CC9D00B0FB3C /* LavaJump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2FA1BC8CC9D00B0FB3C /* LavaJump.mp3 */; settings = {ASSET_TAGS = (); }; };
 		129A57A41BC870E200A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A11BC870E200A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
 		129A57A51BC870E200A4D07D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A11BC870E200A4D07D /* GameOver.wav */; settings = {ASSET_TAGS = (); }; };
-		129A57A61BC870E200A4D07D /* LavaJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A21BC870E200A4D07D /* LavaJump.wav */; settings = {ASSET_TAGS = (); }; };
-		129A57A71BC870E200A4D07D /* LavaJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A21BC870E200A4D07D /* LavaJump.wav */; settings = {ASSET_TAGS = (); }; };
 		129A57A81BC870E200A4D07D /* LavaTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A31BC870E200A4D07D /* LavaTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		129A57A91BC870E200A4D07D /* LavaTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 129A57A31BC870E200A4D07D /* LavaTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57AE1BC8722100A4D07D /* WelcomeScene.swift */; settings = {ASSET_TAGS = (); }; };
@@ -161,8 +162,10 @@
 /* Begin PBXFileReference section */
 		1295B2F31BC8857C00B0FB3C /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Source/Platforms/iOS/Int+Random.swift"; sourceTree = "<group>"; };
 		1295B2F51BC8859300B0FB3C /* Float+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Random.swift"; path = "Source/Platforms/iOS/Float+Random.swift"; sourceTree = "<group>"; };
+		1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = WelcomeTheme.mp3; path = Sound/WelcomeTheme.mp3; sourceTree = "<group>"; };
+		1295B2F91BC8CC9D00B0FB3C /* CrystalGrab.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CrystalGrab.mp3; path = Sound/CrystalGrab.mp3; sourceTree = "<group>"; };
+		1295B2FA1BC8CC9D00B0FB3C /* LavaJump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LavaJump.mp3; path = Sound/LavaJump.mp3; sourceTree = "<group>"; };
 		129A57A11BC870E200A4D07D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GameOver.wav; path = Sound/GameOver.wav; sourceTree = "<group>"; };
-		129A57A21BC870E200A4D07D /* LavaJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LavaJump.wav; path = Sound/LavaJump.wav; sourceTree = "<group>"; };
 		129A57A31BC870E200A4D07D /* LavaTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = LavaTheme.mp3; path = Sound/LavaTheme.mp3; sourceTree = "<group>"; };
 		129A57AE1BC8722100A4D07D /* WelcomeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeScene.swift; path = Source/Platforms/iOS/WelcomeScene.swift; sourceTree = "<group>"; };
 		129A57AF1BC8722100A4D07D /* Stage1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage1Scene.swift; path = Source/Platforms/iOS/Stage1Scene.swift; sourceTree = "<group>"; };
@@ -294,8 +297,10 @@
 		129A57401BC75B9D00A4D07D /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				1295B2F91BC8CC9D00B0FB3C /* CrystalGrab.mp3 */,
+				1295B2FA1BC8CC9D00B0FB3C /* LavaJump.mp3 */,
+				1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */,
 				129A57A11BC870E200A4D07D /* GameOver.wav */,
-				129A57A21BC870E200A4D07D /* LavaJump.wav */,
 				129A57A31BC870E200A4D07D /* LavaTheme.mp3 */,
 			);
 			name = Sound;
@@ -748,7 +753,6 @@
 				927F61B1196C771E000F43EF /* iPad-old@2x.png in Resources */,
 				927F61B2196C771E000F43EF /* iPhone-old@2x.png in Resources */,
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
-				129A57A71BC870E200A4D07D /* LavaJump.wav in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
 				B78A0B10198AF87200C63841 /* Published-Android in Resources */,
 				927F61B6196C771E000F43EF /* iPhone-old.png in Resources */,
@@ -767,13 +771,14 @@
 			files = (
 				129A57A81BC870E200A4D07D /* LavaTheme.mp3 in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				1295B2FB1BC8CC9D00B0FB3C /* CrystalGrab.mp3 in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
+				1295B2FC1BC8CC9D00B0FB3C /* LavaJump.mp3 in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
-				129A57A61BC870E200A4D07D /* LavaJump.wav in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
@@ -781,6 +786,7 @@
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */,
 				129A57A41BC870E200A4D07D /* GameOver.wav in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);

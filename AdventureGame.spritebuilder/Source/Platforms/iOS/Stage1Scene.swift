@@ -22,7 +22,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var platforms : [CCNode] = []
 
     // Game State
-    var lastPlatformLocation : CGPoint = CGPointMake(0,0)
+    var lastPlatform : FloatingGround = FloatingGround()
     var soundOn = false
     
     
@@ -49,7 +49,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        lastPlatformLocation = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
+        lastPlatform.position = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
 
         for _ in 1...5{
             spawnNewPlatform()
@@ -57,8 +57,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         hero.zOrder = 100
         
-        OALSimpleAudio.sharedInstance().muted = true
-        OALSimpleAudio.sharedInstance().playBg("LavaTheme.mp3", loop: true)
+        let audio = OALSimpleAudio.sharedInstance()
+        audio.muted = true
+        audio.bgVolume = 0.25
+        audio.playBg("LavaTheme.mp3", loop: true)
 
     }
 
@@ -105,6 +107,13 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
 
     // MARK: Game logic
+    override func fixedUpdate(delta: CCTime) {
+
+    
+        coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
+        
+	}
+    
     
     override func update(delta: CCTime) {
         let effectiveScrollSpeed = scrollSpeed * (hero.isJumping ? 2.5 : 1)
@@ -129,16 +138,12 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     
         
-        coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
-    
         removePlatformIfNeeded()
         removeCrystalsIfNeeded()
         
     }
 
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
-        print("Collision test - hero: \(hero.position) - platform \(floatingGround.position)")
-        
         let distanceWhenStandingOnGround:CGFloat = 40
         
         if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
@@ -158,7 +163,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, ground: CCNode!) -> Bool {
-        print("DEATH - hero: \(hero.position) - ground \(ground.position)")
         hero.die()
         return true
     }
@@ -167,6 +171,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 		hero.crystalsCount += 1
         crystal.removeFromParent()
         crystals.removeAtIndex(crystals.indexOf(crystal)!)
+        playCrystalGrabSound()
         return false
     }
 
@@ -183,7 +188,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
 				spawnNewPlatform()
                 
-                if (Int.random(min: 1, max: 10) < 6) {
+                if (Int.random(min: 1, max: 100) < 80) {
                     spawnNewCrystal()
                 }
             }
@@ -207,16 +212,16 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func spawnNewPlatform(){
-        let platform = FloatingGround.spawn(relativeTo: lastPlatformLocation)
+        let platform = FloatingGround.spawn(relativeTo: lastPlatform)
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
         
-        lastPlatformLocation = platform.position
+        lastPlatform = platform
     
     }
     
     func spawnNewCrystal (){
-        let crystal = Crystal.spawn(relativeTo: lastPlatformLocation)
+        let crystal = Crystal.spawn(relativeTo: lastPlatform.position)
 
         gamePhysicsNode.addChild(crystal)
         crystals.append(crystal)
@@ -235,7 +240,12 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
 
     func playJumpSound(){
-        OALSimpleAudio.sharedInstance().playEffect("LavaJump.wav")
+        OALSimpleAudio.sharedInstance().playEffect("LavaJump.mp3")
+    }
+    
+    func playCrystalGrabSound(){
+        OALSimpleAudio.sharedInstance().playEffect("CrystalGrab.mp3")
+        
     }
     
        

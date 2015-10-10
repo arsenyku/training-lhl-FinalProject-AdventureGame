@@ -9,7 +9,7 @@
 import Foundation
 
 extension Float{
-    static func randomFloat(min min:Float, max:Float, precision:UInt32) -> Float{
+    static func random(min min:Float, max:Float, precision:UInt32) -> Float{
         let precisionFactor = pow(Float(10),Float(precision))
         let adjustedMin = Int(min * precisionFactor)
         let adjustedMax = Int(max * precisionFactor)
