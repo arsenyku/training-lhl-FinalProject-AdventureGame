@@ -15,5 +15,5 @@ class Crystal : CCNode {
         crystal.position = ccp(referencePoint.x - 25, referencePoint.y + 125)
         return crystal
     }
-
+    
 }

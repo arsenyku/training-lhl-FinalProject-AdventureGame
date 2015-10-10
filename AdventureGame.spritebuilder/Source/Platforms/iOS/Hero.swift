@@ -38,7 +38,7 @@ class Hero : CCSprite {
         animationManager.runAnimationsForSequenceNamed("Running Timeline")
     }
     
-    func die(){
+    func die(withAnimation animation:String){
         isJumping = false
 //        isDead = true
 //        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
