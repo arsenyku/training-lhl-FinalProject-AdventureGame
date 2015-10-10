@@ -9,4 +9,11 @@
 import Foundation
 
 class Crystal : CCNode {
+
+    class func spawn(relativeTo referencePoint:CGPoint) -> Crystal{
+        let crystal = CCBReader.load("Crystal") as! Crystal
+        crystal.position = ccp(referencePoint.x - 25, referencePoint.y + 125)
+        return crystal
+    }
+
 }

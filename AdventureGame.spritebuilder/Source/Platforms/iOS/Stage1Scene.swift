@@ -216,8 +216,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func spawnNewCrystal (){
-        let crystal = CCBReader.load("Crystal")
-        crystal.position = ccp(lastPlatformLocation.x - 25, lastPlatformLocation.y + 125)
+        let crystal = Crystal.spawn(relativeTo: lastPlatformLocation)
 
         gamePhysicsNode.addChild(crystal)
         crystals.append(crystal)
