@@ -131,8 +131,8 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
     
-        movePlatforms()
-        moveCrystals()
+        removePlatformIfNeeded()
+        removeCrystalsIfNeeded()
         
     }
 
@@ -170,7 +170,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         return false
     }
 
-    func movePlatforms(){
+    func removePlatformIfNeeded(){
         for platform in Array(platforms.reverse()) {
             let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
             let platformScreenPosition = convertToNodeSpace(platformWorldPosition)
@@ -191,7 +191,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
     }
     
-    func moveCrystals(){
+    func removeCrystalsIfNeeded(){
         
         for crystal in Array(crystals.reverse()) {
             let crystalWorldPosition = gamePhysicsNode.convertToWorldSpace(crystal.position)
@@ -207,7 +207,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func spawnNewPlatform(){
-        let platform = FloatingGround.spawn(stageInit:true, relativeTo: lastPlatformLocation)
+        let platform = FloatingGround.spawn(relativeTo: lastPlatformLocation)
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
         

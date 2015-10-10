@@ -134,6 +134,19 @@
 			<key>sourceSize</key>
 			<string>{74, 74}</string>
 		</dict>
+		<key>Animation/StandingArcher.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{133, 285}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
 	</dict>
 	<key>metadata</key>
 	<dict>

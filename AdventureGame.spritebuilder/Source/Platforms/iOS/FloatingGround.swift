@@ -15,13 +15,22 @@ class FloatingGround : CCNode {
 
     static let platformSpacing:CGFloat = 275
 
-    class func spawn(stageInit stageInit:Bool = false, relativeTo referencePoint:CGPoint) -> FloatingGround {
+    class func spawn(relativeTo referencePoint:CGPoint) -> FloatingGround {
         
         // create and add a new platform
         let platform = CCBReader.load("FloatingGround") as! FloatingGround
         
-        let yOffsetMax:Int = 80
-        let yOffsetMin:Int = stageInit ? 0 : -yOffsetMax
+        var yOffsetMax:Int = 80
+        var yOffsetMin:Int = -yOffsetMax
+        
+        let nearTop = abs(maxPlatformHeight - referencePoint.y) < 35
+        let nearBottom = abs(referencePoint.y - minPlatformHeight) < 35
+        
+        if (nearBottom) {
+            yOffsetMin = 0
+        } else if (nearTop) {
+            yOffsetMax = 0
+        }
         
         let newPlatformX = referencePoint.x + platformSpacing
         let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, referencePoint.y + CGFloat(Int.random(min:yOffsetMin, max:yOffsetMax))))

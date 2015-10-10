@@ -12,6 +12,7 @@ class Hero : CCSprite {
     
     var crystalsCount:Int = 0
     var isJumping = false
+    var isDead = false
     
     let jumpImpulse : CGFloat = 125
 
@@ -21,6 +22,10 @@ class Hero : CCSprite {
     }
     
     func jump(){
+        if isDead {
+            return
+        }
+        
 		physicsBody.applyImpulse(ccp(0, jumpImpulse))
         isJumping = true
 
@@ -35,6 +40,7 @@ class Hero : CCSprite {
     
     func die(){
         isJumping = false
-        animationManager.runAnimationsForSequenceNamed("Running Timeline")
+        isDead = true
+        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
     }
 }
