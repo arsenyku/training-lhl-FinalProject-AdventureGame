@@ -47,8 +47,7 @@ class FloatingGround : CCNode {
         let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, reference.position.y + CGFloat(Int.random(min:yOffsetMin, max:yOffsetMax))))
         
         platform.position = ccp(newPlatformX, newPlatformY)
-        
-        print("Spawn at (\(platform.position)) with width \(platform.contentSize.width)")
+       
         
         return platform
     }

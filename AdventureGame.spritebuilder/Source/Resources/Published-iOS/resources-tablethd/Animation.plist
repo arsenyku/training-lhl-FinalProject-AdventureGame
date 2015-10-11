@@ -4,6 +4,32 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>Animation/ArcherOnSmoke1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{123, 1927}, {120, 120}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {120, 120}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>Animation/DamagedArcher.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{549, 1927}, {74, 74}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {74, 74}}</string>
+			<key>sourceSize</key>
+			<string>{74, 74}</string>
+		</dict>
 		<key>Animation/HeroRunning1.png</key>
 		<dict>
 			<key>frame</key>
@@ -85,7 +111,7 @@
 		<key>Animation/RunningArcher1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{305, 1927}, {74, 74}}</string>
+			<string>{{625, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -98,7 +124,7 @@
 		<key>Animation/RunningArcher2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 1927}, {74, 74}}</string>
+			<string>{{245, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -111,7 +137,7 @@
 		<key>Animation/RunningArcher3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{77, 1927}, {74, 74}}</string>
+			<string>{{321, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -124,7 +150,7 @@
 		<key>Animation/RunningArcher4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{229, 1927}, {74, 74}}</string>
+			<string>{{473, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -134,10 +160,23 @@
 			<key>sourceSize</key>
 			<string>{74, 74}</string>
 		</dict>
+		<key>Animation/SmokeOnArcher1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1927}, {120, 120}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {120, 120}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
 		<key>Animation/StandingArcher.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{153, 1927}, {74, 74}}</string>
+			<string>{{397, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>

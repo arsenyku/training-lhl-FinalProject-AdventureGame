@@ -291,8 +291,8 @@
 			<key>points</key>
 			<array>
 				<array>
-					<real>0.89929938316345215</real>
-					<real>-0.69578433036804199</real>
+					<real>62.64837646484375</real>
+					<real>27.128875732421875</real>
 				</array>
 				<array>
 					<real>-0.47676759958267212</real>
@@ -302,18 +302,10 @@
 					<real>126.67800903320312</real>
 					<real>35.568992614746094</real>
 				</array>
-				<array>
-					<real>126.36620330810547</real>
-					<real>-0.054135125130414963</real>
-				</array>
 			</array>
 			<key>polygons</key>
 			<array>
 				<array>
-					<array>
-						<real>126.36620330810547</real>
-						<real>-0.054135125130414963</real>
-					</array>
 					<array>
 						<real>126.67800903320312</real>
 						<real>35.568992614746094</real>
@@ -323,8 +315,8 @@
 						<real>34.901573181152344</real>
 					</array>
 					<array>
-						<real>0.89929938316345215</real>
-						<real>-0.69578433036804199</real>
+						<real>62.64837646484375</real>
+						<real>27.128875732421875</real>
 					</array>
 				</array>
 			</array>

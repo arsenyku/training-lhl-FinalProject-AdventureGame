@@ -15,8 +15,8 @@ class RedDragon : CCSprite {
     var sinceLastFlightStep:CCTime = 0
     var flightStepDelay = 0.14
     
-    func calculateFlightPath(){
-        flightPath = path()
+    func calculateFlightPath(startingAt startPoint:CGPoint){
+        flightPath = ellipsePath(from: startPoint)
     }
     
     func flyForward(deltaTime:CCTime){
@@ -28,7 +28,7 @@ class RedDragon : CCSprite {
         }
     }
     
-    private func path() -> [CGPoint]{
+    private func ellipsePath(from startPoint:CGPoint) -> [CGPoint]{
         // M_PI/6 = 0.52359877559
         
         let view = CCDirector.sharedDirector().view
@@ -39,8 +39,8 @@ class RedDragon : CCSprite {
         }
         
         let lastFlightPoint = (dragonPath.last as! NSValue).CGPointValue()
-        let yAdjustment = fabs(position.y - lastFlightPoint.y)
-        let xAdjustment = fabs(position.x - lastFlightPoint.x)
+        let yAdjustment = fabs(startPoint.y - lastFlightPoint.y)
+        let xAdjustment = fabs(startPoint.x - lastFlightPoint.x)
 
         return dragonPath.map{ pointAsValue -> CGPoint in
             var point = (pointAsValue as! NSValue).CGPointValue()
@@ -54,12 +54,9 @@ class RedDragon : CCSprite {
     
     class func spawn(relativeTo referencePoint:CGPoint) -> RedDragon {
         let dragon = CCBReader.load("RedDragon") as! RedDragon
-        dragon.position = ccp(referencePoint.x, referencePoint.y)
-		dragon.calculateFlightPath()
+        dragon.calculateFlightPath(startingAt: referencePoint)
+        dragon.position = dragon.flightPath.first!
         dragon.flipX = true
-        
-        print("Spawn dragon at \(dragon.position)")
-
         
         return dragon
     }

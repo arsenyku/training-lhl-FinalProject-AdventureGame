@@ -10,9 +10,12 @@ import Foundation
 
 class Hero : CCSprite {
     
-    var crystalsCount:Int = 0
-    var isJumping = false
-    var isDead = false
+    private(set) internal var crystalsCount:Int = 0
+    private(set) internal var hitPoints:Int = 50
+    private(set) internal var isJumping = false
+    private(set) internal var isDead = false
+    
+    private var currentEnemy: CCSprite!
     
     let jumpImpulse : CGFloat = 125
 
@@ -36,6 +39,19 @@ class Hero : CCSprite {
     func landJump(){
         isJumping = false
         animationManager.runAnimationsForSequenceNamed("Running Timeline")
+    }
+    
+    func hitByEnemy(enemy:CCSprite){
+        if hitPoints > 0  && currentEnemy != enemy{
+            currentEnemy = enemy
+	        hitPoints -= 1
+            
+            animationManager.runAnimationsForSequenceNamed("Damage Timeline")
+		}
+        
+        if hitPoints < 1 {
+            die(withAnimation: "Painful death")
+        }
     }
     
     func die(withAnimation animation:String){

@@ -33,6 +33,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 	// User interaction
     var tapDetector : UITapGestureRecognizer!
     weak var coordinatesLabel : CCLabelTTF!
+    weak var hitPointsLabel : CCLabelTTF!
     weak var soundToggleButton : CCButton!
     
     // MARK: Lifecycle
@@ -118,6 +119,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     	// Update items that do not need to be changed on every frame
         // e.g. text labels, non-physics bodies, anything not animated or moving
         coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
+        hitPointsLabel.string = "Hit Points: \(hero.hitPoints)"
         
 	}
     
@@ -148,7 +150,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         spawnRedDragonIfNeeded(delta)
     }
 
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, floatingGround: CCNode!) -> Bool {
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) -> Bool {
         let distanceWhenStandingOnGround:CGFloat = 25
         
         if (hero.position.y < FloatingGround.minPlatformHeight){
@@ -166,13 +168,14 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
     }
    
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: CCNode!, dragon: CCNode!) -> Bool {
-
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, dragon: RedDragon!) -> Bool {
+		
+        hero.hitByEnemy(dragon)
         return false
         
     }
 
-    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: CCNode!) {
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) {
         if (hero.isJumping) {
             hero.landJump()
         }
@@ -184,7 +187,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, crystal: CCNode!) -> Bool {
-		hero.crystalsCount += 1
+		hero.grabCrystal()
         crystal.removeFromParent()
         crystals.removeAtIndex(crystals.indexOf(crystal)!)
         playCrystalGrabSound()
@@ -277,8 +280,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     func spawnRedDragonIfNeeded(deltaTime:CCTime){
         sinceLastRedDragon += deltaTime
-        if redDragon == nil { //&& hero.isJumping && rollD100(successChance: 25) {
+        if redDragon == nil  && !hero.isJumping && rollD100(successChance: 25) {
         
+            redDragonSpawnPoint.x = hero.position.x - 200
+            
             redDragon = RedDragon.spawn(relativeTo:redDragonSpawnPoint)
             redDragon.zOrder = hero.zOrder + 10
             gamePhysicsNode.addChild(redDragon)
