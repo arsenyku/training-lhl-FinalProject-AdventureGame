@@ -22,6 +22,7 @@ class Hero : CCSprite {
     
     func grabCrystal(){
         crystalsCount += 1
+    	OALSimpleAudio.sharedInstance().playEffect("CrystalGrab.mp3")
     }
     
     func jump(){
@@ -31,7 +32,8 @@ class Hero : CCSprite {
         
 		physicsBody.applyImpulse(ccp(0, jumpImpulse))
         isJumping = true
-
+    	OALSimpleAudio.sharedInstance().playEffect("LavaJump.mp3")
+        
 		animationManager.runAnimationsForSequenceNamed("Leaping Timeline")
         
     }

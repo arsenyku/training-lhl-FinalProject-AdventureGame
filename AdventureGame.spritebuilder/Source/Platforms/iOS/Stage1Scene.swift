@@ -75,7 +75,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func tapDetected(sender:UITapGestureRecognizer){
         if (hero.isJumping == false){
             hero.jump()
-            playJumpSound()
         }
     }
     
@@ -190,7 +189,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 		hero.grabCrystal()
         crystal.removeFromParent()
         crystals.removeAtIndex(crystals.indexOf(crystal)!)
-        playCrystalGrabSound()
         return false
     }
 
@@ -284,7 +282,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
             redDragonSpawnPoint.x = hero.position.x - 200
             
-            redDragon = RedDragon.spawn(relativeTo:redDragonSpawnPoint)
+            redDragon = RedDragon.spawn(relativeTo:redDragonSpawnPoint, rightToLeft:rollD100())
             redDragon.zOrder = hero.zOrder + 10
             gamePhysicsNode.addChild(redDragon)
             
@@ -302,15 +300,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     }
 
-    func playJumpSound(){
-        OALSimpleAudio.sharedInstance().playEffect("LavaJump.mp3")
-    }
-    
-    func playCrystalGrabSound(){
-        OALSimpleAudio.sharedInstance().playEffect("CrystalGrab.mp3")
-        
-    }
-    
     func rollD100(successChance chance:Int = 50) -> Bool {
         return Float.random(min: 0, max: 1, precision:2) < (Float(chance)/100)
     }

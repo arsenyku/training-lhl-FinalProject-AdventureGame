@@ -13,10 +13,16 @@ class RedDragon : CCSprite {
     private(set) internal var flightPath:[CGPoint] = []
     var flightStep:Int = 0
     var sinceLastFlightStep:CCTime = 0
-    var flightStepDelay = 0.14
+    var flightStepDelay:CCTime = 0.14
+    var rightToLeft:Bool = true
     
     func calculateFlightPath(startingAt startPoint:CGPoint){
         flightPath = ellipsePath(from: startPoint)
+    }
+    
+    func reverseFlightPath(){
+        flightPath = flightPath.reverse()
+        rightToLeft = !rightToLeft
     }
     
     func flyForward(deltaTime:CCTime){
@@ -25,6 +31,10 @@ class RedDragon : CCSprite {
             flightStep += 1
             position = flightPath[flightStep]
             sinceLastFlightStep = 0
+        }
+        if (flightStep+1 == flightPath.count && rightToLeft == false && flightPath.count > 0)
+        {
+            position = flightPath.first!
         }
     }
     
@@ -52,11 +62,16 @@ class RedDragon : CCSprite {
         
     }
     
-    class func spawn(relativeTo referencePoint:CGPoint) -> RedDragon {
+    class func spawn(relativeTo referencePoint:CGPoint, rightToLeft:Bool = true) -> RedDragon {
         let dragon = CCBReader.load("RedDragon") as! RedDragon
         dragon.calculateFlightPath(startingAt: referencePoint)
+        
+        if (rightToLeft == false){
+            dragon.reverseFlightPath()
+        }
+        
         dragon.position = dragon.flightPath.first!
-        dragon.flipX = true
+        dragon.flipX = rightToLeft
         
         return dragon
     }
