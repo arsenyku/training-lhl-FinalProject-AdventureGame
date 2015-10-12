@@ -39,6 +39,23 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var coordinatesLabel : CCLabelTTF!
     weak var hitPointsLabel : CCLabelTTF!
     weak var soundToggleButton : CCButton!
+    weak var endStageUI: CCNode!
+    weak var nextStageButton: CCButton!
+    
+    
+    // Computed properties
+    var stageEnded:Bool {
+        get {
+            return hero.isDead || (hero.hasWon && heroExited)
+        }
+    }
+    
+    var heroExited:Bool {
+        get{
+			let heroScreenPosition = screenPositionForNode(hero)
+            return heroScreenPosition.x > boundingBox().width + hero.contentSize.width
+        }
+    }
     
     // MARK: Lifecycle
     
@@ -111,6 +128,16 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     }
     
+    func replayStage(sender: AnyObject?) {
+        OALSimpleAudio.sharedInstance().stopBg()
+        let gameplayScene = CCBReader.loadAsScene("Stage1Scene")
+        CCDirector.sharedDirector().replaceScene(gameplayScene)
+    }
+
+    func nextStage(sender: AnyObject?) {
+        print ("next stage")
+
+    }
 
 
     // MARK: Game logic
@@ -129,6 +156,15 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         // Update items that need to be changed as often as possible
         // e.g. physics bodies, anything animated
         
+        if endStageUI.visible{
+        	return
+        }
+        
+        if heroExited {
+            showEndStage()
+            return
+        }
+        
         let effectiveScrollSpeed = scrollSpeed * (hero.isDead || hero.hasWon ? 0 : (hero.isJumping ? 2.5 : 1))
         
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - effectiveScrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
@@ -140,6 +176,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             checkForHeroExit()
             
         } else if (hero.isDead) {
+            showEndStage()
             
         } else {
 
@@ -220,8 +257,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func loopTheGroundIfNeeded(){
         // loop the ground whenever a ground image was moved entirely outside the screen
         for ground in grounds {
-            let groundWorldPosition = gamePhysicsNode.convertToWorldSpace(ground.position)
-            let groundScreenPosition = convertToNodeSpace(groundWorldPosition)
+            let groundScreenPosition = screenPositionForNode(ground)
             let groundScaledContentWidth = ground.contentSize.width * CGFloat(ground.scaleX)
             let correctionForPixelBoundary = CGFloat(-1) // removes space between ground objects due to width scaling
             if groundScreenPosition.x <= (-groundScaledContentWidth) {
@@ -233,8 +269,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     func removeAndSpawnPlatformIfNeeded(){
         for platform in Array(platforms.reverse()) {
-            let platformWorldPosition = gamePhysicsNode.convertToWorldSpace(platform.position)
-            let platformScreenPosition = convertToNodeSpace(platformWorldPosition)
+            let platformScreenPosition = screenPositionForNode(platform)
             let platformScaledContentWidth = platform.contentSize.width * CGFloat(platform.scaleX)
             
             // platform moved past left side of screen?
@@ -258,8 +293,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func removeCrystalsIfNeeded(){
         
         for crystal in Array(crystals.reverse()) {
-            let crystalWorldPosition = gamePhysicsNode.convertToWorldSpace(crystal.position)
-            let crystalScreenPosition = convertToNodeSpace(crystalWorldPosition)
+            let crystalScreenPosition = screenPositionForNode(crystal)
             
             // crystal moved past left side of screen?
             if crystalScreenPosition.x < (-crystal.contentSize.width) {
@@ -272,10 +306,9 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     func removeBlackDragonIfNeeded(){
         for dragon in Array(blackDragons.reverse()) {
-            let dragonWorldPosition = gamePhysicsNode.convertToWorldSpace(dragon.position)
-            let dragonScreenPosition = convertToNodeSpace(dragonWorldPosition)
+            let dragonScreenPosition = screenPositionForNode(dragon)
             
-            // crystal moved past left side of screen?
+            // dragon moved past left side of screen?
             if dragonScreenPosition.x < (-dragon.contentSize.width) {
                 dragon.removeFromParent()
                 blackDragons.removeAtIndex(blackDragons.indexOf(dragon)!)
@@ -289,8 +322,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func removeRedDragonIfNeeded(deltaTime:CCTime){
         if redDragon != nil  {
         
-            let redDragonWorldPosition = gamePhysicsNode.convertToWorldSpace(redDragon.position)
-            let redDragonScreenPosition = convertToNodeSpace(redDragonWorldPosition)
+            let redDragonScreenPosition = screenPositionForNode(redDragon)
             
             // dragon moved off screen?
             if redDragonScreenPosition.x < (-redDragon.contentSize.width) {
@@ -351,17 +383,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     }
     
-    func verticalDistance(fromNodeA nodeA:CCNode, toNodeB nodeB:CCNode) -> CGFloat {
-        return nodeA.position.y - nodeB.position.y
-    }
-    
     func raiseSafeGroundIfNeeded(){
-        if (!safeGround1.fullyRaised && !safeGround2.fullyRaised) {
-            
-            safeGround1.raise()
-            safeGround2.raise()
-            
-        }
+        
+        safeGround1.raise()
+        safeGround2.raise()
         
     }
     
@@ -379,7 +404,12 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
                 hero.exitStage()
                 stageExitTriggered = true
         }
-
+        
+    }
+    
+    func showEndStage(){
+        endStageUI.visible = true
+        nextStageButton.userInteractionEnabled = !hero.isDead
     }
     
     // MARK: Helpers
@@ -400,5 +430,15 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func rollDie(numberOfSides sides:UInt = 6) -> Int {
         return Int.random(min: 1, max: Int(sides))
     }
-       
+    
+    func verticalDistance(fromNodeA nodeA:CCNode, toNodeB nodeB:CCNode) -> CGFloat {
+        return nodeA.position.y - nodeB.position.y
+    }
+    
+    func screenPositionForNode(node:CCNode) -> CGPoint {
+        let nodeWorldPosition = gamePhysicsNode.convertToWorldSpace(node.position)
+        let nodeScreenPosition = convertToNodeSpace(nodeWorldPosition)
+        return nodeScreenPosition
+    }
+    
 }

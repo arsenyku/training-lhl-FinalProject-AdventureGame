@@ -10,10 +10,11 @@ import Foundation
 
 class Hero : CCSprite {
     
-    let targetCrystalCount = 5
+    let targetCrystalCount = 50
+	static let initialHitPoints = 10
     
     private(set) internal var crystalsCount:Int = 0
-    private(set) internal var hitPoints:Int = 50
+    private(set) internal var hitPoints:Int = Hero.initialHitPoints
     private(set) internal var isJumping = false
     
     private var currentEnemy: CCSprite!
@@ -91,9 +92,7 @@ class Hero : CCSprite {
     
     func die(withAnimation animation:String){
         isJumping = false
-        hitPoints = 50
-//        isDead = true
-//        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
+        hitPoints = 0
     }
     
     func exitStage() {
