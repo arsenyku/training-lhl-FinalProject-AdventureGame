@@ -10,8 +10,10 @@
 	<key>spriteFrameFiles</key>
 	<array>
 		<string>Controls.plist</string>
-		<string>Environment.plist</string>
+		<string>Environment/Background.plist</string>
+		<string>Environment/Stage1.plist</string>
 		<string>Animation.plist</string>
+		<string>Environment/Stage1End.plist</string>
 	</array>
 </dict>
 </plist>

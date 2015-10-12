@@ -11,6 +11,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     let scrollSpeed : CGFloat = 70
     let intervalBetweenRedDragons:CCTime = 5
+    let distanceWhenStandingOnPlatform:CGFloat = 25
 
     weak var gamePhysicsNode : CCPhysicsNode!
 
@@ -19,6 +20,8 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var redDragon: RedDragon!
     weak var ground1 : CCSprite!
     weak var ground2 : CCSprite!
+    weak var safeGround1 : SafeGround!
+    weak var safeGround2 : SafeGround!
     var grounds : [CCSprite] = []
     var crystals : [CCNode] = []
     var platforms : [CCNode] = []
@@ -29,6 +32,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var soundOn = false
     var sinceLastRedDragon : CCTime = CCTime()
     var redDragonSpawnPoint : CGPoint = CGPointMake(100,375)
+    var stageExitTriggered: Bool = false
     
 	// User interaction
     var tapDetector : UITapGestureRecognizer!
@@ -45,7 +49,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         grounds.append(ground1)
         grounds.append(ground2)
-
+        
         tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
         tapDetector.numberOfTapsRequired = 1
         tapDetector.delegate = self
@@ -73,9 +77,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
-        if (hero.isJumping == false){
-            hero.jump()
-        }
+		hero.jump()
     }
     
 
@@ -127,37 +129,50 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         // Update items that need to be changed as often as possible
         // e.g. physics bodies, anything animated
         
-        let effectiveScrollSpeed = scrollSpeed * (hero.isJumping ? 2.5 : 1)
+        let effectiveScrollSpeed = scrollSpeed * (hero.isDead || hero.hasWon ? 0 : (hero.isJumping ? 2.5 : 1))
         
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - effectiveScrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
-		hero.position = ccp(hero.position.x + effectiveScrollSpeed * CGFloat(delta), hero.position.y)
-        redDragonSpawnPoint.x += (effectiveScrollSpeed * CGFloat(delta))
+        hero.position = ccp(hero.position.x + effectiveScrollSpeed * CGFloat(delta), hero.position.y)
         
-        redDragon?.flyForward(delta)
-        
-        // Fix black-line artifacts from looping environment
-        let scale = CCDirector.sharedDirector().contentScaleFactor
-        hero.position = ccp(round(hero.position.x * scale) / scale, round(hero.position.y * scale) / scale)
-        gamePhysicsNode.position = ccp(round(gamePhysicsNode.position.x * scale) / scale, round(gamePhysicsNode.position.y * scale) / scale)
-    
-        loopTheGroundIfNeeded()
-        
-        removeAndSpawnPlatformIfNeeded()
-        removeCrystalsIfNeeded()
-        removeRedDragonIfNeeded(delta)
-        removeBlackDragonIfNeeded()
-     
-        spawnRedDragonIfNeeded(delta)
+        if (hero.hasWon) {
+            spawnSafeGroundIfNeeded()
+            raiseSafeGroundIfNeeded()
+            checkForHeroExit()
+            
+        } else if (hero.isDead) {
+            
+        } else {
+
+            redDragonSpawnPoint.x += (effectiveScrollSpeed * CGFloat(delta))
+            
+            redDragon?.flyForward(delta)
+            
+            // Fix black-line artifacts from looping environment
+            let scale = CCDirector.sharedDirector().contentScaleFactor
+            hero.position = ccp(round(hero.position.x * scale) / scale, round(hero.position.y * scale) / scale)
+            gamePhysicsNode.position = ccp(round(gamePhysicsNode.position.x * scale) / scale, round(gamePhysicsNode.position.y * scale) / scale)
+            
+            loopTheGroundIfNeeded()
+            
+            removeAndSpawnPlatformIfNeeded()
+            removeCrystalsIfNeeded()
+            removeRedDragonIfNeeded(delta)
+            removeBlackDragonIfNeeded()
+            
+            spawnRedDragonIfNeeded(delta)
+        }
     }
 
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) -> Bool {
-        let distanceWhenStandingOnGround:CGFloat = 25
         
-        if (hero.position.y < FloatingGround.minPlatformHeight){
+        if (hero.hasWon) {
+            return false
+            
+        } else if (hero.position.y < FloatingGround.minPlatformHeight){
             // Hero is on ground - ignore collision
             return false
             
-        } else if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnGround){
+        } else if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnPlatform){
             // Hero is on top of platform - accept collision
             return true
             
@@ -195,6 +210,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 		hero.grabCrystal()
         crystal.removeFromParent()
         crystals.removeAtIndex(crystals.indexOf(crystal)!)
+        
+        if hero.hasWon {
+            gamePhysicsNode.gravity.y = -500
+        }
         return false
     }
 
@@ -268,7 +287,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     
     func removeRedDragonIfNeeded(deltaTime:CCTime){
-        if redDragon != nil && rollD100(successChance: 1) {
+        if redDragon != nil  {
         
             let redDragonWorldPosition = gamePhysicsNode.convertToWorldSpace(redDragon.position)
             let redDragonScreenPosition = convertToNodeSpace(redDragonWorldPosition)
@@ -282,7 +301,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
 
     func spawnNewPlatform(){
-        let platform = FloatingGround.spawn(relativeTo: lastPlatform)
+        let platform = FloatingGround.spawn(relativeTo: lastPlatform, levelEnd:hero.hasWon)
         gamePhysicsNode.addChild(platform)
         platforms.append(platform)
         
@@ -318,6 +337,49 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             sinceLastRedDragon = 0
             
         }
+    }
+    
+    func spawnSafeGroundIfNeeded(){
+        if safeGround1 == nil && safeGround2 == nil {
+            safeGround1 = SafeGround.spawn(relativeTo: ground1.position)
+            safeGround2 = SafeGround.spawn(relativeTo: ground2.position)
+            
+            gamePhysicsNode.addChild(safeGround1)
+            gamePhysicsNode.addChild(safeGround2)
+            
+        }
+
+    }
+    
+    func verticalDistance(fromNodeA nodeA:CCNode, toNodeB nodeB:CCNode) -> CGFloat {
+        return nodeA.position.y - nodeB.position.y
+    }
+    
+    func raiseSafeGroundIfNeeded(){
+        if (!safeGround1.fullyRaised && !safeGround2.fullyRaised) {
+            
+            safeGround1.raise()
+            safeGround2.raise()
+            
+        }
+        
+    }
+    
+    func checkForHeroExit(){
+        let distance1 = verticalDistance(fromNodeA: hero, toNodeB: safeGround1)
+        let distance2 = verticalDistance(fromNodeA: hero, toNodeB: safeGround2)
+        
+        let heroIsOnSafeGround1 = distance1 > 0 && distance1 < distanceWhenStandingOnPlatform
+        let heroIsOnSafeGround2 = distance2 > 0 && distance2 < distanceWhenStandingOnPlatform
+        
+        if safeGround1.fullyRaised && safeGround2.fullyRaised &&
+            (heroIsOnSafeGround1 || heroIsOnSafeGround2) &&
+        	!stageExitTriggered {
+                
+                hero.exitStage()
+                stageExitTriggered = true
+        }
+
     }
     
     // MARK: Helpers

@@ -10,6 +10,7 @@
 		125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */; settings = {ASSET_TAGS = (); }; };
 		125A8FBD1BCB5A97007E1641 /* RedDragonImpact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */; settings = {ASSET_TAGS = (); }; };
 		125A8FBF1BCB5AA5007E1641 /* BlackDragonImpact.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */; settings = {ASSET_TAGS = (); }; };
+		125A8FCD1BCB94B4007E1641 /* SafeGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FCC1BCB94B4007E1641 /* SafeGround.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F31BC8857C00B0FB3C /* Int+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F51BC8859300B0FB3C /* Float+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
@@ -168,6 +169,7 @@
 		125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlackDragon.swift; path = Source/Platforms/iOS/BlackDragon.swift; sourceTree = "<group>"; };
 		125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = RedDragonImpact.wav; path = Sound/RedDragonImpact.wav; sourceTree = "<group>"; };
 		125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BlackDragonImpact.mp3; path = Sound/BlackDragonImpact.mp3; sourceTree = "<group>"; };
+		125A8FCC1BCB94B4007E1641 /* SafeGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SafeGround.swift; path = Source/Platforms/iOS/SafeGround.swift; sourceTree = "<group>"; };
 		1295B2F31BC8857C00B0FB3C /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Source/Platforms/iOS/Int+Random.swift"; sourceTree = "<group>"; };
 		1295B2F51BC8859300B0FB3C /* Float+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Random.swift"; path = "Source/Platforms/iOS/Float+Random.swift"; sourceTree = "<group>"; };
 		1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = WelcomeTheme.mp3; path = Sound/WelcomeTheme.mp3; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				1295B3011BC91A4300B0FB3C /* RedDragon.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
 				129A57B11BC8722100A4D07D /* FloatingGround.swift */,
+				125A8FCC1BCB94B4007E1641 /* SafeGround.swift */,
 				1295B2F31BC8857C00B0FB3C /* Int+Random.swift */,
 				1295B2F51BC8859300B0FB3C /* Float+Random.swift */,
 				1295B2FD1BC9065D00B0FB3C /* UIBezierPath+OvalSegment.h */,
@@ -885,6 +888,7 @@
 				125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */,
 				129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */,
 				1295B3021BC91A4300B0FB3C /* RedDragon.swift in Sources */,
+				125A8FCD1BCB94B4007E1641 /* SafeGround.swift in Sources */,
 				1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */,

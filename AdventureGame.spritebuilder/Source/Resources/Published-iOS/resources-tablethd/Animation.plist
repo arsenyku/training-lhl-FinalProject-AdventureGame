@@ -7,7 +7,7 @@
 		<key>Animation/ArcherOnSmoke1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{123, 1927}, {120, 120}}</string>
+			<string>{{1, 1927}, {120, 120}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -59,7 +59,7 @@
 		<key>Animation/DamagedArcher.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{549, 1927}, {74, 74}}</string>
+			<string>{{427, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -150,7 +150,7 @@
 		<key>Animation/RunningArcher1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{625, 1927}, {74, 74}}</string>
+			<string>{{503, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -163,7 +163,7 @@
 		<key>Animation/RunningArcher2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{245, 1927}, {74, 74}}</string>
+			<string>{{123, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -176,7 +176,7 @@
 		<key>Animation/RunningArcher3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{321, 1927}, {74, 74}}</string>
+			<string>{{199, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -189,7 +189,7 @@
 		<key>Animation/RunningArcher4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{397, 1927}, {74, 74}}</string>
+			<string>{{351, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -199,23 +199,10 @@
 			<key>sourceSize</key>
 			<string>{74, 74}</string>
 		</dict>
-		<key>Animation/SmokeOnArcher1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{1, 1927}, {120, 120}}</string>
-			<key>offset</key>
-			<string>{0, 0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0, 0}, {120, 120}}</string>
-			<key>sourceSize</key>
-			<string>{120, 120}</string>
-		</dict>
 		<key>Animation/StandingArcher.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{473, 1927}, {74, 74}}</string>
+			<string>{{275, 1927}, {74, 74}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>

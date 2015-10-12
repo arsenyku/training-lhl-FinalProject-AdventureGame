@@ -89,6 +89,18 @@
 			<true/>
 		</dict>
 		<key>Environment</key>
+		<dict/>
+		<key>Environment/Background</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
+		<key>Environment/Stage1</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
+		<key>Environment/Stage1End</key>
 		<dict>
 			<key>isSmartSpriteSheet</key>
 			<true/>

@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>28</integer>
+	<integer>29</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -112,7 +112,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Environment/lava background.png</string>
+							<string>Environment/Background/lava_background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -148,6 +148,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -292,7 +294,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>Environment/lava ground.png</string>
+									<string>Environment/Stage1/lava ground.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -465,7 +467,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>Environment/lava ground.png</string>
+									<string>Environment/Stage1/lava ground.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -1394,8 +1396,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

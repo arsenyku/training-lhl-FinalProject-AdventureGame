@@ -10,23 +10,39 @@ import Foundation
 
 class Hero : CCSprite {
     
+    let targetCrystalCount = 5
+    
     private(set) internal var crystalsCount:Int = 0
     private(set) internal var hitPoints:Int = 50
     private(set) internal var isJumping = false
-    private(set) internal var isDead = false
     
     private var currentEnemy: CCSprite!
     
     let jumpImpulse : CGFloat = 125
 
+    var hasWon:Bool {
+        get{
+            return crystalsCount >= targetCrystalCount
+        }
+    }
+
+    var isDead:Bool {
+        get {
+            return hitPoints <= 0
+        }
+    }
     
     func grabCrystal(){
         crystalsCount += 1
     	playSound(named: "CrystalGrab.mp3")
+        
+        if hasWon{
+            playAnimation(named: "Standing Timeline")
+        }
     }
     
     func jump(){
-        if isDead {
+        if isDead || hasWon || isJumping {
             return
         }
         
@@ -44,7 +60,7 @@ class Hero : CCSprite {
     }
     
     func hitByEnemy(enemy:CCSprite){
-        if hitPoints > 0  && currentEnemy != enemy{
+        if !hasWon && !isDead && currentEnemy != enemy{
             currentEnemy = enemy
 	        hitPoints -= 1
             
@@ -67,12 +83,24 @@ class Hero : CCSprite {
         }
     }
     
+    func hitByEnvironment(environment:CCNode){
+       
+    }
+    
+    
+    
     func die(withAnimation animation:String){
         isJumping = false
+        hitPoints = 50
 //        isDead = true
 //        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
     }
     
+    func exitStage() {
+        print ("exit stage")
+        playAnimation(named: "Running Timeline")
+        physicsBody.applyImpulse(ccp(50, 0))
+    }
     
     func playSound(named soundName:String){
         OALSimpleAudio.sharedInstance().playEffect(soundName)

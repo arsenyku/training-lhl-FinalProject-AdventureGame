@@ -24,7 +24,7 @@ class FloatingGround : CCNode {
         return result
     }
     
-    class func spawn(relativeTo reference:FloatingGround) -> FloatingGround {
+    class func spawn(relativeTo reference:FloatingGround, levelEnd:Bool = false) -> FloatingGround {
         
         // create and add a new platform
         var platform:FloatingGround
@@ -43,19 +43,27 @@ class FloatingGround : CCNode {
         var yOffsetMax:Int = 80
         var yOffsetMin:Int = -yOffsetMax
         
-        let nearTop = abs(maxPlatformHeight - reference.position.y) < 35
-        let nearBottom = abs(reference.position.y - minPlatformHeight) < 35
-        
-        if (nearBottom) {
-            yOffsetMin = 0
-        } else if (nearTop) {
-            yOffsetMax = 0
+        if (levelEnd) {
+            let newPlatformX = reference.position.x + reference.contentSize.width
+            let newPlatformY = minPlatformHeight
+            
+            platform.position = ccp(newPlatformX, newPlatformY)
+
+        } else {
+            let nearTop = abs(maxPlatformHeight - reference.position.y) < 35
+            let nearBottom = abs(reference.position.y - minPlatformHeight) < 35
+            
+            if (nearBottom) {
+                yOffsetMin = 0
+            } else if (nearTop) {
+                yOffsetMax = 0
+            }
+            
+            let newPlatformX = reference.position.x + reference.contentSize.width + platformSpacing
+            let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, reference.position.y + CGFloat(Int.random(min:yOffsetMin, max:yOffsetMax))))
+            
+            platform.position = ccp(newPlatformX, newPlatformY)
         }
-        
-        let newPlatformX = reference.position.x + reference.contentSize.width + platformSpacing
-        let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, reference.position.y + CGFloat(Int.random(min:yOffsetMin, max:yOffsetMax))))
-        
-        platform.position = ccp(newPlatformX, newPlatformY)
 
         return platform
     }

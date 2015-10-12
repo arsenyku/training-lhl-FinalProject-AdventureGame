@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Environment/grassHalf_left.png</string>
+							<string>Environment/Stage1/grassHalf_left.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -218,7 +218,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>Environment/grassHalf_right.png</string>
+							<string>Environment/Stage1/grassHalf_right.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -254,6 +254,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -383,8 +385,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
