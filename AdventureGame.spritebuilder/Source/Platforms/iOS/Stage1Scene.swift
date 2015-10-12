@@ -145,6 +145,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         removeAndSpawnPlatformIfNeeded()
         removeCrystalsIfNeeded()
         removeRedDragonIfNeeded(delta)
+        removeBlackDragonIfNeeded()
      
         spawnRedDragonIfNeeded(delta)
     }
@@ -168,12 +169,17 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
    
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, dragon: RedDragon!) -> Bool {
-		
         hero.hitByEnemy(dragon)
         return false
         
     }
-
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, blackDragon: BlackDragon!) -> Bool {
+        hero.hitByEnemy(blackDragon)
+        return false
+        
+    }
+    
     func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) {
         if (hero.isJumping) {
             hero.landJump()
@@ -222,6 +228,9 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
                 if (rollD100(successChance: 80)) {
                     spawnNewCrystal()
                 }
+                
+                spawnBlackDragonIfPossible()
+                
             }
         }
         
@@ -242,10 +251,24 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     }
     
+    func removeBlackDragonIfNeeded(){
+        for dragon in Array(blackDragons.reverse()) {
+            let dragonWorldPosition = gamePhysicsNode.convertToWorldSpace(dragon.position)
+            let dragonScreenPosition = convertToNodeSpace(dragonWorldPosition)
+            
+            // crystal moved past left side of screen?
+            if dragonScreenPosition.x < (-dragon.contentSize.width) {
+                dragon.removeFromParent()
+                blackDragons.removeAtIndex(blackDragons.indexOf(dragon)!)
+            }
+        }
+        
+    
+    }
+    
     
     func removeRedDragonIfNeeded(deltaTime:CCTime){
-        
-        if redDragon != nil {
+        if redDragon != nil && rollD100(successChance: 1) {
         
             let redDragonWorldPosition = gamePhysicsNode.convertToWorldSpace(redDragon.position)
             let redDragonScreenPosition = convertToNodeSpace(redDragonWorldPosition)
@@ -254,7 +277,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             if redDragonScreenPosition.x < (-redDragon.contentSize.width) {
                 redDragon.removeFromParent()
                 redDragon = nil
-                sinceLastRedDragon = deltaTime
             }
         }
     }
@@ -265,7 +287,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         platforms.append(platform)
         
         lastPlatform = platform
-    
     }
     
     func spawnNewCrystal (){
@@ -275,16 +296,26 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         crystals.append(crystal)
 
     }
+
+    func spawnBlackDragonIfPossible(){
+        if let blackDragon = lastPlatform.spawnBlackDragon() {
+            blackDragon.zOrder = hero.zOrder + 5
+            gamePhysicsNode.addChild(blackDragon)
+            blackDragons.append(blackDragon)
+        }
+    }
     
     func spawnRedDragonIfNeeded(deltaTime:CCTime){
         sinceLastRedDragon += deltaTime
-        if redDragon == nil  && !hero.isJumping && rollD100(successChance: 25) {
+        if redDragon == nil  && !hero.isJumping && rollD100(successChance: 1) {
         
             redDragonSpawnPoint.x = hero.position.x - 200
             
             redDragon = RedDragon.spawn(relativeTo:redDragonSpawnPoint, rightToLeft:rollD100())
             redDragon.zOrder = hero.zOrder + 10
             gamePhysicsNode.addChild(redDragon)
+            
+            sinceLastRedDragon = 0
             
         }
     }

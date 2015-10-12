@@ -15,6 +15,8 @@
 	<false/>
 	<key>currentResolution</key>
 	<integer>0</integer>
+	<key>currentSequenceId</key>
+	<integer>0</integer>
 	<key>docDimensionsType</key>
 	<integer>1</integer>
 	<key>fileType</key>
@@ -33,18 +35,223 @@
 	<false/>
 	<key>nodeGraph</key>
 	<dict>
+		<key>animatedProperties</key>
+		<dict>
+			<key>0</key>
+			<dict>
+				<key>spriteFrame</key>
+				<dict>
+					<key>keyframes</key>
+					<array>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.0</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/BlackDragon1.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.26666668057441711</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/BlackDragon2.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.53333336114883423</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/BlackDragon3.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>0.80000001192092896</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/BlackDragon2.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+						<dict>
+							<key>easing</key>
+							<dict>
+								<key>type</key>
+								<integer>0</integer>
+							</dict>
+							<key>name</key>
+							<string>spriteFrame</string>
+							<key>time</key>
+							<real>1</real>
+							<key>type</key>
+							<integer>7</integer>
+							<key>value</key>
+							<array>
+								<string>Animation/BlackDragon1.png</string>
+								<string>Use regular file</string>
+							</array>
+						</dict>
+					</array>
+					<key>name</key>
+					<string>spriteFrame</string>
+					<key>type</key>
+					<integer>7</integer>
+				</dict>
+			</dict>
+		</dict>
 		<key>baseClass</key>
 		<string>CCSprite</string>
 		<key>children</key>
 		<array/>
 		<key>customClass</key>
-		<string></string>
+		<string>BlackDragon</string>
 		<key>displayName</key>
 		<string>CCSprite</string>
 		<key>memberVarAssignmentName</key>
 		<string></string>
 		<key>memberVarAssignmentType</key>
 		<integer>1</integer>
+		<key>physicsBody</key>
+		<dict>
+			<key>affectedByGravity</key>
+			<true/>
+			<key>allowsRotation</key>
+			<true/>
+			<key>bodyShape</key>
+			<integer>0</integer>
+			<key>collisionCategories</key>
+			<array/>
+			<key>collisionMask</key>
+			<array/>
+			<key>collisionType</key>
+			<string>blackDragon</string>
+			<key>cornerRadius</key>
+			<real>0.0</real>
+			<key>density</key>
+			<real>1</real>
+			<key>dynamic</key>
+			<false/>
+			<key>elasticity</key>
+			<real>0.30000001192092896</real>
+			<key>friction</key>
+			<real>0.30000001192092896</real>
+			<key>points</key>
+			<array>
+				<array>
+					<real>2.82025146484375</real>
+					<real>17.878875732421875</real>
+				</array>
+				<array>
+					<real>0.0</real>
+					<real>47</real>
+				</array>
+				<array>
+					<real>33.84759521484375</real>
+					<real>43.835906982421875</real>
+				</array>
+				<array>
+					<real>42.44525146484375</real>
+					<real>31.167938232421875</real>
+				</array>
+				<array>
+					<real>36.90228271484375</real>
+					<real>0.738250732421875</real>
+				</array>
+				<array>
+					<real>24.91790771484375</real>
+					<real>0.308563232421875</real>
+				</array>
+				<array>
+					<real>16.97259521484375</real>
+					<real>8.906219482421875</real>
+				</array>
+			</array>
+			<key>polygons</key>
+			<array>
+				<array>
+					<array>
+						<real>16.97259521484375</real>
+						<real>8.906219482421875</real>
+					</array>
+					<array>
+						<real>24.91790771484375</real>
+						<real>0.308563232421875</real>
+					</array>
+					<array>
+						<real>36.90228271484375</real>
+						<real>0.738250732421875</real>
+					</array>
+				</array>
+				<array>
+					<array>
+						<real>36.90228271484375</real>
+						<real>0.738250732421875</real>
+					</array>
+					<array>
+						<real>42.44525146484375</real>
+						<real>31.167938232421875</real>
+					</array>
+					<array>
+						<real>33.84759521484375</real>
+						<real>43.835906982421875</real>
+					</array>
+					<array>
+						<real>0.0</real>
+						<real>47</real>
+					</array>
+					<array>
+						<real>2.82025146484375</real>
+						<real>17.878875732421875</real>
+					</array>
+					<array>
+						<real>16.97259521484375</real>
+						<real>8.906219482421875</real>
+					</array>
+				</array>
+			</array>
+		</dict>
 		<key>properties</key>
 		<array>
 			<dict>
@@ -94,6 +301,11 @@
 				</array>
 			</dict>
 			<dict>
+				<key>baseValue</key>
+				<array>
+					<string></string>
+					<string>Use regular file</string>
+				</array>
 				<key>name</key>
 				<string>spriteFrame</string>
 				<key>type</key>
@@ -101,7 +313,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string></string>
+					<string>Animation/BlackDragon1.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -137,6 +349,8 @@
 				<array/>
 			</dict>
 		</array>
+		<key>seqExpanded</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -169,6 +383,45 @@
 			<real>2</real>
 			<key>width</key>
 			<integer>0</integer>
+		</dict>
+	</array>
+	<key>sequences</key>
+	<array>
+		<dict>
+			<key>autoPlay</key>
+			<true/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>0</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>Default Timeline</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>512</real>
+			<key>sequenceId</key>
+			<integer>0</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
 		</dict>
 	</array>
 	<key>stageBorder</key>

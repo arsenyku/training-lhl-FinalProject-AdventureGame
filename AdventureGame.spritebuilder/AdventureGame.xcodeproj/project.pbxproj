@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F31BC8857C00B0FB3C /* Int+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F51BC8859300B0FB3C /* Float+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
@@ -162,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlackDragon.swift; path = Source/Platforms/iOS/BlackDragon.swift; sourceTree = "<group>"; };
 		1295B2F31BC8857C00B0FB3C /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Source/Platforms/iOS/Int+Random.swift"; sourceTree = "<group>"; };
 		1295B2F51BC8859300B0FB3C /* Float+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Random.swift"; path = "Source/Platforms/iOS/Float+Random.swift"; sourceTree = "<group>"; };
 		1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = WelcomeTheme.mp3; path = Sound/WelcomeTheme.mp3; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				129A57AE1BC8722100A4D07D /* WelcomeScene.swift */,
 				129A57AF1BC8722100A4D07D /* Stage1Scene.swift */,
 				129A57B81BC8744400A4D07D /* Hero.swift */,
+				125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */,
 				1295B3011BC91A4300B0FB3C /* RedDragon.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
 				129A57B11BC8722100A4D07D /* FloatingGround.swift */,
@@ -871,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */,
 				129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */,
 				1295B3021BC91A4300B0FB3C /* RedDragon.swift in Sources */,
 				1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */,

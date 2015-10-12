@@ -12,15 +12,24 @@ class FloatingGround : CCNode {
 
     static let minPlatformHeight:CGFloat = 65
     static let maxPlatformHeight:CGFloat = 160
-
     static let platformSpacing:CGFloat = 80
+    
+    private(set) internal var canSpawnBlackDragon:Bool = false
 
+    func spawnBlackDragon() -> BlackDragon? {
+        var result:BlackDragon? = nil
+        if canSpawnBlackDragon {
+            result = BlackDragon.spawn(on: self)
+        }
+        return result
+    }
+    
     class func spawn(relativeTo reference:FloatingGround) -> FloatingGround {
         
         // create and add a new platform
         var platform:FloatingGround
         let randomGround = Int.random(min:1, max:3)
-            
+        
         switch(randomGround){
         case 1:
             platform = CCBReader.load("FloatingGroundShort") as! FloatingGround
@@ -28,7 +37,7 @@ class FloatingGround : CCNode {
             platform = CCBReader.load("FloatingGroundMedium") as! FloatingGround
         default:
             platform = CCBReader.load("FloatingGround") as! FloatingGround
-
+            platform.canSpawnBlackDragon = true
         }
 
         var yOffsetMax:Int = 80
@@ -47,8 +56,7 @@ class FloatingGround : CCNode {
         let newPlatformY = min(maxPlatformHeight, max(minPlatformHeight, reference.position.y + CGFloat(Int.random(min:yOffsetMin, max:yOffsetMax))))
         
         platform.position = ccp(newPlatformX, newPlatformY)
-       
-        
+
         return platform
     }
     
