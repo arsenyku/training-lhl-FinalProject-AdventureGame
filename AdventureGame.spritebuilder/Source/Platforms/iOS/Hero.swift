@@ -22,7 +22,7 @@ class Hero : CCSprite {
     
     func grabCrystal(){
         crystalsCount += 1
-    	OALSimpleAudio.sharedInstance().playEffect("CrystalGrab.mp3")
+    	playSound(named: "CrystalGrab.mp3")
     }
     
     func jump(){
@@ -32,15 +32,15 @@ class Hero : CCSprite {
         
 		physicsBody.applyImpulse(ccp(0, jumpImpulse))
         isJumping = true
-    	OALSimpleAudio.sharedInstance().playEffect("LavaJump.mp3")
+    	playSound(named:"LavaJump.mp3")
         
-		animationManager.runAnimationsForSequenceNamed("Leaping Timeline")
+		playAnimation(named: "Leaping Timeline")
         
     }
     
     func landJump(){
         isJumping = false
-        animationManager.runAnimationsForSequenceNamed("Running Timeline")
+        playAnimation(named: "Running Timeline")
     }
     
     func hitByEnemy(enemy:CCSprite){
@@ -49,13 +49,15 @@ class Hero : CCSprite {
 	        hitPoints -= 1
             
             if enemy.isKindOfClass(RedDragon) {
-                animationManager.runAnimationsForSequenceNamed("Damage Timeline")
-                OALSimpleAudio.sharedInstance().playEffect("RedDragonImpact.wav")
+                playAnimation(named: "Damage Timeline")
+                playSound(named: "RedDragonImpact.wav")
+                
             } else if enemy.isKindOfClass(BlackDragon){
-                animationManager.runAnimationsForSequenceNamed("Running Damage Timeline")
-                OALSimpleAudio.sharedInstance().playEffect("BlackDragonImpact.mp3")
+                playAnimation(named: "Running Damage Timeline")
+                playSound(named: "BlackDragonImpact.mp3")
+                
             } else {
-                animationManager.runAnimationsForSequenceNamed("Damage Timeline")
+                playAnimation(named: "Running Damage Timeline")
             }
             
 		}
@@ -69,5 +71,14 @@ class Hero : CCSprite {
         isJumping = false
 //        isDead = true
 //        animationManager.runAnimationsForSequenceNamed("Standing Timeline")
+    }
+    
+    
+    func playSound(named soundName:String){
+        OALSimpleAudio.sharedInstance().playEffect(soundName)
+    }
+    
+    func playAnimation(named animation:String){
+        animationManager.runAnimationsForSequenceNamed(animation)
     }
 }
