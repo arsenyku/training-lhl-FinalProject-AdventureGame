@@ -48,7 +48,16 @@ class Hero : CCSprite {
             currentEnemy = enemy
 	        hitPoints -= 1
             
-            animationManager.runAnimationsForSequenceNamed("Damage Timeline")
+            if enemy.isKindOfClass(RedDragon) {
+                animationManager.runAnimationsForSequenceNamed("Damage Timeline")
+                OALSimpleAudio.sharedInstance().playEffect("RedDragonImpact.wav")
+            } else if enemy.isKindOfClass(BlackDragon){
+                animationManager.runAnimationsForSequenceNamed("Running Damage Timeline")
+                OALSimpleAudio.sharedInstance().playEffect("BlackDragonImpact.mp3")
+            } else {
+                animationManager.runAnimationsForSequenceNamed("Damage Timeline")
+            }
+            
 		}
         
         if hitPoints < 1 {

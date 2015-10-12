@@ -32,8 +32,11 @@ class RedDragon : CCSprite {
             position = flightPath[flightStep]
             sinceLastFlightStep = 0
         }
+        
         if (flightStep+1 == flightPath.count && rightToLeft == false && flightPath.count > 0)
         {
+            // Dragons that move left to right need to be moved offscreen
+            // at the end of their flight.
             position = flightPath.first!
         }
     }
