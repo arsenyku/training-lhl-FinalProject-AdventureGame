@@ -4,10 +4,140 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>Animation/ArcherDeath1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{467, 367}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{504, 325}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{460, 472}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{539, 451}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{504, 367}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{502, 451}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{467, 409}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{467, 325}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{418, 472}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
+		<key>Animation/ArcherDeath9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{504, 409}, {35, 40}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {35, 40}}</string>
+			<key>sourceSize</key>
+			<string>{35, 40}</string>
+		</dict>
 		<key>Animation/ArcherOnSmoke1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{486, 461}, {30, 30}}</string>
+			<string>{{557, 103}, {30, 30}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -59,7 +189,7 @@
 		<key>Animation/DamagedArcher.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{81, 487}, {18, 18}}</string>
+			<string>{{21, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -72,7 +202,7 @@
 		<key>Animation/HeroRunning1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{467, 325}, {32, 32}}</string>
+			<string>{{557, 69}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -85,7 +215,7 @@
 		<key>Animation/HeroRunning2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{418, 472}, {32, 32}}</string>
+			<string>{{557, 35}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -98,7 +228,7 @@
 		<key>Animation/HeroRunning3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{467, 393}, {32, 32}}</string>
+			<string>{{557, 1}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -111,7 +241,7 @@
 		<key>Animation/HeroRunning4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{467, 359}, {32, 32}}</string>
+			<string>{{541, 393}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -124,7 +254,7 @@
 		<key>Animation/HeroRunning5.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{452, 472}, {32, 32}}</string>
+			<string>{{541, 359}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -137,7 +267,7 @@
 		<key>Animation/HeroRunning6.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{467, 427}, {32, 32}}</string>
+			<string>{{541, 325}, {32, 32}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -150,7 +280,7 @@
 		<key>Animation/RunningArcher1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{101, 487}, {18, 18}}</string>
+			<string>{{41, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -163,7 +293,7 @@
 		<key>Animation/RunningArcher2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 487}, {18, 18}}</string>
+			<string>{{61, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -176,7 +306,7 @@
 		<key>Animation/RunningArcher3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{21, 487}, {18, 18}}</string>
+			<string>{{101, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -189,7 +319,7 @@
 		<key>Animation/RunningArcher4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{61, 487}, {18, 18}}</string>
+			<string>{{1, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -202,7 +332,7 @@
 		<key>Animation/StandingArcher.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{41, 487}, {18, 18}}</string>
+			<string>{{81, 487}, {18, 18}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -215,7 +345,7 @@
 		<key>Animation/reddragon1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{279, 163}, {137, 160}}</string>
+			<string>{{1, 325}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -228,7 +358,7 @@
 		<key>Animation/reddragon10.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{418, 163}, {137, 160}}</string>
+			<string>{{279, 1}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -241,7 +371,7 @@
 		<key>Animation/reddragon11.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{418, 1}, {137, 160}}</string>
+			<string>{{279, 325}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -254,7 +384,7 @@
 		<key>Animation/reddragon2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{140, 1}, {137, 160}}</string>
+			<string>{{418, 163}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -267,7 +397,7 @@
 		<key>Animation/reddragon3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{279, 325}, {137, 160}}</string>
+			<string>{{140, 325}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -280,7 +410,7 @@
 		<key>Animation/reddragon4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{140, 163}, {137, 160}}</string>
+			<string>{{1, 163}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -293,7 +423,7 @@
 		<key>Animation/reddragon5.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 1}, {137, 160}}</string>
+			<string>{{418, 1}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -306,7 +436,7 @@
 		<key>Animation/reddragon6.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{140, 325}, {137, 160}}</string>
+			<string>{{140, 163}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -319,7 +449,7 @@
 		<key>Animation/reddragon7.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 163}, {137, 160}}</string>
+			<string>{{1, 1}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -332,7 +462,7 @@
 		<key>Animation/reddragon8.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{279, 1}, {137, 160}}</string>
+			<string>{{279, 163}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>
@@ -345,7 +475,7 @@
 		<key>Animation/reddragon9.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{1, 325}, {137, 160}}</string>
+			<string>{{140, 1}, {137, 160}}</string>
 			<key>offset</key>
 			<string>{0, 0}</string>
 			<key>rotated</key>

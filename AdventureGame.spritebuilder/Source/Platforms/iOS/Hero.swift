@@ -51,7 +51,6 @@ class Hero : CCSprite {
 		physicsBody.applyImpulse(ccp(0, jumpImpulse))
         isJumping = true
     	playSound(named:"LavaJump.mp3")
-        
 		playAnimation(named: "Leaping Timeline")
         
     }
@@ -81,7 +80,7 @@ class Hero : CCSprite {
 		}
         
         if hitPoints < 1 {
-            die(withAnimation: "Painful death")
+            die(withAnimation: "Death Timeline")
         }
     }
     
@@ -94,6 +93,8 @@ class Hero : CCSprite {
     func die(withAnimation animation:String){
         isJumping = false
         hitPoints = 0
+        playSound(named: "DeathScream.mp3")
+        playAnimation(named: animation)
     }
     
     func exitStage() {

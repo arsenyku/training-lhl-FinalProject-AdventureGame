@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120C61981BCC99DD0031A76A /* DeathTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 120C61971BCC99DD0031A76A /* DeathTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
+		120C619C1BCCC2360031A76A /* DeathScream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 120C619B1BCCC2360031A76A /* DeathScream.mp3 */; settings = {ASSET_TAGS = (); }; };
 		125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */; settings = {ASSET_TAGS = (); }; };
 		125A8FBD1BCB5A97007E1641 /* RedDragonImpact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */; settings = {ASSET_TAGS = (); }; };
 		125A8FBF1BCB5AA5007E1641 /* BlackDragonImpact.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */; settings = {ASSET_TAGS = (); }; };
@@ -166,6 +168,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120C61971BCC99DD0031A76A /* DeathTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DeathTheme.mp3; path = Sound/DeathTheme.mp3; sourceTree = "<group>"; };
+		120C619B1BCCC2360031A76A /* DeathScream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DeathScream.mp3; path = Sound/DeathScream.mp3; sourceTree = "<group>"; };
 		125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlackDragon.swift; path = Source/Platforms/iOS/BlackDragon.swift; sourceTree = "<group>"; };
 		125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = RedDragonImpact.wav; path = Sound/RedDragonImpact.wav; sourceTree = "<group>"; };
 		125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BlackDragonImpact.mp3; path = Sound/BlackDragonImpact.mp3; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 		129A57401BC75B9D00A4D07D /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				120C619B1BCCC2360031A76A /* DeathScream.mp3 */,
+				120C61971BCC99DD0031A76A /* DeathTheme.mp3 */,
 				125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */,
 				125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */,
 				1295B2F91BC8CC9D00B0FB3C /* CrystalGrab.mp3 */,
@@ -805,6 +811,7 @@
 				125A8FBD1BCB5A97007E1641 /* RedDragonImpact.wav in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
+				120C619C1BCCC2360031A76A /* DeathScream.mp3 in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
@@ -812,6 +819,7 @@
 				B7378977180762440076A88C /* Default.png in Resources */,
 				1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */,
 				129A57A41BC870E200A4D07D /* GameOver.wav in Resources */,
+				120C61981BCC99DD0031A76A /* DeathTheme.mp3 in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

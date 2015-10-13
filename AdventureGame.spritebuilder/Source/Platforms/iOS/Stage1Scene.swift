@@ -33,6 +33,8 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     var sinceLastRedDragon : CCTime = CCTime()
     var redDragonSpawnPoint : CGPoint = CGPointMake(100,375)
     var stageExitTriggered: Bool = false
+    var dirgePlayed = false
+    var sinceHeroDeath:CCTime = 0
     
 	// User interaction
     var tapDetector : UITapGestureRecognizer!
@@ -40,8 +42,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var hitPointsLabel : CCLabelTTF!
     weak var soundToggleButton : CCButton!
     weak var endStageUI: CCNode!
+    weak var gameOverUI: CCNode!
     weak var nextStageButton: CCButton!
     weak var replayStageButton: CCButton!
+    weak var replayAfterDeathButton: CCButton!
     
     
     // Computed properties
@@ -85,6 +89,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         hero.zOrder = 100
         
         let audio = OALSimpleAudio.sharedInstance()
+        audio.stopEverything()
         audio.muted = true
         audio.bgVolume = 0.25
         audio.playBg("LavaTheme.mp3", loop: true)
@@ -185,7 +190,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         if (hero.hasWon) {
         	return false
         } else {
-	        hero.die(withAnimation: "Lava Sink Timeline")
+	        hero.die(withAnimation: "Death Timeline")
     	    return true
         }
     }
@@ -240,7 +245,16 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             checkForHeroExit()
             
         } else if (hero.isDead) {
-            showEndStage()
+
+            sinceHeroDeath += delta
+            
+            if (gameOverUI.visible == false) {
+            	showEndStage()
+            }
+            
+            if (dirgePlayed == false && sinceHeroDeath > 4){
+                playDirge()
+            }
             
         } else {
 
@@ -418,9 +432,19 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
     
     func showEndStage(){
-        endStageUI.visible = true
-        nextStageButton.state = hero.isDead ? .Disabled : .Normal
-        nextStageButton.label.opacity = hero.isDead ? 0.25 : 1.0
+        if hero.isDead{
+            OALSimpleAudio.sharedInstance().stopBg()
+            gameOverUI.visible = true
+        } else {
+            endStageUI.visible = true
+            nextStageButton.state = hero.isDead ? .Disabled : .Normal
+            nextStageButton.label.opacity = hero.isDead ? 0.25 : 1.0
+        }
+    }
+    
+    func playDirge(){
+     	dirgePlayed = true
+        OALSimpleAudio.sharedInstance().playBg("DeathTheme.mp3")
     }
     
     // MARK: Helpers
