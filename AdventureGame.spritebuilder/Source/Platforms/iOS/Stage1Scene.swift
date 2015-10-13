@@ -141,7 +141,9 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     }
 
     func nextStage(sender: AnyObject?) {
-        print ("next stage")
+        OALSimpleAudio.sharedInstance().stopBg()
+        let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
+        CCDirector.sharedDirector().replaceScene(gameplayScene)
 
     }
 

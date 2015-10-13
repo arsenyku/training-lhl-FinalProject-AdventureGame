@@ -9,7 +9,21 @@
 class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
 
     weak var gamePhysicsNode : CCPhysicsNode!
-	var tapDetector : UITapGestureRecognizer!
+
+    // Sprites
+    weak var hero : Hero!
+
+    // User Interaction
+    var tapDetector : UITapGestureRecognizer!
+    weak var scoreLabel : CCLabelTTF!
+    weak var hitPointsLabel : CCLabelTTF!
+    weak var soundToggleButton : CCButton!
+    weak var endStageUI: CCNode!
+    weak var gameOverUI: CCNode!
+    weak var nextStageButton: CCButton!
+    weak var replayStageButton: CCButton!
+    weak var replayAfterDeathButton: CCButton!
+    
     
     func didLoadFromCCB() {
         userInteractionEnabled = true
@@ -22,6 +36,51 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
                 
     }
+    
+    
+    
+    // MARK: User Interaction
+    
+    func tapDetected(sender:UITapGestureRecognizer){
+        
+    }
+    
+    
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        
+        let touchLocation = CCDirector.sharedDirector().convertToGL(touch.locationInView(touch.view))
+        let responder = CCDirector.sharedDirector().responderManager
+        let node = responder.nodeAtPoint(touchLocation)
+        
+        if node.isKindOfClass(CCButton) {
+            return false
+        }
+        
+        return true;
+    }
+    
+    func soundToggle(sender: AnyObject?) {
+//        if let toggleButton = sender as? CCButton {
+//            
+// 
+//        }
+    }
+    
+    func replayStage(sender: AnyObject?) {
+        OALSimpleAudio.sharedInstance().stopBg()
+        let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
+        CCDirector.sharedDirector().replaceScene(gameplayScene)
+    }
+    
+    func nextStage(sender: AnyObject?) {
+//        OALSimpleAudio.sharedInstance().stopBg()
+//        let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
+//        CCDirector.sharedDirector().replaceScene(gameplayScene)
+//        
+    }
+    
+
 
 
 }

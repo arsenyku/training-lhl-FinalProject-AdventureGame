@@ -10,7 +10,7 @@ import Foundation
 
 class Hero : CCSprite {
     
-    let targetCrystalCount = 10
+    let targetCrystalCount = 1
 	static let initialHitPoints = 10
     
     private(set) internal var crystalsCount:Int = 0
