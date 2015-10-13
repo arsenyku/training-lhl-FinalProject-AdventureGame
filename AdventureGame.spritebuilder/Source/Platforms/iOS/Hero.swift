@@ -38,7 +38,7 @@ class Hero : CCSprite {
     	playSound(named: "CrystalGrab.mp3")
         
         if hasWon{
-            physicsBody.elasticity = 0
+            physicsBody.velocity = CGPointMake(0,0)
             playAnimation(named: "Standing Timeline")
         }
     }
@@ -85,7 +85,9 @@ class Hero : CCSprite {
     }
     
     func hitByEnvironment(environment:CCNode){
-       
+        if environment.isKindOfClass(SafeGround){
+            physicsBody.elasticity = 0
+        }
     }
     
     

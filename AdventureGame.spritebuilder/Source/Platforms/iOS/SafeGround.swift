@@ -18,7 +18,7 @@ class SafeGround : CCNode {
     
     func raise(){
         if !fullyRaised {
-            position.y += 5
+            position.y += 8
 	    }
     }
     

@@ -82,7 +82,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
         lastPlatform.position = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
 
-        for _ in 1...5{
+        for _ in 1...4{
             spawnNewPlatform()
         }
         
@@ -195,6 +195,11 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     }
     
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, safeGround: CCNode!) -> Bool {
+
+        print("safe")
+        return true
+    }
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, crystal: CCNode!) -> Bool {
         hero.grabCrystal()
@@ -215,7 +220,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     	// Update items that do not need to be changed on every frame
         // e.g. text labels, non-physics bodies, anything not animated or moving
-        coordinatesLabel.string = "Crystals: \(hero.crystalsCount)"
+        coordinatesLabel.string = "Crystals: \(hero.crystalsCount) / \(hero.targetCrystalCount)"
         hitPointsLabel.string = "Hit Points: \(hero.hitPoints)"
         
 	}
