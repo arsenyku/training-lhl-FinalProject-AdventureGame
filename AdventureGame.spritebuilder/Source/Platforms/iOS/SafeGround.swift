@@ -25,7 +25,7 @@ class SafeGround : CCNode {
     class func spawn(relativeTo referencePoint:CGPoint) -> SafeGround{
         let result = CCBReader.load("SafeGround") as! SafeGround
         result.referencePoint = referencePoint
-        result.position = ccp(referencePoint.x, referencePoint.y - (result.contentSize.height/2))
+        result.position = ccp(referencePoint.x, referencePoint.y - (result.contentSize.height/4))
 
         return result
     }

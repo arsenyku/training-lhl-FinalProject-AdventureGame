@@ -2263,6 +2263,19 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>labelColor|Disabled</string>
+								<key>type</key>
+								<string>Color3</string>
+								<key>value</key>
+								<array>
+									<real>0.27854982018470764</real>
+									<real>0.27854982018470764</real>
+									<real>0.27854982018470764</real>
+									<real>1</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>backgroundSpriteFrame|Selected</string>
 								<key>type</key>
 								<string>SpriteFrame</string>
@@ -2413,6 +2426,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -2493,8 +2508,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -2634,9 +2647,9 @@
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
-			<real>0.0</real>
+			<real>3.5390625</real>
 			<key>position</key>
-			<real>1</real>
+			<real>10</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

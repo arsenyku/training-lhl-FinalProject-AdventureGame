@@ -41,6 +41,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var soundToggleButton : CCButton!
     weak var endStageUI: CCNode!
     weak var nextStageButton: CCButton!
+    weak var replayStageButton: CCButton!
     
     
     // Computed properties
@@ -139,8 +140,71 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     }
 
+	// MARK: Collision checks
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) -> Bool {
+        
+        if (hero.hasWon) {
+            return false
+            
+        } else if (hero.position.y < FloatingGround.minPlatformHeight){
+            // Hero is on ground - ignore collision
+            return false
+            
+        } else if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnPlatform){
+            // Hero is on top of platform - accept collision
+            return true
+            
+        } else {
+            // Hero is below the platform - ignore the collision
+            return false
+        }
+        
+    }
+    
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) {
+        if (hero.isJumping) {
+            hero.landJump()
+        }
+    }
+    
 
-    // MARK: Game logic
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, dragon: RedDragon!) -> Bool {
+        hero.hitByEnemy(dragon)
+        return false
+        
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, blackDragon: BlackDragon!) -> Bool {
+        hero.hitByEnemy(blackDragon)
+        return false
+        
+    }
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, ground: CCNode!) -> Bool {
+        if (hero.hasWon) {
+        	return false
+        } else {
+	        hero.die(withAnimation: "Lava Sink Timeline")
+    	    return true
+        }
+    }
+    
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, crystal: CCNode!) -> Bool {
+        hero.grabCrystal()
+        crystal.removeFromParent()
+        crystals.removeAtIndex(crystals.indexOf(crystal)!)
+        
+        if hero.hasWon {
+            gamePhysicsNode.gravity.y = -500
+        }
+        return false
+    }
+    
+
+    
+    // MARK: Update logic
     
     override func fixedUpdate(delta: CCTime) {
 
@@ -198,60 +262,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             
             spawnRedDragonIfNeeded(delta)
         }
-    }
-
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) -> Bool {
-        
-        if (hero.hasWon) {
-            return false
-            
-        } else if (hero.position.y < FloatingGround.minPlatformHeight){
-            // Hero is on ground - ignore collision
-            return false
-            
-        } else if (hero.position.y - floatingGround.position.y > distanceWhenStandingOnPlatform){
-            // Hero is on top of platform - accept collision
-            return true
-            
-        } else {
-            // Hero is below the platform - ignore the collision
-            return false
-        }
-        
-    }
-   
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, dragon: RedDragon!) -> Bool {
-        hero.hitByEnemy(dragon)
-        return false
-        
-    }
-    
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, blackDragon: BlackDragon!) -> Bool {
-        hero.hitByEnemy(blackDragon)
-        return false
-        
-    }
-    
-    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) {
-        if (hero.isJumping) {
-            hero.landJump()
-        }
-    }
-    
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, ground: CCNode!) -> Bool {
-        hero.die(withAnimation: "Lava Sink Timeline")
-        return true
-    }
-    
-    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, crystal: CCNode!) -> Bool {
-		hero.grabCrystal()
-        crystal.removeFromParent()
-        crystals.removeAtIndex(crystals.indexOf(crystal)!)
-        
-        if hero.hasWon {
-            gamePhysicsNode.gravity.y = -500
-        }
-        return false
     }
 
     func loopTheGroundIfNeeded(){
@@ -409,7 +419,8 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     func showEndStage(){
         endStageUI.visible = true
-        nextStageButton.userInteractionEnabled = !hero.isDead
+        nextStageButton.state = hero.isDead ? .Disabled : .Normal
+        nextStageButton.label.opacity = hero.isDead ? 0.25 : 1.0
     }
     
     // MARK: Helpers

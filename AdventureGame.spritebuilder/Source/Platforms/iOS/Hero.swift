@@ -10,7 +10,7 @@ import Foundation
 
 class Hero : CCSprite {
     
-    let targetCrystalCount = 50
+    let targetCrystalCount = 10
 	static let initialHitPoints = 10
     
     private(set) internal var crystalsCount:Int = 0
@@ -38,6 +38,7 @@ class Hero : CCSprite {
     	playSound(named: "CrystalGrab.mp3")
         
         if hasWon{
+            physicsBody.elasticity = 0
             playAnimation(named: "Standing Timeline")
         }
     }
