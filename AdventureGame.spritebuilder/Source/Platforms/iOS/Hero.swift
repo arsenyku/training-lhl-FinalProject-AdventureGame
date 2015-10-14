@@ -12,15 +12,15 @@ class Hero : CCSprite {
     
     let targetCrystalCount = 1
 	static let initialHitPoints = 10
+    let jumpImpulse : CGFloat = 125
     
+
+    // Stage 1 properties
     private(set) internal var crystalsCount:Int = 0
     private(set) internal var hitPoints:Int = Hero.initialHitPoints
     private(set) internal var isJumping = false
-    
     private var currentEnemy: CCSprite!
     
-    let jumpImpulse : CGFloat = 125
-
     var hasWon:Bool {
         get{
             return crystalsCount >= targetCrystalCount
@@ -100,7 +100,7 @@ class Hero : CCSprite {
     }
     
     func exitStage() {
-        print ("exit stage")
+        print("exit stage")
         playAnimation(named: "Running Timeline")
         physicsBody.applyImpulse(ccp(50, 0))
     }

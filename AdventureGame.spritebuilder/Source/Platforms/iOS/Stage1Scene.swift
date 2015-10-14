@@ -75,11 +75,10 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
         tapDetector.numberOfTapsRequired = 1
         tapDetector.delegate = self
-        
-        soundToggleButton.setTarget(self, selector: Selector("soundToggle:"))
-        
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
+        soundToggleButton.setTarget(self, selector: Selector("soundToggle:"))
+        
         lastPlatform.position = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
 
         for _ in 1...4{
@@ -143,8 +142,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func nextStage(sender: AnyObject?) {
         OALSimpleAudio.sharedInstance().stopBg()
         let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
-        CCDirector.sharedDirector().replaceScene(gameplayScene)
-
+        CCDirector.sharedDirector().presentScene(gameplayScene, withTransition: CCTransition(revealWithDirection: .Left, duration: 1.5))
     }
 
 	// MARK: Collision checks

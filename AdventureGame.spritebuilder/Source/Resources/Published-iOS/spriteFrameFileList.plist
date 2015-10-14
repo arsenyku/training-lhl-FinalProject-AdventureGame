@@ -9,12 +9,12 @@
 	</dict>
 	<key>spriteFrameFiles</key>
 	<array>
-		<string>Animation.plist</string>
-		<string>Controls.plist</string>
-		<string>Environment/Background.plist</string>
-		<string>Environment/Stage1.plist</string>
-		<string>Environment/Stage2Background.plist</string>
 		<string>Environment/Stage1End.plist</string>
+		<string>Environment/Background.plist</string>
+		<string>Controls.plist</string>
+		<string>Environment/Stage1.plist</string>
+		<string>Animation.plist</string>
+		<string>Environment/Stage2Background.plist</string>
 	</array>
 </dict>
 </plist>

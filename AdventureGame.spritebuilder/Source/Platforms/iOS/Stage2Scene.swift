@@ -11,7 +11,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var gamePhysicsNode : CCPhysicsNode!
 
     // Sprites
-    weak var hero : Hero!
+    weak var hero : HeroStage2!
 
     // User Interaction
     var tapDetector : UITapGestureRecognizer!
@@ -33,15 +33,28 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
         tapDetector.numberOfTapsRequired = 1
         tapDetector.delegate = self
-        
+        CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
+
                 
     }
-    
-    
-    
+
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
+        let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
+        print("run from \(hero.position) to \(tapPoint)")
+        
+//		print ("tapped \(tapPoint)")
+//        
+//        let targetPoint = convertToNodeSpace(tapPoint)
+//        let heroPoint = screenPositionForNode(hero)
+//    	print("run from \(heroPoint) to \(targetPoint)")
+//        
+////		let actionRemove = CCActionRemove()
+////		let actionSequence = CCActionSequence.actionWithArray([actionMove, actionRemove]) as! CCActionSequence
+//		hero.runAction(actionMove)
+        
+		hero.moveTo(point: tapPoint)
         
     }
     
@@ -80,7 +93,35 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 //        
     }
     
+    
+    // MARK: Collision checks
+    
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, wall: CCNode!) -> Bool {
+       
+        print ("Ow")
+        return true
+        
+        
+    }
 
+    // MARK: Helper
+    
+    func screenPositionForNode(node:CCNode) -> CGPoint {
+        let nodeWorldPosition = gamePhysicsNode.convertToWorldSpace(node.position)
+        let nodeScreenPosition = convertToNodeSpace(nodeWorldPosition)
+        return nodeScreenPosition
+    }
+    
+    func directionVector(from from:CGPoint, to:CGPoint) -> CGPoint {
+        let offset    = ccpSub(to, from);
+//        let ratio     = offset.y/offset.x;
+//        let targetX   = hero.contentSize.width/2 + self.contentSize.width;
+//        let targetY   = (targetX*ratio) + from.y;
+//        let targetPosition = ccp(targetX,targetY)
+//        return targetPosition
+
+        return offset
+    }
 
 
 }
