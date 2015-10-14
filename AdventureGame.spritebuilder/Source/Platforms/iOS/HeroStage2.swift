@@ -19,6 +19,7 @@ class HeroStage2 : Hero {
     
     func moveTo(point point:CGPoint, immediate:Bool = true){
         
+        // Distance traveled by the hero in 1 second (rough estimate)
         let timeScaleFactor:Double = 200
         
         if immediate {
