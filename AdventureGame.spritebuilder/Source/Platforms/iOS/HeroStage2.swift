@@ -19,11 +19,21 @@ class HeroStage2 : Hero {
     
     func moveTo(point point:CGPoint, immediate:Bool = true){
         
+        let timeScaleFactor:Double = 200
+        
         if immediate {
             stopAllActions()
         }
         
-        let moveTo = CCActionMoveTo.actionWithDuration(1, position: point) as! CCAction
+        let movementVector = ccpSub(point, position)
+        let deltaXSquared = pow(movementVector.x, 2)
+        let deltaYSquared = pow(movementVector.y, 2)
+        let magnitude = sqrt( deltaXSquared + deltaYSquared )
+        let duration = Double(magnitude) / timeScaleFactor
+        
+        print ("magnitude \(magnitude)")
+        
+        let moveTo = CCActionMoveTo.actionWithDuration(duration, position: point) as! CCAction
         let done = CCActionCallBlock { () -> Void in
             self.playAnimation(named: "Standing Timeline")
         }
