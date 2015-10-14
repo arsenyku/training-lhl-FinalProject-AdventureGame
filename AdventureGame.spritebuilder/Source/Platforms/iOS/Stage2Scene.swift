@@ -43,18 +43,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func tapDetected(sender:UITapGestureRecognizer){
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
         print("run from \(hero.position) to \(tapPoint)")
-        
-//		print ("tapped \(tapPoint)")
-//        
-//        let targetPoint = convertToNodeSpace(tapPoint)
-//        let heroPoint = screenPositionForNode(hero)
-//    	print("run from \(heroPoint) to \(targetPoint)")
-//        
-////		let actionRemove = CCActionRemove()
-////		let actionSequence = CCActionSequence.actionWithArray([actionMove, actionRemove]) as! CCActionSequence
-//		hero.runAction(actionMove)
-        
-		hero.moveTo(point: tapPoint)
+        hero.moveTo(point: tapPoint)
         
     }
     

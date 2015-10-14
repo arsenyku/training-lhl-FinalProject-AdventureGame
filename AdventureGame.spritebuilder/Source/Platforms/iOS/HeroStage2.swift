@@ -17,14 +17,12 @@ class HeroStage2 : Hero {
         flipX = facingLeft
     }
     
-    func moveTo(point point:CGPoint, immediate:Bool = true){
+    func moveTo(point point:CGPoint){
         
         // Distance traveled by the hero in 1 second (rough estimate)
         let timeScaleFactor:Double = 200
         
-        if immediate {
-            stopAllActions()
-        }
+        stopAllActions()
         
         let movementVector = ccpSub(point, position)
         let deltaXSquared = pow(movementVector.x, 2)
