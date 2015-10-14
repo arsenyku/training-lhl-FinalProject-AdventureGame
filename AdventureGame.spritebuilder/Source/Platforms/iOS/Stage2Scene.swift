@@ -12,6 +12,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     // Sprites
     weak var hero : HeroStage2!
+    var snake : Snake!
 
     // User Interaction
     var tapDetector : UITapGestureRecognizer!
@@ -35,7 +36,8 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector.delegate = self
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-                
+        snake = Snake.spawn(on: hero.position)
+        gamePhysicsNode.addChild(snake.head)
     }
 
     // MARK: User Interaction
@@ -44,7 +46,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
         print("run from \(hero.position) to \(tapPoint)")
         hero.moveTo(point: tapPoint)
-        
+        snake.hiss()
     }
     
     
@@ -101,16 +103,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         return nodeScreenPosition
     }
     
-    func directionVector(from from:CGPoint, to:CGPoint) -> CGPoint {
-        let offset    = ccpSub(to, from);
-//        let ratio     = offset.y/offset.x;
-//        let targetX   = hero.contentSize.width/2 + self.contentSize.width;
-//        let targetY   = (targetX*ratio) + from.y;
-//        let targetPosition = ccp(targetX,targetY)
-//        return targetPosition
 
-        return offset
-    }
 
 
 }

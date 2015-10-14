@@ -47,7 +47,6 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var replayStageButton: CCButton!
     weak var replayAfterDeathButton: CCButton!
     
-    
     // Computed properties
     var stageEnded:Bool {
         get {
@@ -92,8 +91,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         audio.muted = true
         audio.bgVolume = 0.25
         audio.playBg("LavaTheme.mp3", loop: true)
-        
-        
+
     }
 
     // MARK: User Interaction
