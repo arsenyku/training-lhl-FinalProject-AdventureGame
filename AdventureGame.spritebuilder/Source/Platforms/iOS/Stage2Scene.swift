@@ -29,6 +29,10 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     func didLoadFromCCB() {
         userInteractionEnabled = true
         
+        let viewSize = CCDirector.sharedDirector().view.frame.size
+        let heroStart = ccp(viewSize.width/2, viewSize.height/2)
+        hero.position = heroStart
+        
         gamePhysicsNode.collisionDelegate = self
         
         tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
@@ -36,17 +40,17 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector.delegate = self
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        snake = Snake.spawn(on: hero.position)
+        snake = Snake.spawn(relativeTo: hero)
         gamePhysicsNode.addChild(snake.head)
+        
     }
 
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
-        print("run from \(hero.position) to \(tapPoint)")
+        snake.addChasePoint(hero.position)
         hero.moveTo(point: tapPoint)
-        snake.hiss()
     }
     
     
@@ -94,6 +98,29 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         
     }
+    
+    // MARK: Update logic
+    
+    override func fixedUpdate(delta: CCTime) {
+        
+        // Update items that do not need to be changed on every frame
+        // e.g. text labels, non-physics bodies, anything not animated or moving
+        scoreLabel.string = "Snake Health: \(snake.health) / \(Snake.maxHealth)"
+        hitPointsLabel.string = "Hit Points: \(hero.hitPoints)"
+        
+        
+        snake.chase()
+//        if (snake.isChasing == false) {
+//	        snake.chaseHero(hero)
+//        }
+    }
+    
+    
+    override func update(delta: CCTime) {
+        // Update items that need to be changed as often as possible
+        // e.g. physics bodies, anything animated
+    }
+
 
     // MARK: Helper
     
