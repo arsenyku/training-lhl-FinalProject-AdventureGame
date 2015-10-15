@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1203F0281BCDBD7C0067FB89 /* HeroStage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1203F0271BCDBD7C0067FB89 /* HeroStage2.swift */; settings = {ASSET_TAGS = (); }; };
 		12082B4E1BCF32EB00633D5B /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12082B4D1BCF32EB00633D5B /* Snake.swift */; settings = {ASSET_TAGS = (); }; };
+		12082B501BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12082B4F1BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift */; settings = {ASSET_TAGS = (); }; };
 		120C61981BCC99DD0031A76A /* DeathTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 120C61971BCC99DD0031A76A /* DeathTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		120C619C1BCCC2360031A76A /* DeathScream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 120C619B1BCCC2360031A76A /* DeathScream.mp3 */; settings = {ASSET_TAGS = (); }; };
 		120C61AA1BCD7AAD0031A76A /* Stage2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */; settings = {ASSET_TAGS = (); }; };
@@ -174,6 +175,7 @@
 /* Begin PBXFileReference section */
 		1203F0271BCDBD7C0067FB89 /* HeroStage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeroStage2.swift; path = Source/Platforms/iOS/HeroStage2.swift; sourceTree = "<group>"; };
 		12082B4D1BCF32EB00633D5B /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Snake.swift; path = Source/Platforms/iOS/Snake.swift; sourceTree = "<group>"; };
+		12082B4F1BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+VectorMagnitude.swift"; path = "Source/Platforms/iOS/CGPoint+VectorMagnitude.swift"; sourceTree = "<group>"; };
 		120C61971BCC99DD0031A76A /* DeathTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DeathTheme.mp3; path = Sound/DeathTheme.mp3; sourceTree = "<group>"; };
 		120C619B1BCCC2360031A76A /* DeathScream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DeathScream.mp3; path = Sound/DeathScream.mp3; sourceTree = "<group>"; };
 		120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage2Scene.swift; path = Source/Platforms/iOS/Stage2Scene.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				125A8FCC1BCB94B4007E1641 /* SafeGround.swift */,
 				1295B2F31BC8857C00B0FB3C /* Int+Random.swift */,
 				1295B2F51BC8859300B0FB3C /* Float+Random.swift */,
+				12082B4F1BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift */,
 				1295B2FD1BC9065D00B0FB3C /* UIBezierPath+OvalSegment.h */,
 				1295B2FE1BC9065D00B0FB3C /* UIBezierPath+OvalSegment.m */,
 			);
@@ -907,6 +910,7 @@
 			files = (
 				125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */,
 				129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */,
+				12082B501BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift in Sources */,
 				120C61AA1BCD7AAD0031A76A /* Stage2Scene.swift in Sources */,
 				1295B3021BC91A4300B0FB3C /* RedDragon.swift in Sources */,
 				125A8FCD1BCB94B4007E1641 /* SafeGround.swift in Sources */,

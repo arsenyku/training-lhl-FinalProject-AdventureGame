@@ -30,8 +30,6 @@ class HeroStage2 : Hero {
         let magnitude = sqrt( deltaXSquared + deltaYSquared )
         let duration = Double(magnitude) / timeScaleFactor
         
-        print ("magnitude \(magnitude)")
-        
         let moveTo = CCActionMoveTo.actionWithDuration(duration, position: point) as! CCAction
         let done = CCActionCallBlock { () -> Void in
             self.playAnimation(named: "Standing Timeline")

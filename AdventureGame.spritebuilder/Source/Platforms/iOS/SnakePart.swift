@@ -22,19 +22,40 @@ class SnakePart : CCSprite {
     
     func moveTo(point point:CGPoint, completion: () -> Void) {
  
-        let movementVector = ccpSub(point, position)
-        let deltaXSquared = pow(movementVector.x, 2)
-        let deltaYSquared = pow(movementVector.y, 2)
-        let magnitude = sqrt( deltaXSquared + deltaYSquared )
-        let duration = Double(magnitude) / Snake.travelDistancePerSecond
+        var vector1, vector2: CGPoint
         
-        print ("magnitude \(magnitude), duration \(duration)")
+        let verticalFirst:Bool = rollD100()
+        if verticalFirst {
+            vector1 = ccp(position.x, point.y)
+        } else {
+            vector1 = ccp(point.x, position.y)
+        }
+        vector2 = ccp(point.x, point.y)
+
+        print("move from \(position) to p1 \(vector1) to p2 \(vector2)")
         
-        let moveTo = CCActionMoveTo.actionWithDuration(duration, position: point) as! CCAction
+        let movement1 = ccpSub(position, vector1)
+        let movement2 = ccpSub(vector1, vector2)
+
+        let totalTravelDistance = movement1.magnitude() + movement2.magnitude()
+        let totalDuration = Double(totalTravelDistance) / Snake.travelDistancePerSecond
+	
+        if totalTravelDistance == 0 {
+			completion()
+            return
+        }
+        
+        
+        let portion1 = movement1.magnitude()/totalTravelDistance
+        let portion2 = movement2.magnitude()/totalTravelDistance
+        
+        
+        let move1 = CCActionMoveTo.actionWithDuration(portion1 * totalDuration, position: vector1) as! CCAction
+        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
         let done = CCActionCallBlock { () -> Void in
             completion()
         }
-        let runTo = CCActionSequence.actionWithArray([moveTo, done]) as! CCActionSequence
+        let runTo = CCActionSequence.actionWithArray([move1, move2, done]) as! CCActionSequence
 
         runAction(runTo)
     }
@@ -57,6 +78,11 @@ class SnakePart : CCSprite {
 
         
         return snakePart
+    }
+    
+    
+    func rollD100(successChance chance:Int = 50) -> Bool {
+        return Float.random(min: 0, max: 1, precision:2) < (Float(chance)/100)
     }
 
 }

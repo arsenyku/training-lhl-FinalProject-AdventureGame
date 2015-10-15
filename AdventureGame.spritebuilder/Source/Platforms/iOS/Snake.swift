@@ -34,7 +34,7 @@ class Snake {
         }
         
         if (chasePoints.count < 1){
-            chasePoints.append(prey.position)
+            addChasePoint(prey.position)
         }
         
         
@@ -47,13 +47,14 @@ class Snake {
                 if (self.chasePoints.count > 0)	{
                 	self.chasePoints.removeFirst()
                 }
-                print("Stopped: \(self.chasePoints)")
             }
         }
     }
     
     func addChasePoint(point: CGPoint) {
-        chasePoints.append(point)
+		chasePoints.append(point)
+        
+        print("added: \(chasePoints)")
     }
     
     

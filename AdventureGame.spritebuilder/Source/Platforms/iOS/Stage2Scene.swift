@@ -130,6 +130,9 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         return nodeScreenPosition
     }
     
+    func rollD100(successChance chance:Int = 50) -> Bool {
+        return Float.random(min: 0, max: 1, precision:2) < (Float(chance)/100)
+    }
 
 
 
