@@ -43,13 +43,15 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         snake = Snake.spawn(relativeTo: hero)
         gamePhysicsNode.addChild(snake.head)
         
+        snake.addChasePoint(hero.position)
+        
     }
 
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
-        snake.addChasePoint(hero.position)
+        snake.addChasePoint(tapPoint)
         hero.moveTo(point: tapPoint)
     }
     
@@ -110,6 +112,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         
         snake.chase()
+        
 //        if (snake.isChasing == false) {
 //	        snake.chaseHero(hero)
 //        }

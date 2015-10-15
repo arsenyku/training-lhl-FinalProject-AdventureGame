@@ -26,35 +26,47 @@ class Snake {
             return self.parts.count > 0 ? self.parts[0] : nil
         }
     }
+    
+    var caughtPrey:Bool {
+        get {
+            return prey.position == head?.position
+        }
+    }
 
     func chase(){
-
-        guard isChasing == false else {
+        if isChasing || caughtPrey {
             return
         }
         
-        if (chasePoints.count < 1){
-            addChasePoint(prey.position)
-        }
-        
-        
-        isChasing = true
 
         if let nextPoint = chasePoints.first {
+            
+            isChasing = true
+
             head?.moveTo(point: nextPoint) { () -> Void in
                 self.isChasing = false
-                self.head?.stopAllActions()
-                if (self.chasePoints.count > 0)	{
-                	self.chasePoints.removeFirst()
-                }
+                self.finishChase()
             }
+        } else {
+            isChasing = false
         }
     }
     
     func addChasePoint(point: CGPoint) {
+
 		chasePoints.append(point)
+    }
+    
+    private func finishChase(){
+        self.head?.stopAllActions()
+        if (self.chasePoints.count > 0)	{
+            self.chasePoints.removeFirst()
+        }
         
-        print("added: \(chasePoints)")
+        if self.chasePoints.count < 1 && !caughtPrey {
+            self.addChasePoint(self.prey.position)
+        }
+
     }
     
     
@@ -62,35 +74,37 @@ class Snake {
 		let snake = Snake()
         snake.prey = hero
 
-        let offset:CGFloat = 250
-        let randomPointMarker = Int.random(min:1, max:8)
-        
+        let offset:CGFloat = 150
+//        let randomPointMarker = Int.random(min:1, max:8)
+//        let randomPointMarker = 1
         var spawnPoint = ccp(hero.position.x, hero.position.y)
         
-        switch(randomPointMarker){
-        case 1:
-            spawnPoint.x -= offset
-            spawnPoint.y += offset
-        case 2:
-            spawnPoint.x -= offset
-        case 3:
-            spawnPoint.y += offset
-        case 4:
-            spawnPoint.x += offset
-            spawnPoint.y += offset
-        case 5:
-            spawnPoint.x += offset
-        case 6:
-            spawnPoint.x += offset
-            spawnPoint.y -= offset
-        case 7:
-            spawnPoint.y -= offset
-        default:
-            spawnPoint.x -= offset
-            spawnPoint.y -= offset
-        }
+//        switch(randomPointMarker){
+//        case 1:
+//            spawnPoint.x -= offset
+//        case 2:
+//            spawnPoint.y += offset
+//        case 3:
+//            spawnPoint.y -= offset
+//        case 4:
+//            spawnPoint.x -= offset
+//            spawnPoint.y += offset
+//        case 5:
+//            spawnPoint.x += offset
+//            spawnPoint.y += offset
+//        case 6:
+//            spawnPoint.x += offset
+//            spawnPoint.y -= offset
+//        case 7:
+//            spawnPoint.x -= offset
+//            spawnPoint.y -= offset
+//        default:
+//            spawnPoint.x += offset
+//        }
         
         
+        spawnPoint.x = spawnPoint.x - offset
+        spawnPoint.y = spawnPoint.y + 0
         
         let headPart = SnakePart.spawn(.Head)
         headPart.position = spawnPoint

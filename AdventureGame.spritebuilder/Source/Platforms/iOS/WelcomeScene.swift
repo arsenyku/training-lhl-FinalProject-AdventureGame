@@ -19,7 +19,7 @@ class WelcomeScene: CCNode {
     func newGame(sender: CCButton?) {
       
         OALSimpleAudio.sharedInstance().stopBg()
-        let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
+        let gameplayScene = CCBReader.loadAsScene("Stage1Scene")
         CCDirector.sharedDirector().presentScene(gameplayScene,
             withTransition: CCTransition(pushWithDirection: .Down, duration: 1.0))
     }
