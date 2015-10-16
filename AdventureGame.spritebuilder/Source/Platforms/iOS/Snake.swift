@@ -12,7 +12,7 @@ class Snake {
 
     static let maxHealth:Int = 100
     static let partOffset:CGFloat = 32
-    static let minMoveInterval:CCTime = 0.1
+    static let defaultMoveInterval:CCTime = 0.1
     static let defaultBodyLength = 30
     
     static let normalBodyImage = "Animation/snakebody.png"
@@ -24,6 +24,7 @@ class Snake {
     private(set) internal var chasePoints:[CGPoint] = []
     private(set) internal var isChasing:Bool = false
     private(set) internal var sinceLastMove:CCTime = 0
+    private(set) internal var moveInterval = Snake.defaultMoveInterval
 
     private(set) internal var health = Snake.maxHealth
     
@@ -44,7 +45,7 @@ class Snake {
     func moveForward(deltaTime:CCTime){
         sinceLastMove += deltaTime
 
-        guard caughtPrey == false && sinceLastMove > Snake.minMoveInterval else{
+        guard caughtPrey == false && sinceLastMove > moveInterval else{
             return
         }
 
@@ -53,10 +54,21 @@ class Snake {
         }
 
         sinceLastMove = 0
+        moveInterval = Snake.defaultMoveInterval
 
     }
+
+    func hitBy(object: CCNode){
+        if object .isKindOfClass(Bomb){
+            stunned()
+            health -= 5
+            
+        }
+    }
     
-    
+    func stunned(){
+        moveInterval = 3
+    }
     
     private func stopAllActions(){
         for snakePart in parts{

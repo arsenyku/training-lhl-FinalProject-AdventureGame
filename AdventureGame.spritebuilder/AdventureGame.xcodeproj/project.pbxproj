@@ -37,6 +37,7 @@
 		129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B11BC8722100A4D07D /* FloatingGround.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57B91BC8744400A4D07D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B81BC8744400A4D07D /* Hero.swift */; settings = {ASSET_TAGS = (); }; };
 		12C70F2C1BD134BD00EC9F23 /* SnakeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
+		12E901741BD1838B00D880D6 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E901731BD1838B00D880D6 /* Bomb.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
@@ -206,6 +207,7 @@
 		129A57B11BC8722100A4D07D /* FloatingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingGround.swift; path = Source/Platforms/iOS/FloatingGround.swift; sourceTree = "<group>"; };
 		129A57B81BC8744400A4D07D /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = Source/Platforms/iOS/Hero.swift; sourceTree = "<group>"; };
 		12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SnakeTheme.mp3; path = Sound/SnakeTheme.mp3; sourceTree = "<group>"; };
+		12E901731BD1838B00D880D6 /* Bomb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bomb.swift; path = Source/Platforms/iOS/Bomb.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */,
 				129A57B81BC8744400A4D07D /* Hero.swift */,
 				1203F0271BCDBD7C0067FB89 /* HeroStage2.swift */,
+				12E901731BD1838B00D880D6 /* Bomb.swift */,
 				12082B4D1BCF32EB00633D5B /* Snake.swift */,
 				1229DC471BCEF9AF0049C4EE /* SnakePart.swift */,
 				12957D7E1BD043AB00F02E30 /* SnakeHead.swift */,
@@ -935,6 +938,7 @@
 				129A57B41BC8722100A4D07D /* Crystal.swift in Sources */,
 				12957D7F1BD043AB00F02E30 /* SnakeHead.swift in Sources */,
 				129580731BD092D600F02E30 /* SnakeTileMap.swift in Sources */,
+				12E901741BD1838B00D880D6 /* Bomb.swift in Sources */,
 				1295B2FF1BC9065D00B0FB3C /* UIBezierPath+OvalSegment.m in Sources */,
 				129A57B31BC8722100A4D07D /* Stage1Scene.swift in Sources */,
 				1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */,

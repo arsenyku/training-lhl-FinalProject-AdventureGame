@@ -13,6 +13,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     // Sprites
     weak var hero : HeroStage2!
     var snake : Snake!
+    var bombs : [Bomb] = []
 
     // User Interaction
     var tapDetector : UITapGestureRecognizer!
@@ -74,6 +75,9 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
     func placeTrap(sender:UITapGestureRecognizer){
      	print ("place trap")
+        let bomb = Bomb.spawn(on: hero.position)
+        gamePhysicsNode.addChild(bomb)
+        bombs.append(bomb)
     }
     
       
@@ -127,13 +131,23 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         return true
     }
     
-    func ccPhysicsCollisionPreSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, snake: SnakePart!) -> Bool {
-        hero.hitByEnemy(snake)
+    func ccPhysicsCollisionPreSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, snakePart: SnakePart!) -> Bool {
+        hero.hitByEnemy(snakePart)
         return false
     }
 
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, bomb: CCNode!) -> Bool {
+        print ("planted")
+        return false
+    }
     
-
+    func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, snakePart: SnakePart!, bomb: Bomb!) -> Bool {
+        bomb.removeFromParent()
+        bombs.removeAtIndex(bombs.indexOf(bomb)!)
+        snake.hitBy(bomb)
+        return true
+    }
+    
     // MARK: Update logic
     
     override func fixedUpdate(delta: CCTime) {

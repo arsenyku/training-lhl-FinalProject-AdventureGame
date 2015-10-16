@@ -450,12 +450,14 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     }
     
+
+    // MARK: Helpers
+    
     func playDirge(){
-     	dirgePlayed = true
+        dirgePlayed = true
         OALSimpleAudio.sharedInstance().playBg("DeathTheme.mp3")
     }
     
-    // MARK: Helpers
     
     func playSound() {
 		OALSimpleAudio.sharedInstance().muted = false
