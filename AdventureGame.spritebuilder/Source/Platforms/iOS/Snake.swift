@@ -14,6 +14,9 @@ class Snake {
     static let travelDistancePerSecond:Double = 180
     static let partOffset:CGFloat = 32
 
+    static let normalBodyImage = "Animation/snakebody.png"
+    static let bentBodyImage = "Animation/snakebend.png"
+    
     let tileMap: SnakeTileMap = SnakeTileMap()
 
     private(set) internal var parts:[SnakePart] = []
@@ -33,10 +36,7 @@ class Snake {
     
     var caughtPrey:Bool {
         get {
-//            return prey.position == head?.position
             return tileMap.sameTile(pointA: head!.position, pointB: prey.position)
-        
-
         }
     }
 
@@ -55,51 +55,6 @@ class Snake {
     }
     
     
-    func chase(){
-        if isChasing || caughtPrey {
-            return
-        }
-        
-
-        if let nextPoint = chasePoints.first {
-            
-            isChasing = true
-
-            for part in parts {
-            
-                if let part = part as? SnakeHead {
-                    part.moveTo(point: nextPoint) { () -> Void in
-                        self.isChasing = false
-                        self.finishChase()
-                    }
-                } else {
-        
-                    
-                }
-            }
-            
-        } else {
-            isChasing = false
-        }
-    }
-    
-    func addChasePoint(point: CGPoint) {
-
-		chasePoints.append(point)
-    }
-    
-    private func finishChase(){
-        stopAllActions()
-        if (self.chasePoints.count > 0)	{
-            self.chasePoints.removeFirst()
-        }
-        
-        if self.chasePoints.count < 1 && !caughtPrey {
-            self.addChasePoint(self.prey.position)
-        }
-
-    }
-
     
     private func stopAllActions(){
         for snakePart in parts{
@@ -112,25 +67,27 @@ class Snake {
 		let snake = Snake()
         snake.prey = prey
         
-        let spawnPoint = snake.tileMap.tileAt(point: ccp(0,0)).origin
-//        var spawnPoint = ccp(hero.position.x, hero.position.y)
-//        spawnPoint.x = spawnPoint.x - preyDistance
-//        spawnPoint.y = spawnPoint.y + 0
+        var zOrder = prey.zOrder + 100
         
+        let spawnPoint = snake.tileMap.tileAt(point: ccp(0,0)).origin
+
         let headPart = SnakePart.spawn(.Head)
         headPart.position = spawnPoint
         headPart.snake = snake
+        headPart.zOrder = zOrder
         snake.parts.append(headPart)
 
         snake.tileMap.tileSize = snake.head!.contentSize
         
         var last = snake.parts.last!
 
-        for _ in 1...3 {
+        for _ in 1...20 {
+            zOrder -= 1
             let bodyPart = SnakePart.spawn(.Body)
             bodyPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
             bodyPart.frontPart = last
             bodyPart.snake = snake
+            bodyPart.zOrder = zOrder
             
             snake.parts.append(bodyPart)
             last = snake.parts.last!
@@ -140,10 +97,9 @@ class Snake {
         tailPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
 		tailPart.frontPart = last
         tailPart.snake = snake
+        tailPart.zOrder = zOrder - 1
         snake.parts.append(tailPart)
         
-        print("head at  \(headPart.position)   size=\(headPart.contentSize)")
-        print("tail at  \(tailPart.position)   size=\(tailPart.contentSize)")
         return snake
     }
 

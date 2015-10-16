@@ -40,6 +40,25 @@ enum MoveDirection:Float,CustomStringConvertible {
         return self.rawValue
     }
     
+    func angleForBend(endDirection endDirection:MoveDirection) -> Float{
+        switch(self){
+        case Up:
+            if (endDirection == .Left) { return 0 }
+            else { return -90 }
+        case Down:
+            if (endDirection == .Left) { return 90 }
+            else { return 180 }
+        case Left:
+            if (endDirection == .Up) { return 180 }
+            else { return -90 }
+        case Right:
+            if (endDirection == .Up) { return 90 }
+            else { return 0 }
+        default:
+            return 0
+        }
+    }
+    
     static func direction(from from:CGPoint, to:CGPoint) -> (horizontal:MoveDirection, vertical:MoveDirection){
         var vertical, horizontal: MoveDirection
         
@@ -74,83 +93,38 @@ class SnakePart : CCSprite {
 
         if let next = snake.tileMap.nextTile(forSprite: self, inDirection: forward) {
             position = next.origin
+            let previousForward = forward
             forward = snake.tileMap.direction(from: position, to: frontPart!.position)
+            rotation = forward.angle
+            
+            if partType == .Tail {
+            	rotation = forward.angle
+                
+            } else if previousForward == forward {
+                // Going in the same direction as before
+                self.spriteFrame = straightImage()
+                rotation = forward.angle
+            } else {
+                // Right angle turn
+                self.spriteFrame = bentImage()
+                rotation = previousForward.angleForBend(endDirection: forward)
+                
+            }
+            
         }
-        
-        print("head \(frontPart?.position), tail \(position), forward \(forward.description)")
+
     }
     
-        
-//    func followFront(completion: () -> Void) {
-//        guard let frontPart = frontPart else {
-//            return
-//        }
-//        
-//        let vector = ccpSub(destination, position)
-//        var actions = [CCAction]()
-//        
-//        let move = CCActionMoveTo.actionWithDuration(, position: vector1) as! CCAction
-//        actions.append(move1)
-//        if let turn2Action = MoveDirection.turnAction(from: turn1, to: turn2){
-//            actions.append(turn2Action)
-//        }
-//        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
-//        actions.append(move2)
-//        let done = CCActionCallBlock { () -> Void in
-//            completion()
-//        }
-//        actions.append(done)
-//        
-//        runAction(CCActionSequence(array: actions))
-        
-//
-//        let destination = frontPart.position
-//
-//        var vector1, vector2: CGPoint
-//        var turn1, turn2: MoveDirection
-//        
-//        let verticalFirst:Bool = (direction == .Left || direction == .Right)
-//        if verticalFirst {
-//            vector1 = ccp(position.x, destination.y)
-//            turn1 = position.y < destination.y ? MoveDirection.Down : MoveDirection.Up
-//            turn2 = vector1.x < destination.x ? MoveDirection.Right : MoveDirection.Left
-//        } else {
-//            vector1 = ccp(destination.x, position.y)
-//            turn1 = position.x < destination.x ? MoveDirection.Right : MoveDirection.Left
-//            turn2 = vector1.y < destination.y ? MoveDirection.Down : MoveDirection.Up
-//        }
-//        vector2 = ccp(destination.x, destination.y)
-//        
-//        let movement1 = ccpSub(position, vector1)
-//        let movement2 = ccpSub(vector1, vector2)
-//        
-//        let totalTravelDistance = movement1.magnitude() + movement2.magnitude()
-//        let totalDuration = Double(totalTravelDistance) / Snake.travelDistancePerSecond
-//        
-//        let portion1 = movement1.magnitude()/totalTravelDistance
-//        let portion2 = movement2.magnitude()/totalTravelDistance
-//        
-//        var actions = [CCAction]()
-//        
-//        if let turn1Action = MoveDirection.turnAction(from: direction, to: turn1){
-//            actions.append(turn1Action)
-//        }
-//        let move1 = CCActionMoveTo.actionWithDuration(portion1 * totalDuration, position: vector1) as! CCAction
-//        actions.append(move1)
-//        if let turn2Action = MoveDirection.turnAction(from: turn1, to: turn2){
-//            actions.append(turn2Action)
-//        }
-//        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
-//        actions.append(move2)
-//        let done = CCActionCallBlock { () -> Void in
-//            completion()
-//        }
-//        actions.append(done)
-//        
-//        runAction(CCActionSequence(array: actions))
-//    }
-
-
+    func bentImage() -> CCSpriteFrame{
+        let result = CCSpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(Snake.bentBodyImage)
+        return result
+    }
+    
+    func straightImage() -> CCSpriteFrame {
+        let result = CCSpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(Snake.normalBodyImage)
+        return result
+    }
+    
     class func spawn(type type:PartType = .Body) -> SnakePart{
         var partName:String
         var snakePart:SnakePart
@@ -170,7 +144,7 @@ class SnakePart : CCSprite {
         }
         
         snakePart.partType = type
-        snakePart.scale = 1.75
+        snakePart.scale = 2
         snakePart.positionType.corner = .TopLeft
 
         

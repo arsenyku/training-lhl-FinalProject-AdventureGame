@@ -64,8 +64,7 @@ class SnakeTileMap {
         default:
             return nil
         }
-        
-        print("NextTile: sprite \(sprite.position), direction: \(direction).  Result=\(next.origin)")
+ 
         
         return next
     }
