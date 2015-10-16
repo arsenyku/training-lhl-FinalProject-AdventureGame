@@ -45,7 +45,9 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     weak var gameOverUI: CCNode!
     weak var nextStageButton: CCButton!
     weak var replayStageButton: CCButton!
+    
     weak var replayAfterDeathButton: CCButton!
+    weak var nextStageAfterDeathButton: CCButton!
     
     // Computed properties
     var stageEnded:Bool {
@@ -92,7 +94,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         audio.muted = true
         audio.bgVolume = 0.25
         audio.playBg("LavaTheme.mp3", loop: true)
-
+        
     }
 
     // MARK: User Interaction
@@ -439,10 +441,12 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         if hero.isDead{
             OALSimpleAudio.sharedInstance().stopBg()
             gameOverUI.visible = true
+            nextStageAfterDeathButton.state = .Normal
+            nextStageAfterDeathButton.label.opacity = 0.25
         } else {
             endStageUI.visible = true
-            nextStageButton.state = hero.isDead ? .Disabled : .Normal
-            nextStageButton.label.opacity = hero.isDead ? 0.25 : 1.0
+            nextStageButton.state = .Normal
+            nextStageButton.label.opacity = 1.0
         }
     }
     

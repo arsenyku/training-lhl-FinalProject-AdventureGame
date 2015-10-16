@@ -10,7 +10,7 @@ import Foundation
 
 class Hero : CCSprite {
     
-    let targetCrystalCount = 10
+    let targetCrystalCount = 5
 	static let initialHitPoints = 10
     let jumpImpulse : CGFloat = 125
     
