@@ -38,6 +38,7 @@
 		129A57B91BC8744400A4D07D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B81BC8744400A4D07D /* Hero.swift */; settings = {ASSET_TAGS = (); }; };
 		12C70F2C1BD134BD00EC9F23 /* SnakeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		12E901741BD1838B00D880D6 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E901731BD1838B00D880D6 /* Bomb.swift */; settings = {ASSET_TAGS = (); }; };
+		12E901781BD1A4ED00D880D6 /* AdventureScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E901771BD1A4ED00D880D6 /* AdventureScene.swift */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
@@ -208,6 +209,7 @@
 		129A57B81BC8744400A4D07D /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = Source/Platforms/iOS/Hero.swift; sourceTree = "<group>"; };
 		12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SnakeTheme.mp3; path = Sound/SnakeTheme.mp3; sourceTree = "<group>"; };
 		12E901731BD1838B00D880D6 /* Bomb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bomb.swift; path = Source/Platforms/iOS/Bomb.swift; sourceTree = "<group>"; };
+		12E901771BD1A4ED00D880D6 /* AdventureScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdventureScene.swift; path = Source/Platforms/iOS/AdventureScene.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				129A57AE1BC8722100A4D07D /* WelcomeScene.swift */,
+				12E901771BD1A4ED00D880D6 /* AdventureScene.swift */,
 				129A57AF1BC8722100A4D07D /* Stage1Scene.swift */,
 				120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */,
 				129A57B81BC8744400A4D07D /* Hero.swift */,
@@ -922,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */,
+				12E901781BD1A4ED00D880D6 /* AdventureScene.swift in Sources */,
 				129A57B21BC8722100A4D07D /* WelcomeScene.swift in Sources */,
 				12082B501BCF3E4F00633D5B /* CGPoint+VectorMagnitude.swift in Sources */,
 				120C61AA1BCD7AAD0031A76A /* Stage2Scene.swift in Sources */,

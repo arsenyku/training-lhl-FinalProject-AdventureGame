@@ -7,13 +7,11 @@
 //
 import UIKit
 
-class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
+class Stage1Scene: AdventureScene {
 
     let scrollSpeed : CGFloat = 70
     let intervalBetweenRedDragons:CCTime = 5
     let distanceWhenStandingOnPlatform:CGFloat = 25
-
-    weak var gamePhysicsNode : CCPhysicsNode!
 
     // Sprites
     weak var hero : Hero!
@@ -29,30 +27,19 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     // Game State
     var lastPlatform : FloatingGround = FloatingGround()
-    var soundOn = false
     var sinceLastRedDragon : CCTime = CCTime()
     var redDragonSpawnPoint : CGPoint = CGPointMake(100,375)
     var stageExitTriggered: Bool = false
-    var dirgePlayed = false
     var sinceHeroDeath:CCTime = 0
     
 	// User interaction
-    var tapDetector : UITapGestureRecognizer!
     weak var coordinatesLabel : CCLabelTTF!
     weak var hitPointsLabel : CCLabelTTF!
-    weak var soundToggleButton : CCButton!
-    weak var endStageUI: CCNode!
-    weak var gameOverUI: CCNode!
-    weak var nextStageButton: CCButton!
-    weak var replayStageButton: CCButton!
-    
-    weak var replayAfterDeathButton: CCButton!
-    weak var nextStageAfterDeathButton: CCButton!
     
     // Computed properties
     var stageEnded:Bool {
         get {
-            return hero.isDead || (hero.hasWon && heroExited)
+            return heroIsDead() || (hero.hasWon && heroExited)
         }
     }
     
@@ -63,23 +50,22 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
     }
     
+    override func heroIsDead() -> Bool {
+        return hero.isDead
+    }
+    
     // MARK: Lifecycle
     
-    func didLoadFromCCB() {
-        userInteractionEnabled = true
-		
-        gamePhysicsNode.collisionDelegate = self
+    override func didLoadFromCCB() {
+
+        super.didLoadFromCCB()
+        
+        replayScene = "Stage1Scene"
+        nextScene = "Stage2Scene"
         
         grounds.append(ground1)
         grounds.append(ground2)
-        
-        tapDetector = UITapGestureRecognizer(target: self, action: Selector("tapDetected:"))
-        tapDetector.numberOfTapsRequired = 1
-        tapDetector.delegate = self
-        CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        soundToggleButton.setTarget(self, selector: Selector("soundToggle:"))
-        
         lastPlatform.position = CGPointMake(hero.position.x - FloatingGround.platformSpacing, FloatingGround.minPlatformHeight)
 
         for _ in 1...4{
@@ -88,13 +74,9 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
         hero.zOrder = 100
         hero.preStart()
-        
-        let audio = OALSimpleAudio.sharedInstance()
-        audio.stopEverything()
-        audio.muted = true
-        audio.bgVolume = 0.25
-        audio.playBg("LavaTheme.mp3", loop: true)
-        
+     
+        OALSimpleAudio.sharedInstance().playBg("LavaTheme.mp3", loop: true)
+
     }
 
     // MARK: User Interaction
@@ -105,47 +87,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     
 
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-
-        let touchLocation = CCDirector.sharedDirector().convertToGL(touch.locationInView(touch.view))
-        let responder = CCDirector.sharedDirector().responderManager
-        let node = responder.nodeAtPoint(touchLocation)
-        
-        if node.isKindOfClass(CCButton) {
-            return false
-        }
-        
-        return true;
-    }
-    
-    func soundToggle(sender: AnyObject?) {
-        if let toggleButton = sender as? CCButton {
-
-            soundOn = !soundOn
-            toggleButton.selected = soundOn
-
-            if (soundOn){
-                playSound()
-            }
-            else {
-                stopSound()
-            }
-            
-        }
-    }
-    
-    func replayStage(sender: AnyObject?) {
-        OALSimpleAudio.sharedInstance().stopBg()
-        let gameplayScene = CCBReader.loadAsScene("Stage1Scene")
-        CCDirector.sharedDirector().replaceScene(gameplayScene)
-    }
-
-    func nextStage(sender: AnyObject?) {
-        OALSimpleAudio.sharedInstance().stopBg()
-        let gameplayScene = CCBReader.loadAsScene("Stage2Scene")
-        CCDirector.sharedDirector().presentScene(gameplayScene, withTransition: CCTransition(revealWithDirection: .Left, duration: 1.5))
-    }
-
+   
 	// MARK: Collision checks
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, floatingGround: FloatingGround!) -> Bool {
@@ -240,7 +182,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             return
         }
         
-        let effectiveScrollSpeed = scrollSpeed * (hero.isDead || hero.hasWon ? 0 : (hero.isJumping ? 2.5 : 1))
+        let effectiveScrollSpeed = scrollSpeed * (heroIsDead() || hero.hasWon ? 0 : (hero.isJumping ? 2.5 : 1))
         
         gamePhysicsNode.position = ccp(gamePhysicsNode.position.x - effectiveScrollSpeed * CGFloat(delta), gamePhysicsNode.position.y)
         hero.position = ccp(hero.position.x + effectiveScrollSpeed * CGFloat(delta), hero.position.y)
@@ -250,7 +192,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
             raiseSafeGroundIfNeeded()
             checkForHeroExit()
             
-        } else if (hero.isDead) {
+        } else if (heroIsDead()) {
 
             sinceHeroDeath += delta
             
@@ -437,46 +379,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         
     }
     
-    func showEndStage(){
-        if hero.isDead{
-            OALSimpleAudio.sharedInstance().stopBg()
-            gameOverUI.visible = true
-            nextStageAfterDeathButton.state = .Normal
-            nextStageAfterDeathButton.label.opacity = 0.25
-        } else {
-            endStageUI.visible = true
-            nextStageButton.state = .Normal
-            nextStageButton.label.opacity = 1.0
-        }
-    }
-    
-
-    // MARK: Helpers
-    
-    func playDirge(){
-        dirgePlayed = true
-        OALSimpleAudio.sharedInstance().playBg("DeathTheme.mp3")
-    }
-    
-    
-    func playSound() {
-		OALSimpleAudio.sharedInstance().muted = false
-    }
-
-    func stopSound() {
-    	OALSimpleAudio.sharedInstance().muted = true
-    
-    }
-
-    func rollD100(successChance chance:Int = 50) -> Bool {
-        return Float.random(min: 0, max: 1, precision:2) < (Float(chance)/100)
-    }
-    
-    func rollDie(numberOfSides sides:UInt = 6) -> Int {
-        return Int.random(min: 1, max: Int(sides))
-    }
-    
-    func verticalDistance(fromNodeA nodeA:CCNode, toNodeB nodeB:CCNode) -> CGFloat {
+     func verticalDistance(fromNodeA nodeA:CCNode, toNodeB nodeB:CCNode) -> CGFloat {
         return nodeA.position.y - nodeB.position.y
     }
     
