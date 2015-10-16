@@ -36,9 +36,8 @@ class SnakeHead: SnakePart {
         forward = snake.tileMap.direction(from: position, to: targetTile!.origin)
         if let next = snake.tileMap.nextTile(forSprite: self, inDirection: forward){
             self.rotation = forward.angle
-	        position = next.origin
+            position = next.origin
         }
-        
     }
 
     

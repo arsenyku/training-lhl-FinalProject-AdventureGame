@@ -36,6 +36,7 @@
 		129A57B41BC8722100A4D07D /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B01BC8722100A4D07D /* Crystal.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57B51BC8722100A4D07D /* FloatingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B11BC8722100A4D07D /* FloatingGround.swift */; settings = {ASSET_TAGS = (); }; };
 		129A57B91BC8744400A4D07D /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A57B81BC8744400A4D07D /* Hero.swift */; settings = {ASSET_TAGS = (); }; };
+		12C70F2C1BD134BD00EC9F23 /* SnakeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
 		5B121030197484FA004C1E1D /* AdventureGameActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* AdventureGameActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
@@ -204,6 +205,7 @@
 		129A57B01BC8722100A4D07D /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crystal.swift; path = Source/Platforms/iOS/Crystal.swift; sourceTree = "<group>"; };
 		129A57B11BC8722100A4D07D /* FloatingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingGround.swift; path = Source/Platforms/iOS/FloatingGround.swift; sourceTree = "<group>"; };
 		129A57B81BC8744400A4D07D /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hero.swift; path = Source/Platforms/iOS/Hero.swift; sourceTree = "<group>"; };
+		12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SnakeTheme.mp3; path = Sound/SnakeTheme.mp3; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		129A57401BC75B9D00A4D07D /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				12C70F2B1BD134BD00EC9F23 /* SnakeTheme.mp3 */,
 				120C619B1BCCC2360031A76A /* DeathScream.mp3 */,
 				120C61971BCC99DD0031A76A /* DeathTheme.mp3 */,
 				125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */,
@@ -836,6 +839,7 @@
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				12C70F2C1BD134BD00EC9F23 /* SnakeTheme.mp3 in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */,
@@ -1173,7 +1177,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1204,7 +1208,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1230,7 +1234,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1241,6 +1245,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1264,7 +1269,7 @@
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1273,6 +1278,7 @@
 				PRODUCT_NAME = AdventureGame;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

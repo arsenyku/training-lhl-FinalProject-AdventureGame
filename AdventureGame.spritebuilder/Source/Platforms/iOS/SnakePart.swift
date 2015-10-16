@@ -93,6 +93,7 @@ class SnakePart : CCSprite {
 
         if let next = snake.tileMap.nextTile(forSprite: self, inDirection: forward) {
             position = next.origin
+
             let previousForward = forward
             forward = snake.tileMap.direction(from: position, to: frontPart!.position)
             rotation = forward.angle
@@ -110,9 +111,9 @@ class SnakePart : CCSprite {
                 rotation = previousForward.angleForBend(endDirection: forward)
                 
             }
-            
-        }
 
+        }
+        
     }
     
     func bentImage() -> CCSpriteFrame{

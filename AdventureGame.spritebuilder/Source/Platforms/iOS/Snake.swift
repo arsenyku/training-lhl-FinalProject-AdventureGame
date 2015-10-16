@@ -11,9 +11,10 @@ import Foundation
 class Snake {
 
     static let maxHealth:Int = 100
-    static let travelDistancePerSecond:Double = 180
     static let partOffset:CGFloat = 32
-
+    static let minMoveInterval:CCTime = 0.1
+    static let defaultBodyLength = 30
+    
     static let normalBodyImage = "Animation/snakebody.png"
     static let bentBodyImage = "Animation/snakebend.png"
     
@@ -23,7 +24,7 @@ class Snake {
     private(set) internal var chasePoints:[CGPoint] = []
     private(set) internal var isChasing:Bool = false
     private(set) internal var sinceLastMove:CCTime = 0
-    
+
     private(set) internal var health = Snake.maxHealth
     
     private(set) internal var prey: HeroStage2!
@@ -43,13 +44,14 @@ class Snake {
     func moveForward(deltaTime:CCTime){
         sinceLastMove += deltaTime
 
-        guard caughtPrey == false && sinceLastMove > 0.1 else{
+        guard caughtPrey == false && sinceLastMove > Snake.minMoveInterval else{
             return
         }
 
         for part in parts {
             part.moveToNextTile()
         }
+
         sinceLastMove = 0
 
     }
@@ -81,7 +83,7 @@ class Snake {
         
         var last = snake.parts.last!
 
-        for _ in 1...20 {
+        for _ in 1...Snake.defaultBodyLength {
             zOrder -= 1
             let bodyPart = SnakePart.spawn(.Body)
             bodyPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
