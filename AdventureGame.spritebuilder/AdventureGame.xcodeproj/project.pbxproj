@@ -18,6 +18,9 @@
 		125A8FBD1BCB5A97007E1641 /* RedDragonImpact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */; settings = {ASSET_TAGS = (); }; };
 		125A8FBF1BCB5AA5007E1641 /* BlackDragonImpact.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */; settings = {ASSET_TAGS = (); }; };
 		125A8FCD1BCB94B4007E1641 /* SafeGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FCC1BCB94B4007E1641 /* SafeGround.swift */; settings = {ASSET_TAGS = (); }; };
+		12957D7F1BD043AB00F02E30 /* SnakeHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12957D7E1BD043AB00F02E30 /* SnakeHead.swift */; settings = {ASSET_TAGS = (); }; };
+		129580711BD088A000F02E30 /* SnakeTileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 129580701BD088A000F02E30 /* SnakeTileMap.tmx */; settings = {ASSET_TAGS = (); }; };
+		129580731BD092D600F02E30 /* SnakeTileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129580721BD092D600F02E30 /* SnakeTileMap.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F31BC8857C00B0FB3C /* Int+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F61BC8859300B0FB3C /* Float+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1295B2F51BC8859300B0FB3C /* Float+Random.swift */; settings = {ASSET_TAGS = (); }; };
 		1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */; settings = {ASSET_TAGS = (); }; };
@@ -184,6 +187,9 @@
 		125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = RedDragonImpact.wav; path = Sound/RedDragonImpact.wav; sourceTree = "<group>"; };
 		125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BlackDragonImpact.mp3; path = Sound/BlackDragonImpact.mp3; sourceTree = "<group>"; };
 		125A8FCC1BCB94B4007E1641 /* SafeGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SafeGround.swift; path = Source/Platforms/iOS/SafeGround.swift; sourceTree = "<group>"; };
+		12957D7E1BD043AB00F02E30 /* SnakeHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeHead.swift; path = Source/Platforms/iOS/SnakeHead.swift; sourceTree = "<group>"; };
+		129580701BD088A000F02E30 /* SnakeTileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = SnakeTileMap.tmx; path = Environment/SnakeTileMap.tmx; sourceTree = "<group>"; };
+		129580721BD092D600F02E30 /* SnakeTileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeTileMap.swift; path = Source/Platforms/iOS/SnakeTileMap.swift; sourceTree = "<group>"; };
 		1295B2F31BC8857C00B0FB3C /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Random.swift"; path = "Source/Platforms/iOS/Int+Random.swift"; sourceTree = "<group>"; };
 		1295B2F51BC8859300B0FB3C /* Float+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Random.swift"; path = "Source/Platforms/iOS/Float+Random.swift"; sourceTree = "<group>"; };
 		1295B2F71BC8C7AA00B0FB3C /* WelcomeTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = WelcomeTheme.mp3; path = Sound/WelcomeTheme.mp3; sourceTree = "<group>"; };
@@ -322,6 +328,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1295806F1BD0888C00F02E30 /* TileMap */ = {
+			isa = PBXGroup;
+			children = (
+				129580701BD088A000F02E30 /* SnakeTileMap.tmx */,
+			);
+			name = TileMap;
+			sourceTree = "<group>";
+		};
 		129A57401BC75B9D00A4D07D /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +417,8 @@
 				1203F0271BCDBD7C0067FB89 /* HeroStage2.swift */,
 				12082B4D1BCF32EB00633D5B /* Snake.swift */,
 				1229DC471BCEF9AF0049C4EE /* SnakePart.swift */,
+				12957D7E1BD043AB00F02E30 /* SnakeHead.swift */,
+				129580721BD092D600F02E30 /* SnakeTileMap.swift */,
 				125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */,
 				1295B3011BC91A4300B0FB3C /* RedDragon.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
@@ -599,6 +615,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1295806F1BD0888C00F02E30 /* TileMap */,
 				129A57401BC75B9D00A4D07D /* Sound */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
@@ -833,6 +850,7 @@
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				1295B2F81BC8C7AA00B0FB3C /* WelcomeTheme.mp3 in Resources */,
+				129580711BD088A000F02E30 /* SnakeTileMap.tmx in Resources */,
 				129A57A41BC870E200A4D07D /* GameOver.wav in Resources */,
 				120C61981BCC99DD0031A76A /* DeathTheme.mp3 in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
@@ -923,6 +941,8 @@
 				129A57B91BC8744400A4D07D /* Hero.swift in Sources */,
 				1203F0281BCDBD7C0067FB89 /* HeroStage2.swift in Sources */,
 				129A57B41BC8722100A4D07D /* Crystal.swift in Sources */,
+				12957D7F1BD043AB00F02E30 /* SnakeHead.swift in Sources */,
+				129580731BD092D600F02E30 /* SnakeTileMap.swift in Sources */,
 				1295B2FF1BC9065D00B0FB3C /* UIBezierPath+OvalSegment.m in Sources */,
 				129A57B31BC8722100A4D07D /* Stage1Scene.swift in Sources */,
 				1295B2F41BC8857C00B0FB3C /* Int+Random.swift in Sources */,

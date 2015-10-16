@@ -66,10 +66,94 @@ class SnakePart : CCSprite {
 
     var partType: PartType = .Body
     var direction: MoveDirection = .Right
+    weak var frontPart: SnakePart?
+    weak var backPart: SnakePart?
+    weak var snake: Snake!
     
-    func moveTo(point destination:CGPoint, completion: () -> Void) {
- 
+    func moveToNextTile(){
+        guard snake.caughtPrey == false else {
+            return
+        }
+        
+        
+        let next = snake.tileMap.nextTile(forSprite: self, inDirection: direction)
+        position = next.origin
+        
+        if let frontPart = frontPart {
+	        direction = snake.tileMap.direction(from: position, to: frontPart.position)
+        }
     }
+    
+        
+//    func followFront(completion: () -> Void) {
+//        guard let frontPart = frontPart else {
+//            return
+//        }
+//        
+//        let vector = ccpSub(destination, position)
+//        var actions = [CCAction]()
+//        
+//        let move = CCActionMoveTo.actionWithDuration(, position: vector1) as! CCAction
+//        actions.append(move1)
+//        if let turn2Action = MoveDirection.turnAction(from: turn1, to: turn2){
+//            actions.append(turn2Action)
+//        }
+//        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
+//        actions.append(move2)
+//        let done = CCActionCallBlock { () -> Void in
+//            completion()
+//        }
+//        actions.append(done)
+//        
+//        runAction(CCActionSequence(array: actions))
+        
+//
+//        let destination = frontPart.position
+//
+//        var vector1, vector2: CGPoint
+//        var turn1, turn2: MoveDirection
+//        
+//        let verticalFirst:Bool = (direction == .Left || direction == .Right)
+//        if verticalFirst {
+//            vector1 = ccp(position.x, destination.y)
+//            turn1 = position.y < destination.y ? MoveDirection.Down : MoveDirection.Up
+//            turn2 = vector1.x < destination.x ? MoveDirection.Right : MoveDirection.Left
+//        } else {
+//            vector1 = ccp(destination.x, position.y)
+//            turn1 = position.x < destination.x ? MoveDirection.Right : MoveDirection.Left
+//            turn2 = vector1.y < destination.y ? MoveDirection.Down : MoveDirection.Up
+//        }
+//        vector2 = ccp(destination.x, destination.y)
+//        
+//        let movement1 = ccpSub(position, vector1)
+//        let movement2 = ccpSub(vector1, vector2)
+//        
+//        let totalTravelDistance = movement1.magnitude() + movement2.magnitude()
+//        let totalDuration = Double(totalTravelDistance) / Snake.travelDistancePerSecond
+//        
+//        let portion1 = movement1.magnitude()/totalTravelDistance
+//        let portion2 = movement2.magnitude()/totalTravelDistance
+//        
+//        var actions = [CCAction]()
+//        
+//        if let turn1Action = MoveDirection.turnAction(from: direction, to: turn1){
+//            actions.append(turn1Action)
+//        }
+//        let move1 = CCActionMoveTo.actionWithDuration(portion1 * totalDuration, position: vector1) as! CCAction
+//        actions.append(move1)
+//        if let turn2Action = MoveDirection.turnAction(from: turn1, to: turn2){
+//            actions.append(turn2Action)
+//        }
+//        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
+//        actions.append(move2)
+//        let done = CCActionCallBlock { () -> Void in
+//            completion()
+//        }
+//        actions.append(done)
+//        
+//        runAction(CCActionSequence(array: actions))
+//    }
+
 
     class func spawn(type type:PartType = .Body) -> SnakePart{
         var partName:String
@@ -105,67 +189,3 @@ class SnakePart : CCSprite {
 }
 
 
-class SnakeHead: SnakePart {
-
-    override init(){
-        super.init()
-        partType = .Head
-    }
-
-    override init!(texture: CCTexture!, rect: CGRect) {
-        super.init(texture:texture, rect:rect)
-        partType = .Head
-    }
-    
-    override init!(texture: CCTexture!, rect: CGRect, rotated: Bool) {
-        super.init(texture: texture, rect: rect, rotated: rotated)
-        partType = .Head
-    }
-    
-    override func moveTo(point destination: CGPoint, completion: () -> Void) {
-
-        var vector1, vector2: CGPoint
-        var turn1, turn2: MoveDirection
-        
-        let verticalFirst:Bool = (direction == .Left || direction == .Right)
-        if verticalFirst {
-            vector1 = ccp(position.x, destination.y)
-            turn1 = position.y < destination.y ? MoveDirection.Down : MoveDirection.Up
-            turn2 = vector1.x < destination.x ? MoveDirection.Right : MoveDirection.Left
-        } else {
-            vector1 = ccp(destination.x, position.y)
-            turn1 = position.x < destination.x ? MoveDirection.Right : MoveDirection.Left
-            turn2 = vector1.y < destination.y ? MoveDirection.Down : MoveDirection.Up
-        }
-        vector2 = ccp(destination.x, destination.y)
-
-        let movement1 = ccpSub(position, vector1)
-        let movement2 = ccpSub(vector1, vector2)
-        
-        let totalTravelDistance = movement1.magnitude() + movement2.magnitude()
-        let totalDuration = Double(totalTravelDistance) / Snake.travelDistancePerSecond
-
-        let portion1 = movement1.magnitude()/totalTravelDistance
-        let portion2 = movement2.magnitude()/totalTravelDistance
-
-        var actions = [CCAction]()
-
-        if let turn1Action = MoveDirection.turnAction(from: direction, to: turn1){
-            actions.append(turn1Action)
-        }
-        let move1 = CCActionMoveTo.actionWithDuration(portion1 * totalDuration, position: vector1) as! CCAction
-        actions.append(move1)
-        if let turn2Action = MoveDirection.turnAction(from: turn1, to: turn2){
-            actions.append(turn2Action)
-        }
-        let move2 = CCActionMoveTo.actionWithDuration(portion2 * totalDuration, position: vector2) as! CCAction
-        actions.append(move2)
-        let done = CCActionCallBlock { () -> Void in
-            completion()
-        }
-        actions.append(done)
-
-        runAction(CCActionSequence(array: actions))
-    }
-
-}

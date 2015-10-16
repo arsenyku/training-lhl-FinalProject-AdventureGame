@@ -9,7 +9,7 @@
 class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelegate {
 
     weak var gamePhysicsNode : CCPhysicsNode!
-
+    
     // Sprites
     weak var hero : HeroStage2!
     var snake : Snake!
@@ -40,8 +40,11 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector.delegate = self
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
 
-        snake = Snake.spawn(relativeTo: hero)
-        gamePhysicsNode.addChild(snake.head)
+        snake = Snake.spawn(prey: hero)
+
+        snake.parts.forEach { snakePart -> Void in
+        	self.gamePhysicsNode.addChild(snakePart)
+        }
         
         snake.addChasePoint(hero.position)
         
@@ -111,7 +114,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         hitPointsLabel.string = "Hit Points: \(hero.hitPoints)"
         
         
-        snake.chase()
+        snake.moveForward(delta)
         
 //        if (snake.isChasing == false) {
 //	        snake.chaseHero(hero)
