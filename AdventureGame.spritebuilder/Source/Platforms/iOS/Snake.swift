@@ -43,7 +43,7 @@ class Snake {
     func moveForward(deltaTime:CCTime){
         sinceLastMove += deltaTime
 
-        guard (sinceLastMove > 0.1) else{
+        guard caughtPrey == false && sinceLastMove > 0.1 else{
             return
         }
 
@@ -112,7 +112,7 @@ class Snake {
 		let snake = Snake()
         snake.prey = prey
         
-        let spawnPoint = ccp(0,0)
+        let spawnPoint = snake.tileMap.tileAt(point: ccp(0,0)).origin
 //        var spawnPoint = ccp(hero.position.x, hero.position.y)
 //        spawnPoint.x = spawnPoint.x - preyDistance
 //        spawnPoint.y = spawnPoint.y + 0
@@ -122,27 +122,25 @@ class Snake {
         headPart.snake = snake
         snake.parts.append(headPart)
 
+        snake.tileMap.tileSize = snake.head!.contentSize
+        
         var last = snake.parts.last!
 
-        for _ in 1...10 {
+        for _ in 1...3 {
             let bodyPart = SnakePart.spawn(.Body)
-            bodyPart.position = ccp(last.position.x - partOffset, last.position.y)
+            bodyPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
             bodyPart.frontPart = last
             bodyPart.snake = snake
-            
-            last.backPart = bodyPart
             
             snake.parts.append(bodyPart)
             last = snake.parts.last!
         }
         
         let tailPart = SnakePart.spawn(.Tail)
-        tailPart.position = ccp(last.position.x - partOffset, last.position.y)
+        tailPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
 		tailPart.frontPart = last
         tailPart.snake = snake
         snake.parts.append(tailPart)
-        
-        snake.tileMap.tileSize = snake.head!.contentSize
         
         print("head at  \(headPart.position)   size=\(headPart.contentSize)")
         print("tail at  \(tailPart.position)   size=\(tailPart.contentSize)")

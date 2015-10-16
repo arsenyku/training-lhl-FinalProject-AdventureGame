@@ -31,7 +31,9 @@ class SnakeTileMap {
 		let toTile = tileAt(point: to)
         let fromTile = tileAt(point: from)
         
-        if (fromTile.origin.x == toTile.origin.x){
+        if (sameTile(pointA:from, pointB:to)){
+        	return .None
+        } else if (fromTile.origin.x == toTile.origin.x){
             return (fromTile.origin.y < toTile.origin.y) ? .Down : .Up
         } else {
             return (fromTile.origin.x < toTile.origin.x) ? .Right : .Left
@@ -46,7 +48,7 @@ class SnakeTileMap {
     }
     
     
-    func nextTile(forSprite sprite:CCSprite, inDirection direction: MoveDirection) -> CGRect{
+    func nextTile(forSprite sprite:CCSprite, inDirection direction: MoveDirection) -> CGRect?{
         
         var next = tileAt(sprite:sprite)
         
@@ -57,9 +59,13 @@ class SnakeTileMap {
             next.origin.y += tileSize.height
         case .Left:
             next.origin.x -= tileSize.width
-        default:
+        case .Right:
             next.origin.x += tileSize.width
+        default:
+            return nil
         }
+        
+        print("NextTile: sprite \(sprite.position), direction: \(direction).  Result=\(next.origin)")
         
         return next
     }

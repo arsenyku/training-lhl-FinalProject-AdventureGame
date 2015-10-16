@@ -19,6 +19,7 @@ enum MoveDirection:Float,CustomStringConvertible {
     case Down = 90
     case Left = 180
     case Right = 0
+    case None = 360
     
     var description: String{
         get{
@@ -44,11 +45,11 @@ enum MoveDirection:Float,CustomStringConvertible {
         
         if (from.x < to.x) { horizontal = .Right }
         else if (from.x > to.x) { horizontal = .Left }
-        else { horizontal = .Left }
+        else { horizontal = .None }
         
         if (from.y < to.y) { vertical = .Up }
         else if (from.y > to.y) { vertical = .Down }
-        else { vertical = .Down }
+        else { vertical = .None }
         
         print ("from \(from) to \(to)    hresult \(horizontal)  vresult\(vertical)")
         return (horizontal, vertical)
@@ -65,23 +66,18 @@ enum MoveDirection:Float,CustomStringConvertible {
 class SnakePart : CCSprite {
 
     var partType: PartType = .Body
-    var direction: MoveDirection = .Right
+    var forward: MoveDirection = .Right
     weak var frontPart: SnakePart?
-    weak var backPart: SnakePart?
     weak var snake: Snake!
     
     func moveToNextTile(){
-        guard snake.caughtPrey == false else {
-            return
+
+        if let next = snake.tileMap.nextTile(forSprite: self, inDirection: forward) {
+            position = next.origin
+            forward = snake.tileMap.direction(from: position, to: frontPart!.position)
         }
         
-        
-        let next = snake.tileMap.nextTile(forSprite: self, inDirection: direction)
-        position = next.origin
-        
-        if let frontPart = frontPart {
-	        direction = snake.tileMap.direction(from: position, to: frontPart.position)
-        }
+        print("head \(frontPart?.position), tail \(position), forward \(forward.description)")
     }
     
         
