@@ -16,6 +16,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
 
     // User Interaction
     var tapDetector : UITapGestureRecognizer!
+    var doubleTapDetector : UITapGestureRecognizer!
     weak var scoreLabel : CCLabelTTF!
     weak var hitPointsLabel : CCLabelTTF!
     weak var soundToggleButton : CCButton!
@@ -35,6 +36,7 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         let viewSize = CCDirector.sharedDirector().view.frame.size
         let heroStart = ccp(viewSize.width/2, viewSize.height/2)
         hero.position = heroStart
+        hero.preStart()
         
         gamePhysicsNode.collisionDelegate = self
         
@@ -42,6 +44,11 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         tapDetector.numberOfTapsRequired = 1
         tapDetector.delegate = self
         CCDirector.sharedDirector().view.addGestureRecognizer(tapDetector)
+
+        doubleTapDetector = UITapGestureRecognizer(target: self, action: Selector("placeTrap:"))
+        doubleTapDetector.numberOfTapsRequired = 2
+        doubleTapDetector.delegate = self
+        CCDirector.sharedDirector().view.addGestureRecognizer(doubleTapDetector)
 
         snake = Snake.spawn(prey: hero)
 
@@ -63,6 +70,10 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
 
         hero.moveTo(point: tapPoint)
+    }
+    
+    func placeTrap(sender:UITapGestureRecognizer){
+     	print ("place trap")
     }
     
       
@@ -112,13 +123,17 @@ class Stage2Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
     // MARK: Collision checks
     
     func ccPhysicsCollisionBegin(pair: CCPhysicsCollisionPair!, hero: Hero!, wall: CCNode!) -> Bool {
-       
         print ("Ow")
         return true
-        
-        
     }
     
+    func ccPhysicsCollisionPreSolve(pair: CCPhysicsCollisionPair!, hero: Hero!, snake: SnakePart!) -> Bool {
+        hero.hitByEnemy(snake)
+        return false
+    }
+
+    
+
     // MARK: Update logic
     
     override func fixedUpdate(delta: CCTime) {

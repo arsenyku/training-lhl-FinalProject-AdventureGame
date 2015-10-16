@@ -17,7 +17,7 @@ class Hero : CCSprite {
 
     // Stage 1 properties
     private(set) internal var crystalsCount:Int = 0
-    private(set) internal var hitPoints:Int = Hero.initialHitPoints
+    internal var hitPoints:Int = Hero.initialHitPoints
     private(set) internal var isJumping = false
     private var currentEnemy: CCSprite!
     
@@ -31,6 +31,10 @@ class Hero : CCSprite {
         get {
             return hitPoints <= 0
         }
+    }
+    
+    func preStart(){
+        
     }
     
     func grabCrystal(){

@@ -85,6 +85,7 @@ class Stage1Scene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDelega
         }
         
         hero.zOrder = 100
+        hero.preStart()
         
         let audio = OALSimpleAudio.sharedInstance()
         audio.stopEverything()

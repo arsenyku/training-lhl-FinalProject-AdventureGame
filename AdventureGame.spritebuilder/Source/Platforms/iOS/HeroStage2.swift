@@ -20,7 +20,7 @@ class HeroStage2 : Hero {
     func moveTo(point point:CGPoint){
         
         // Distance traveled by the hero in 1 second (rough estimate)
-        let timeScaleFactor:Double = 200
+        let timeScaleFactor:Double = 220
         
         stopAllActions()
         
@@ -47,6 +47,23 @@ class HeroStage2 : Hero {
                 
     }
     
-    
+    override func hitByEnemy(enemy: CCSprite) {
+        if hasWon || isDead {
+            return
+        }
+        
+        if let snake = enemy as? SnakePart {
+            if snake.partType == .Head {
+                hitPoints -= 5
+            } else {
+                hitPoints -= 1
+            }
+        }
+        
+        if hitPoints < 1 {
+            die(withAnimation: "Death Timeline")
+        }
+
+    }
     
 }

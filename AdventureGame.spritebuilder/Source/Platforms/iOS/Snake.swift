@@ -69,7 +69,7 @@ class Snake {
 		let snake = Snake()
         snake.prey = prey
         
-        var zOrder = prey.zOrder + 100
+        var zOrder = prey.zOrder + 1
         
         let spawnPoint = snake.tileMap.tileAt(point: ccp(0,0)).origin
 
