@@ -23,6 +23,18 @@ class Stage2Scene: AdventureScene {
         return hero.isDead
     }
     
+    var heroHasWon: Bool {
+        get {
+	        return snake.isDead && heroIsDead() == false
+        }
+    }
+    
+    var snakeHasWon: Bool {
+        get {
+            return snake.isDead == false && heroIsDead()
+        }
+    }
+    
     override func didLoadFromCCB() {
         super.didLoadFromCCB()
         
@@ -92,6 +104,15 @@ class Stage2Scene: AdventureScene {
     // MARK: Update logic
     
     override func fixedUpdate(delta: CCTime) {
+
+        if endStageUI.visible{
+            return
+        }
+        
+        if snakeHasWon || heroHasWon || heroIsDead() {
+            showEndStage()
+			return
+        }
         
         // Update items that do not need to be changed on every frame
         // e.g. text labels, non-physics bodies, anything not animated or moving
@@ -106,6 +127,13 @@ class Stage2Scene: AdventureScene {
     override func update(delta: CCTime) {
         // Update items that need to be changed as often as possible
         // e.g. physics bodies, anything animated
+    }
+    
+    
+    override func nextStage(sender: AnyObject?) {
+        OALSimpleAudio.sharedInstance().stopBg()
+        let gameplayScene = CCBReader.loadAsScene(nextScene)
+        CCDirector.sharedDirector().presentScene(gameplayScene, withTransition: CCTransition(crossFadeWithDuration: 1.5))
     }
 
 

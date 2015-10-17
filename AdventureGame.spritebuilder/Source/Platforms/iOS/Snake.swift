@@ -10,10 +10,10 @@ import Foundation
 
 class Snake {
 
-    static let maxHealth:Int = 100
-    static let partOffset:CGFloat = 32
+    static let maxHealth:Int = 30
     static let defaultMoveInterval:CCTime = 0.1
     static let defaultBodyLength = 30
+    static let bombStunDuration:CCTime = 1
     
     static let normalBodyImage = "Animation/snakebody.png"
     static let bentBodyImage = "Animation/snakebend.png"
@@ -41,10 +41,20 @@ class Snake {
             return tileMap.sameTile(pointA: head!.position, pointB: prey.position)
         }
     }
+    
+    var isDead:Bool {
+        get{
+            return health < 1
+        }
+    }
 
     func moveForward(deltaTime:CCTime){
+        if (isDead) {
+            return
+        }
+        
         sinceLastMove += deltaTime
-
+        
         guard caughtPrey == false && sinceLastMove > moveInterval else{
             return
         }
@@ -62,12 +72,15 @@ class Snake {
         if object .isKindOfClass(Bomb){
             stunned()
             health -= 5
-            
+        
+            for part in parts {
+                part.bombEffect(duration: Snake.bombStunDuration)
+            }
         }
     }
     
     func stunned(){
-        moveInterval = 3
+        moveInterval = Snake.bombStunDuration
     }
     
     private func stopAllActions(){

@@ -376,6 +376,11 @@ class Stage1Scene: AdventureScene {
                 hero.exitStage()
                 stageExitTriggered = true
         }
+
+        if (stageExitTriggered && !heroExited && hero.physicsBody.velocity.magnitude() <= 0){
+			// Workaround for bug where the hero gets stuck in place
+            hero.exitStage()
+        }
         
     }
     
