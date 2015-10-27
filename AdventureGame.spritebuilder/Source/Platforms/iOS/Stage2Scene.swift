@@ -64,13 +64,20 @@ class Stage2Scene: AdventureScene {
     // MARK: User Interaction
     
     func tapDetected(sender:UITapGestureRecognizer){
+		if snakeHasWon || heroHasWon || heroIsDead() {
+            return
+        }
+        
         let tapPoint = sender.locationInView(CCDirector.sharedDirector().view)
-
         hero.moveTo(point: tapPoint)
     }
     
     func placeTrap(sender:UITapGestureRecognizer){
-     	print ("place trap")
+        if snakeHasWon || heroHasWon || heroIsDead() {
+            return
+        }
+        
+        print ("place trap")
         let bomb = Bomb.spawn(on: hero.position)
         gamePhysicsNode.addChild(bomb)
         bombs.append(bomb)
@@ -105,19 +112,35 @@ class Stage2Scene: AdventureScene {
     
     override func fixedUpdate(delta: CCTime) {
 
-        if endStageUI.visible{
-            return
-        }
-        
-        if snakeHasWon || heroHasWon || heroIsDead() {
-            showEndStage()
-			return
-        }
-        
         // Update items that do not need to be changed on every frame
         // e.g. text labels, non-physics bodies, anything not animated or moving
         scoreLabel.string = "Snake Health: \(snake.health) / \(Snake.maxHealth)"
         hitPointsLabel.string = "Hit Points: \(hero.hitPoints)"
+        
+        if snakeHasWon || heroHasWon || heroIsDead() {
+
+            if (gameOverUI.visible == false && endStageUI.visible == false) {
+	            showEndStage()
+            }
+   
+            if (heroIsDead()) {
+                
+                if (dirgePlayed == false) {
+                    sinceHeroDeath += delta
+                    
+                    if (dirgePlayed == false && sinceHeroDeath > 4){
+                        playDirge()
+                    }
+                }
+            }
+        
+        }
+
+        
+        if endStageUI.visible || gameOverUI.visible {
+            return
+        }
+        
 
         snake.moveForward(delta)
         
@@ -127,6 +150,8 @@ class Stage2Scene: AdventureScene {
     override func update(delta: CCTime) {
         // Update items that need to be changed as often as possible
         // e.g. physics bodies, anything animated
+        
+
     }
     
     

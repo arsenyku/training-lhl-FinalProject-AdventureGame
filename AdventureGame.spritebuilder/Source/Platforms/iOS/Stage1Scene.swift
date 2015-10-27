@@ -30,7 +30,6 @@ class Stage1Scene: AdventureScene {
     var sinceLastRedDragon : CCTime = CCTime()
     var redDragonSpawnPoint : CGPoint = CGPointMake(100,375)
     var stageExitTriggered: Bool = false
-    var sinceHeroDeath:CCTime = 0
     
 	// User interaction
     weak var coordinatesLabel : CCLabelTTF!

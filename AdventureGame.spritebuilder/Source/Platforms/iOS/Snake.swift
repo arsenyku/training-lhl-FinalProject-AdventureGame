@@ -98,7 +98,7 @@ class Snake {
         
         let spawnPoint = snake.tileMap.tileAt(point: ccp(0,0)).origin
 
-        let headPart = SnakePart.spawn(.Head)
+        let headPart = SnakePart.spawn(type: .Head)
         headPart.position = spawnPoint
         headPart.snake = snake
         headPart.zOrder = zOrder
@@ -110,7 +110,7 @@ class Snake {
 
         for _ in 1...Snake.defaultBodyLength {
             zOrder -= 1
-            let bodyPart = SnakePart.spawn(.Body)
+            let bodyPart = SnakePart.spawn(type: .Body)
             bodyPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
             bodyPart.frontPart = last
             bodyPart.snake = snake
@@ -120,7 +120,7 @@ class Snake {
             last = snake.parts.last!
         }
         
-        let tailPart = SnakePart.spawn(.Tail)
+        let tailPart = SnakePart.spawn(type: .Tail)
         tailPart.position = snake.tileMap.nextTile(forSprite: last, inDirection: .Left)!.origin
 		tailPart.frontPart = last
         tailPart.snake = snake

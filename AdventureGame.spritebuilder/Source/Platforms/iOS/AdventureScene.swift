@@ -17,6 +17,7 @@ class AdventureScene: CCNode, CCPhysicsCollisionDelegate, UIGestureRecognizerDel
 
     var soundOn = false
     var dirgePlayed = false
+    var sinceHeroDeath:CCTime = 0
 
     weak var soundToggleButton : CCButton!
     weak var endStageUI: CCNode!
