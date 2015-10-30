@@ -14,6 +14,7 @@
 		120C619C1BCCC2360031A76A /* DeathScream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 120C619B1BCCC2360031A76A /* DeathScream.mp3 */; };
 		120C61AA1BCD7AAD0031A76A /* Stage2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */; };
 		1229DC481BCEF9AF0049C4EE /* SnakePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1229DC471BCEF9AF0049C4EE /* SnakePart.swift */; };
+		123256A71BDEFE46007B0330 /* BombExplosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123256A61BDEFE46007B0330 /* BombExplosion.swift */; };
 		125A8FB51BCB1CCC007E1641 /* BlackDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */; };
 		125A8FBD1BCB5A97007E1641 /* RedDragonImpact.wav in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */; };
 		125A8FBF1BCB5AA5007E1641 /* BlackDragonImpact.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */; };
@@ -185,6 +186,7 @@
 		120C619B1BCCC2360031A76A /* DeathScream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DeathScream.mp3; path = Sound/DeathScream.mp3; sourceTree = "<group>"; };
 		120C61A91BCD7AAD0031A76A /* Stage2Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage2Scene.swift; path = Source/Platforms/iOS/Stage2Scene.swift; sourceTree = "<group>"; };
 		1229DC471BCEF9AF0049C4EE /* SnakePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakePart.swift; path = Source/Platforms/iOS/SnakePart.swift; sourceTree = "<group>"; };
+		123256A61BDEFE46007B0330 /* BombExplosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BombExplosion.swift; path = Source/Platforms/iOS/BombExplosion.swift; sourceTree = "<group>"; };
 		125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlackDragon.swift; path = Source/Platforms/iOS/BlackDragon.swift; sourceTree = "<group>"; };
 		125A8FBC1BCB5A97007E1641 /* RedDragonImpact.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = RedDragonImpact.wav; path = Sound/RedDragonImpact.wav; sourceTree = "<group>"; };
 		125A8FBE1BCB5AA5007E1641 /* BlackDragonImpact.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BlackDragonImpact.mp3; path = Sound/BlackDragonImpact.mp3; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				129580721BD092D600F02E30 /* SnakeTileMap.swift */,
 				125A8FB41BCB1CCC007E1641 /* BlackDragon.swift */,
 				1295B3011BC91A4300B0FB3C /* RedDragon.swift */,
+				123256A61BDEFE46007B0330 /* BombExplosion.swift */,
 				129A57B01BC8722100A4D07D /* Crystal.swift */,
 				129A57B11BC8722100A4D07D /* FloatingGround.swift */,
 				125A8FCC1BCB94B4007E1641 /* SafeGround.swift */,
@@ -941,6 +944,7 @@
 				129A57B91BC8744400A4D07D /* Hero.swift in Sources */,
 				1203F0281BCDBD7C0067FB89 /* HeroStage2.swift in Sources */,
 				129A57B41BC8722100A4D07D /* Crystal.swift in Sources */,
+				123256A71BDEFE46007B0330 /* BombExplosion.swift in Sources */,
 				12957D7F1BD043AB00F02E30 /* SnakeHead.swift in Sources */,
 				129580731BD092D600F02E30 /* SnakeTileMap.swift in Sources */,
 				12E901741BD1838B00D880D6 /* Bomb.swift in Sources */,

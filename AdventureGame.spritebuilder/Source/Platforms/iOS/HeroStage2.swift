@@ -32,7 +32,9 @@ class HeroStage2 : Hero {
         
         let moveTo = CCActionMoveTo.actionWithDuration(duration, position: point) as! CCAction
         let done = CCActionCallBlock { () -> Void in
-            self.playAnimation(named: "Standing Timeline")
+            if (!self.isDead) {
+            	self.playAnimation(named: "Standing Timeline")
+            }
         }
         let runTo = CCActionSequence.actionWithArray([moveTo, done]) as! CCActionSequence
 

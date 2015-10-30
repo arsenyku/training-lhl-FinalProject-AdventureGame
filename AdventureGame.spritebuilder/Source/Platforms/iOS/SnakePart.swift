@@ -127,23 +127,8 @@ class SnakePart : CCSprite {
     }
     
     func bombEffect(duration duration:CCTime){
-//        let fire = CCParticleExplosion(totalParticles: 100)
-//
-//        fire.emitterMode = .Radius
-//        fire.emissionRate = 1
-//        fire.texture = CCTexture(file: "ccbParticleFire.png")
-//        
-//        fire.startRadius = 1
-//        fire.startSize = 10
-//
-//        fire.duration = Float(Snake.bombStunDuration)
-//        
-//        fire.life = Float(Snake.bombStunDuration)
-//        
-//        fire.position = position
-//		fire.sourcePosition = position
-//        
-//        addChild(fire)
+        let boom = BombExplosion.spawn(on: self, duration:duration)
+        parent?.addChild(boom)
 
     }
     
